@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    font-family: var(--mulish);
+    color: var(--ghost-white);
+}
+body{
+    height: 100vh;
+}
+h1,h2,h3{
+    font-family: var(--righteous);
+}
+.links{
+    font-size: small;
+    font-weight: 500;
+    color: coral;
+}
+.m-black{
+    background-color: var(--m-black);
+}
+.yale-blue{
+    background-color: var(--yale-blue);
+}
+.ghost-white{
+    background-color: var(--ghost-white);
+}
+.coral{
+    background-color: var(--coral);
+}
+.auburn{
+    background-color: var(--auburn);
+}
+
+/* specific */
+/* navbar */
+.logo, .arrow-back, .lupa{
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.arrow-back{
+    width: 2rem;
+    height:2rem;
+    background-image: url('../../assets/icons/arrow-back.svg');
+}
+.logo{
+    width: 4rem;
+    height:2rem;
+    background-image: url('../../assets/logo/mmovieLogo.svg');
+    
+}
+/* form */
+form{
+    padding: 0 1rem;
+    max-width: 24rem;
+    display: flex;
+    align-items: center;
+    border-radius: 3rem;
+    outline: 1px solid var(--coral);
+}
+.searchbar{
+    max-width: 20rem;
+    background-color: transparent;
+    color: var(--coral);
+}
+.lupa{
+    width: 2rem; 
+    height:2rem;
+    background-color: transparent;
+    background-image: url('../../assets/icons/lupa.svg');
+}
