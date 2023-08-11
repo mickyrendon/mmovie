@@ -17,10 +17,12 @@
 
 :root{
     --m-black: #1E1E1E;
+    --m-black-op: #1e1e1eb9;
+    --m-black-gray: #424040;
     --yale-blue:#134074;
     --ghost-white:#F8F4F9;
     --coral:#FC7753;
-    --auburn:#A52422;
+    --auburn:#37B08C;
     --mulish:'Mulish', 'sans-serif';
     --righteous:'Righteous', 'cursive'
 }

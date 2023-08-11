@@ -2,8 +2,9 @@
   "name": "mmovie",
   "version": "1.0.0",
   "description": "proyecto de consumo de API REST con js de Platzi",
-  "main": "index.js",
+  "main": "./src/js/index.js",
   "scripts": {
+    "dev": "node src/js/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,10 +12,15 @@
     "url": "git+https://github.com/mickyrendon/mmovie.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "micky rendon",
   "license": "MIT",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/mickyrendon/mmovie/issues"
   },
-  "homepage": "https://github.com/mickyrendon/mmovie#readme"
+  "homepage": "https://github.com/mickyrendon/mmovie#readme",
+  "dependencies": {
+    "@glidejs/glide": "^3.6.0",
+    "axios": "^1.4.0"
+  }
 }

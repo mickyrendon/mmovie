@@ -1,7 +1,13 @@
+/* Required Core Stylesheet
+@import "../../node_modules/@glidejs/glide/src/assets/sass/glide.core.scss";
+
+/* Optional Theme Stylesheet *
+@import "../../node_modules/@glidejs/glide/src/assets/sass/glide.theme.scss"; */
+
 *{
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box;
     font-family: var(--mulish);
     color: var(--ghost-white);
 }
@@ -11,6 +17,10 @@ body{
 h1,h2,h3{
     font-family: var(--righteous);
 }
+h3{
+    font-size: smaller;
+    line-height: 12px;
+}
 .links{
     font-size: small;
     font-weight: 500;
@@ -18,6 +28,9 @@ h1,h2,h3{
 }
 .m-black{
     background-color: var(--m-black);
+}
+.m-black-op{
+    background-color: var(--m-black-op);
 }
 .yale-blue{
     background-color: var(--yale-blue);
@@ -34,7 +47,7 @@ h1,h2,h3{
 
 /* specific */
 /* navbar */
-.logo, .arrow-back, .lupa{
+.logo, .arrow-back, .menu-m, .back-btn, .lupa{
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -43,11 +56,20 @@ h1,h2,h3{
     height:2rem;
     background-image: url('../../assets/icons/arrow-back.svg');
 }
+.menu-m, .back-btn{
+    width: 2rem;
+    height:2rem;
+}
+.menu-m{
+    background-image: url('../../assets/icons/menu.svg');
+}
+.back-btn{
+    background-image: url('../../assets/icons/arrow-back.png');
+}
 .logo{
     width: 4rem;
     height:2rem;
     background-image: url('../../assets/logo/mmovieLogo.svg');
-    
 }
 /* form */
 form{
@@ -59,8 +81,11 @@ form{
     outline: 1px solid var(--coral);
 }
 .searchbar{
-    max-width: 20rem;
+    width: 8rem;
+    font-family: var(--mulish);
     background-color: transparent;
+    font-size: small;
+    line-height: 2;
     color: var(--coral);
 }
 .lupa{
@@ -68,4 +93,179 @@ form{
     height:2rem;
     background-color: transparent;
     background-image: url('../../assets/icons/lupa.svg');
+}
+/* slider header*/
+.carousel_trending_all_list > li > img{
+    width: 100%;
+    height: 32rem;
+    object-fit: cover;
+}
+/* sliders main */
+.section_details{
+    margin-top: 2rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.section_details > a{
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--coral);
+}
+.carousel_movies_list, .carousel_series_list, .carousel_categories_list{
+    padding: 1rem;
+    /* gap: 1rem; */
+}
+.carousel_movies_list, .carousel_series_list{
+    width: max-content !important;
+    gap: 1rem;
+}
+.carousel_movies_list > li, .carousel_series_list > li{   
+    width: auto;
+    height: auto;
+} 
+.carousel_movies_list > li > img, .carousel_series_list > li > img{   
+    /* width: 10rem; */
+    height: 16rem; 
+    /* todo, cambiar por fit screen > 520px */
+    object-fit: cover;
+    border-radius: 0.25rem;
+    box-shadow: 0px 1px 3px 1px #000;
+} 
+/* slider btns */
+.glide__arrows > button{
+    padding: 1.5rem 1rem;
+    background-color: var(--m-black-op);
+}
+.glide__arrow--right, .glide__arrow--left{
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.glide__arrow--right{
+    background-image: url('../../assets/icons/arrow-right.svg');
+    right: 0.5rem;
+}
+.glide__arrow--left{
+    left: 0.5rem;
+    background-image: url('../../assets/icons/arrow-left.svg');
+}
+/* category btns */
+.categories-slider{
+    padding: 1rem 0.5rem;
+    display: flex;
+    gap: 2rem;
+}
+.category-btn-ctr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.category-btn-ctr > button{
+    width:  2.75rem;
+    height: 2.75rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+.action{
+    background-image: url('../../assets/icons/action.png');
+}
+.adventure{
+    background-image: url('../../assets/icons/adventure.png');
+}
+.comedy{
+    background-image: url('../../assets/icons/comedy.png');
+}
+.drama{
+    background-image: url('../../assets/icons/drama.png');
+}
+.thriller{
+    background-image: url('../../assets/icons/thriller.svg');
+}
+/* footer */
+.info ul li{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+/* gallery  styles*/
+/* filter */
+.filter select{
+    background-color: transparent;
+    color: var(--coral);
+}
+.filter-ctr, .sort-ctr{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+.filter label{
+    width: 1.7rem;
+    height: 1.7rem;
+}
+.sort-icon, .filter-icon{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-repeat:no-repeat ;
+    background-size: contain;
+    background-position: center;
+}
+.sort-icon{
+    background-image: url('../../assets/icons/sort.svg');
+}
+.filter-icon{
+    background-image: url('../../assets/icons/filter.svg');
+}
+select{
+    width:7rem;
+    text-align: center;
+}
+option{
+    background-color: transparent;
+    color: var(--coral);
+}
+/* gallery */
+.gallery-cards{
+    max-width:18.75rem;
+    min-height: 10rem;
+    /* background-image: url('../../assets/gallery/pexels-fauxels-3228685.jpg'); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0.5rem;
+    /* outline: solid 0.1rem var(--coral);     */
+    box-shadow: 0px 2px 3px 0px var(--m-black-op);
+}
+/* pagination */
+.arrow-left, .arrow-right{
+    width:  2rem;
+    height: 2rem;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0.5rem;
+    /* outline: solid 0.1rem var(--coral);     */
+    box-shadow: 0px 2px 3px 0px var(--m-black-op);
+}
+.arrow-left{
+    background-image: url('../../assets/icons/arrow-left.svg');
+}
+.arrow-right{
+    background-image: url('../../assets/icons/arrow-right.svg');
+}
+
+
+
+
+/* hidden class */
+.hidden{
+    display: none;
+}
+.show{
+    display: flex;
 }

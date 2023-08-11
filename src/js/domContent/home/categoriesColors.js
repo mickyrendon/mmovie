@@ -1,0 +1,22 @@
+export const genresColors =  [
+    'bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800',
+    'bg-gradient-to-r from-rose-300 to-rose-500',
+    'bg-gradient-to-r from-emerald-500 to-lime-600',
+    'bg-gradient-to-r from-slate-500 to-yellow-100',
+    'bg-gradient-to-r from-fuchsia-600 to-pink-600',
+    'bg-gradient-to-r from-orange-300 to-rose-300',
+    'bg-gradient-to-r from-violet-300 to-violet-400',
+    'bg-gradient-to-r from-rose-500 via-red-400 to-red-500',
+    'bg-gradient-to-r from-red-500 to-red-800',
+    'bg-gradient-to-r from-sky-400 to-cyan-300',
+    'bg-gradient-to-r from-cyan-200 to-cyan-400',
+    'bg-gradient-to-r from-sky-400 to-blue-500',
+    'bg-gradient-to-r from-fuchsia-500 via-red-600 to-orange-400',
+    'bg-gradient-to-r from-teal-200 to-lime-200',
+    'bg-gradient-to-r from-rose-400 to-orange-300',
+    'bg-gradient-to-b from-orange-500 to-yellow-300',
+    'bg-gradient-to-b from-sky-400 to-sky-200',
+    'bg-gradient-to-r from-sky-400 via-rose-400 to-lime-400',
+    'bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900',
+    'bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500'
+]

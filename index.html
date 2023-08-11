@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- styles -->
+    <!-- Required Core Stylesheet -->
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+    <!-- Optional Theme Stylesheet -->
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+    <link rel="stylesheet" href="./src/styles/reset.css">
     <link rel="stylesheet" href="./src/styles/vars.css">
     <link rel="stylesheet" href="./src/styles/style.css">
+    <!-- swiper -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/> -->
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;1,300&family=Righteous&display=swap" rel="stylesheet">
     <title>mmovie</title>
 </head>
-<body class="m-black">
-    <header>
-        <nav class="p-4 flex justify-between">
-            <button class="arrow-back"></button>
-            <form action="">
+<body class="h-max bg-gradient-to-t from-gray-700 via-gray-900 to-black home-view">
+    <header class="flex flex-col items-center">
+        <nav class="py-4 px-2 w-full md:p-4 flex justify-between">
+            <button id="ambiguous-btn" class="menu-m"></button>
+            <form action="" class="searcher">
                 <label for="search">
                     <input type="text" placeholder="Buscar pelicula" id="search" class="searchbar" name="search">
                 </label>
@@ -25,86 +34,170 @@
                     <input type="button"  name="lupa" role="button" class="lupa" alt="botón buscar">
                 </label>
             </form>
-            <button class="logo"></button>
+            <a href="index.html"><span id="logo" class="logo md:mr-1 inline-block"></span></a>
+
         </nav>
-        <nav class="px-4 py-2 ">
-            <ol class="flex justify-evenly text-xs">
+        <nav class="global-nav px-4 py-2 w-full flex justify-center">
+            <menu class="w-9/12 md:w-1/3 flex justify-evenly text-xs">
+                <!-- vinculo los links a un mismo template. depende del link que use, hago el fetch a la api, pero reutilizo el template -->
                 <li>
-                    <a href="">Peliculas</a>
+                    <button class="movies-link" data-name="Peliculas">Peliculas</button>
                 </li>
                 <li>
-                    <a href="">Series</a>
+                    <button class="series-link" data-name="Series">Series</button>
                 </li>
                 <li>
-                    <a href="">Documentales</a>
+                    <button class="documentals-link" data-name="Documentales">Documentales</button>
                 </li>
                 <li>
-                    <a href="">Realities</a>
+                    <button class="realities-link" data-name="Realitis">Realities</button>
                 </li>
-            </ol>
+            </menu>
         </nav>
         <!-- slider -->
-        <button></button>
+        <div class="glide main-slider">
+            <div class="glide__track" data-glide-el="track">
+            <!-- filling with api info -->
+              <ul class="glide__slides carousel_trending_all_list"></ul>
+                <button class="estrenos p-3 auburn text-sm font-semibold rounded-md absolute bottom-4 right-4" data-name="Estrenos">
+                    Ver estrenos
+                </button>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+            </div>
+        </div>
+          
     </header>
+    <nav class="filter my-4 w-full h-12 justify-between hidden">
+        <div class="filter-ctr">
+         <label for="filterBy">
+             <span class="filter-icon"></span>
+         </label>
+         <select name="filterBy" id="filterBy">
+             <optgroup label="Género">
+                 <option value="action">Género</option>
+                 <option value="adventure">Aventura</option>
+                 <option value="comedy">Comedia</option>
+                 <option value="drama">Drama</option>
+                 <option value="thriller">Terror</option>
+                 <option value="cf">Ciencia ficción</option>
+                 <option value="romance">Romance</option>
+             </optgroup>
+             <optgroup label="Año de lanzamiento">
+                 <option value="23">2023</option>
+                 <option value="22">2022</option>
+                 <option value="21">2021</option>
+                 <option value="20">2020</option>
+                 <option value="19">2019</option>
+                 <option value="18">2018</option>
+             </optgroup>
+             <optgroup label="Popularidad">
+                 <option value="populars">Más populares</option>
+                 <option value="valorations">Mejor valoradas</option>
+                 <option value="recents">Recién llegadas</option>
+             </optgroup>
+             <optgroup label="Idioma">
+                 <option value="spanish">Español</option>
+                 <option value="english">Inglés</option>
+                 <option value="portugues">Portugués</option>
+             </optgroup>
+             <optgroup label="Duración">
+                 <option value="short-film">Cortometraje</option>
+                 <option value="movie">Película</option>
+                 <option value="extended">Version extendida</option>
+             </optgroup>
+             <optgroup label="Director">
+                 <option value="d-1">Steven Spielberg</option>
+                 <option value="d-2">Christopher Nolan</option>
+                 <option value="d-3">Quentin Tarantino</option>
+                 <option value="d-4">Martin Scorsese</option>
+             </optgroup>
+         </select>
+        </div>
+         <div class="sort-ctr">
+             <label for="orderBy">
+                 <span class="sort-icon"></span>
+             </label>
+             <select name="orderBy" id="orderBy">
+                 <option value="falling">Descendente</option>
+                 <option value="upward">Ascendente</option>
+             </select>
+         </div>
+     </nav>
     <main>
-        <section>
-            <h2></h2>
-            <a href=""></a>
-            <div class="slider"></div>
+        <section class="movies-section">
+            <div class="section_details">
+                <h2>Películas</h2>
+                <button class="movies-se-all links" data-name="Peliculas">Ver todo</button>
+            </div>
+            <div class="glide glide_trending">
+                <div class="glide__track" data-glide-el="track">
+                    <!-- filling with cars from api -->
+                  <ul class="glide__slides carousel_movies_list"></ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+                  </div>
+              </div>
+            
         </section>
-        <section>
-            <h2></h2>
-            <a href=""></a>
-            <div class="slider"></div>
+        <section class="series-section">
+            <div class="section_details">
+                <h2>Series</h2>
+                <button class="series-se-all links" data-name="Series">Ver todo</button>
+            </div>
+            <div class="glide glide_series">
+                <div class="glide__track" data-glide-el="track">
+                <!-- filling with cars from api -->
+                  <ul class="glide__slides carousel_series_list"></ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+                  </div>
+              </div>
         </section>
-        <section>
-            <h2>Categorias</h2>
-            <div class="categories-slider">
-                <div class="category-btn-ctr">
-                    <button></button>
-                    <h3></h3>
-                </div>
-                <div class="category-btn-ctr">
-                    <button></button>
-                    <h3></h3>
-                </div>
-                <div class="category-btn-ctr">
-                    <button></button>
-                    <h3></h3>
-                </div>
-                <div class="category-btn-ctr">
-                    <button></button>
-                    <h3></h3>
-                </div>
-                <div class="category-btn-ctr">
-                    <button></button>
-                    <h3></h3>
+        <!-- btns menu -->
+        <section class="genres-section">
+            <h2 class="pl-2">Categorias</h2>
+            <div class="glide categories-slider">
+                <div class="glide__track w-full" data-glide-el="track">
+                    <!-- genres container -->
+                    <div class="glide__slides carousel_categories_list grid grid-cols-3 md:grid-cols-4 gap-4 gap-x-12 gap-y-8"></div>  
                 </div>
             </div>
         </section>
     </main>
-    <footer>
-        <div class="info">
-            <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ol>
-            <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ol>
+    <footer class=" grid grid-flow-row auto-rows-auto items-bottom m-black-gray">
+        <div class="info h-40 flex justify-around ">
+            <ul class="w-1/2 h-full py-2 flex flex-col items-center justify-end">
+                <li>
+                    <a href="#">Acerca de</a>
+                </li>
+                <li>
+                    <a href="#">Terminos y condiciones</a>
+                </li>
+            </ul>
+            <ul class="w-1/2 h-full py-2 flex flex-col items-center justify-end">
+                <li>
+                    <a href="#">Ayuda</a>
+                </li>
+                <li>
+                    <a href="#">Trabaja con nosotros</a>
+                </li>
+            </ul>
         </div>
-        <div class="flex justify-center gap-2">Developed by 
+        <div class="h-12 flex justify-center items-center gap-2">Developed by 
             <a href="https://rendn.netlify.app/">
                 <svg id="Layer_1" class="layer_1 w-16" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 777 298"><defs><style>.cls-1{fill:var(--coral);}.cls-2{fill:var(--coral);}.cls-3{fill:var(--coral);}.cls-4{fill:var(--coral);}.cls-5{fill:var(--coral);}.cls-6{fill:var(--coral);}.cls-7{fill:var(--coral);}.cls-8{fill:var(--coral);}.cls-9{fill:var(--coral);}.cls-10{fill:var(--coral);}.cls-11{fill:var(--coral);}.cls-12{fill:var(--coral);}.cls-13{fill:var(--coral);}.cls-14{fill:none;stroke:var(--coral);stroke-miterlimit:10;stroke-width:5.67px;}</style></defs><title>logoShort</title><path class="cls-1" d="M168.07,101.08C99.67,76.61,68.74,123,68.72,162a18.84,18.84,0,0,0,37.68,0h0c0-5,2.63-24.47,17.33-29,9.6-2.91,22.18.16,31.65,3.55Z"></path><path class="cls-2" d="M142.93,118.83a18.84,18.84,0,1,1,18.84,18.83,18.83,18.83,0,0,1-18.84-18.83Z"></path><path class="cls-3" d="M106.4,227.18V112.91a18.84,18.84,0,0,0-37.68,0V227.18H106.4"></path><path class="cls-4" d="M102.41,101.31C79.51,113.39,68.73,139,68.72,162a18.84,18.84,0,0,0,37.68,0h0V112.91a18.8,18.8,0,0,0-4-11.6"></path><circle class="cls-5" cx="87.56" cy="227.3" r="18.84"></circle><path class="cls-6" d="M242.42,170.79h0A47.62,47.62,0,0,0,246,189.41a34.36,34.36,0,0,0,19.3,19.07,50,50,0,0,0,18.84,3.34h.06a42.28,42.28,0,0,0,15-3,44.41,44.41,0,0,0,13.42-8.14l25.15,28.06A82.06,82.06,0,0,1,312.8,244a79.69,79.69,0,0,1-28.7,5.53h0a89.71,89.71,0,0,1-28.19-4.33,74,74,0,0,1-23.31-12.6,71.28,71.28,0,0,1-11.94-12.25,75.09,75.09,0,0,1-10.77-19.72,86.45,86.45,0,0,1-5.13-29.8Z"></path><path class="cls-5" d="M280.4,92.09h-.09c-41.27,0-75.58,35.33-75.57,78.7h37.68c0-22.78,17.61-41,37.91-41,16.7,0,29.06,8.58,35.06,22.19l41.47,18.83c0-43.9-31.73-78.7-76.46-78.7"></path><path class="cls-7" d="M223.58,152a18.84,18.84,0,0,0-18.84,18.83h0A18.84,18.84,0,1,0,223.58,152"></path><path class="cls-8" d="M315.39,152H272.86a18.84,18.84,0,1,0,0,37.67H338Z"></path><path class="cls-9" d="M338,152H315.39a3.09,3.09,0,0,1,.14.32,46.82,46.82,0,0,1,3.66,18.51A18.83,18.83,0,0,0,338,189.63h0a18.83,18.83,0,0,0,18.84-18.84h0A18.83,18.83,0,0,0,338,152"></path><path class="cls-1" d="M306.31,214.74a18.84,18.84,0,1,1,18.83,18.84,18.84,18.84,0,0,1-18.83-18.84Z"></path><path class="cls-6" d="M404.57,245.65a18.84,18.84,0,0,1-18.84-18.84V110.61a18.84,18.84,0,0,1,37.68,0v116.2a18.85,18.85,0,0,1-18.84,18.84Z"></path><path class="cls-8" d="M523.31,159.55c0-51.9-57.09-83.84-102.6-58.64a18.7,18.7,0,0,1,2.7,9.7v48.94c0-33.58,50.48-41.43,60.88-8.73a28.79,28.79,0,0,1,1.34,8.73Z"></path><path class="cls-10" d="M420.71,100.9a68.49,68.49,0,0,0-23,20.75,66,66,0,0,0-11.94,37.9,18.84,18.84,0,0,0,37.68,0V110.61a18.76,18.76,0,0,0-2.7-9.71"></path><rect class="cls-5" x="485.63" y="159.55" width="37.6" height="68.91"></rect><path class="cls-9" d="M504.47,140.72a18.84,18.84,0,0,0-18.84,18.83h0a18.84,18.84,0,1,0,37.68,0h0a18.84,18.84,0,0,0-18.84-18.83"></path><path class="cls-1" d="M485.63,226.93a18.84,18.84,0,1,1,18.84,18.83,18.84,18.84,0,0,1-18.84-18.83Z"></path><path class="cls-11" d="M385.73,226.93a18.84,18.84,0,1,1,18.84,18.83,18.83,18.83,0,0,1-18.84-18.83Z"></path><rect class="cls-12" x="668.91" y="56.84" width="37.68" height="170.83"></rect><path class="cls-8" d="M668.91,104.89A75,75,0,0,0,628.38,93,75.86,75.86,0,0,0,565,127.47c-33.75,51.19,2,121,63.37,121a75,75,0,0,0,42.2-13ZM628.41,210.8h0c-21.28,0-38.61-17.86-38.62-40,0-39.42,49.25-54.86,70.54-22.55,17.49,26.54-1,62.58-31.92,62.59"></path><path class="cls-13" d="M668.91,104.89c0,133.82-.65,125.47,1.7,130.62,46.25-31.32,45.12-100.7-1.7-130.62"></path><path class="cls-2" d="M668.91,56.84a18.84,18.84,0,1,1,18.84,18.84,18.85,18.85,0,0,1-18.84-18.84Z"></path><path class="cls-6" d="M668.91,227.79a18.84,18.84,0,1,1,18.84,18.83,18.84,18.84,0,0,1-18.84-18.83Z"></path><rect class="cls-14" x="3" y="2.95" width="771" height="292.05"></rect>
                     </svg>
             </a>
         </div>
     </footer>
-    <script src="./src/js/index.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./src/js/index.mjs"  type="module"></script>
 </body>
 </html>
