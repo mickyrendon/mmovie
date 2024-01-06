@@ -22,7 +22,7 @@ export const hiddeElements = () => {
     body.classList.toggle('home-view')
     filters.classList.toggle('hidden')
     filters.classList.toggle('flex')
-    
+//     location.hash = 'Home'
     return htmlElements.forEach((e) => {
           return e.classList.toggle('hidden')
     })  

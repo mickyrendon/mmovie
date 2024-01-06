@@ -1,5 +1,5 @@
-import { getTrendingAll_Home, getMovieGenres_Home} from "../petitions/petitions.js"
-import { moviesHome, moviesGallery, seriesHome, seriesGallery } from "../petitions/responseNodes.js"
+import { getMovieGenres_Home} from "../petitions/petitions.js"
+import { estrenosHome, estrenosGallery, moviesHome, moviesGallery, seriesHome, seriesGallery } from "../petitions/responseNodes.js"
 import { slider, sliderSeries, sliderTrending } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
@@ -8,17 +8,17 @@ export const navigation = () => {
     // const main = document.querySelector('main')
     location.hash.startsWith('#Estrenos')
     ?(
-        console.log('estrenos')
+        estrenosGallery()
     ):
     location.hash.startsWith('#Peliculas')
     ?(
-        moviesGallery(),
-        console.log('peliculas', location.hash)
+        moviesGallery()
+        // console.log('peliculas', location.hash)
     ):
     location.hash.startsWith('#Series')
     ?(
-        seriesGallery(),
-        console.log('Series', location.hash)
+        seriesGallery()
+        // console.log('Series', location.hash)
     ):
     location.hash.startsWith('#search')
     ?(
@@ -27,12 +27,9 @@ export const navigation = () => {
     (
         
 
-        getTrendingAll_Home(),
-        moviesHome()
-        .then( () => {
-            seriesHome(),
-            console.log('series home')
-        }),
+        estrenosHome(),
+        moviesHome(),
+        seriesHome(),
         getMovieGenres_Home(),
         
         console.log('home'),

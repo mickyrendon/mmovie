@@ -1,5 +1,5 @@
 import { api } from '../api/myModule.mjs'
-import { URLALL, URLMOVIES, URLSERIES, URLGENRES, API_KEY, imgW300, imgW500, esp} from '../api/secret.js'
+import { URLALL, URLMOVIES, URLSERIES, URLGENRES, API_KEY, esp} from '../api/secret.js'
 
 
 //all trending for home
@@ -12,20 +12,8 @@ export const getTrendingAll_Home = async () => {
     const { data } = await api(`${URLALL}${API_KEY}${esp}`)
 
     const responseArray = data.results
-    console.log(responseArray)
-
-    responseArray.forEach( movie => {
-        
-        const ul = document.querySelector('.carousel_trending_all_list')
-        const li = document.createElement('li')
-              li.classList.add('glide__slide')
-        const img = document.createElement('img')
-              img.src = `${imgW500}${movie.poster_path}`
-              img.setAttribute('data-name', 'card')
-
-              li.append(img)
-              ul.append(li)
-    })
+    
+    return responseArray
 }
 // trending for home
 export const getTrendingMovies_Home = async () => {
@@ -56,35 +44,70 @@ export const getTrendingSeries_Home = async () => {
     return responseArray
 }
 //movie genres / movie categories for home
+// TODO, guardar en el ls si no esta, si esta mapear y renderizar
 export const getMovieGenres_Home = async () => {
-    // traditional
+    
+    // axios
+    const { data } = await api(`${URLGENRES}${API_KEY}${esp}`)
+    const responseArray = data.genres
+
+    const { genresColors } = await import('../domContent/home/categoriesColors.js')
+
+    //saving in localstorage
+    //ls content checker
+    const lsChecker = localStorage.getItem('genres')
+    // const genresParsed =  JSON.parse(lsChecker)
+    
+    if (lsChecker === null){
+        localStorage.setItem('genres', JSON.stringify(responseArray))  
+        const newGenresObject = JSON.parse(localStorage.getItem('genres')) 
+
+        // dom rendering
+        let i = 0
+        newGenresObject?.map( item => {
+            
+            const ctr = document.querySelector('.carousel_categories_list')
+            const div = document.createElement('div')
+                  div.classList.add('category-btn-ctr', 'gap-2')
+                  div.setAttribute('id', `${item.name}`)
+            const button = document.createElement('button')
+                  button.className = `${item.name}, ${genresColors[i++]}`
+            const h3 = document.createElement('h3')
+            const textNode = document.createTextNode(`${item.name}`)
+    
+            h3.append(textNode)
+            div.append(button, h3)
+            ctr.append(div)
+        })
+        
+    }else{
+        const genresObject = JSON.parse(lsChecker)
+        
+        console.log(genresObject)
+        // dom rendering
+        let i = 0
+        genresObject?.map( item => {
+            
+            const ctr = document.querySelector('.carousel_categories_list')
+            const div = document.createElement('div')
+                  div.classList.add('category-btn-ctr', 'gap-2')
+                  div.setAttribute('id', `${item.name}`)
+            const button = document.createElement('button')
+                  button.className = `${item.name}, ${genresColors[i++]}`
+            const h3 = document.createElement('h3')
+            const textNode = document.createTextNode(`${item.name}`)
+    
+            h3.append(textNode)
+            div.append(button, h3)
+            ctr.append(div)
+        })
+    }
+
+    // traditional way
     // const getGenres = await fetch(`${URLGENRES}${API_KEY}${esp}`)
     // const response =  await getGenres.json()
     // const responseArray = response.genres
 
-    // axios
-    const { data } = await api(`${URLGENRES}${API_KEY}${esp}`)
-    const responseArray = data.genres
-    console.log(responseArray)
-
-    const { genresColors } = await import('../domContent/home/categoriesColors.js')
-    
-    let i = 0
-    responseArray.forEach( item => {
-        
-        const ctr = document.querySelector('.carousel_categories_list')
-        const div = document.createElement('div')
-              div.classList.add('category-btn-ctr', 'gap-2')
-              div.setAttribute('id', `${item.name}`)
-        const button = document.createElement('button')
-              button.className = `${item.name}, ${genresColors[i++]}`
-        const h3 = document.createElement('h3')
-        const textNode = document.createTextNode(`${item.name}`)
-
-        h3.append(textNode)
-        div.append(button, h3)
-        ctr.append(div)
-    })
 }
 
 

@@ -1,6 +1,39 @@
-import { getTrendingMovies_Home, getTrendingSeries_Home } from './petitions.js'
-import { imgW300 } from '../api/secret.js'
+import { getTrendingAll_Home, getTrendingMovies_Home, getTrendingSeries_Home } from './petitions.js'
+import { imgW300, imgW500 } from '../api/secret.js'
 
+// estreno slider home
+export const estrenosHome = async () => {
+    
+    const responseArray = await getTrendingAll_Home()    
+    
+    responseArray.forEach( movie => {
+        
+        const ul = document.querySelector('.carousel_trending_all_list')
+        const li = document.createElement('li')
+              li.classList.add('glide__slide')
+        const img = document.createElement('img')
+              img.src = `${imgW500}${movie.poster_path}`
+              img.setAttribute('data-name', 'card')
+
+              li.append(img)
+              ul.append(li)
+    })
+    
+}
+// estrenos gallery
+export const estrenosGallery = async () => {
+
+    const responseArray = await getTrendingAll_Home()    
+    
+    responseArray.forEach( movie => {
+        const galleryCtr = document.querySelector('.gallery-ctr')
+        const card = document.createElement('button')
+              card.classList.add('gallery-cards')
+              card.setAttribute('data-name', 'card')
+              card.style.backgroundImage = `url(${imgW300}${movie.poster_path})`
+        galleryCtr.append(card)
+    })
+}
 // movies slider home
 export const moviesHome = async () => {
     

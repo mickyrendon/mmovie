@@ -1,2 +1,5 @@
 #tipografia
+TODO (generos)
+    1.evitar el duplicado al clickear cualquier btn del menu del navbar
+
     
