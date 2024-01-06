@@ -52,6 +52,8 @@ export const getMovieGenres_Home = async () => {
     const responseArray = data.genres
 
     const { genresColors } = await import('../domContent/home/categoriesColors.js')
+    // parent dom container
+    const ctr = document.querySelector('.carousel_categories_list')
 
     //saving in localstorage
     //ls content checker
@@ -66,7 +68,7 @@ export const getMovieGenres_Home = async () => {
         let i = 0
         newGenresObject?.map( item => {
             
-            const ctr = document.querySelector('.carousel_categories_list')
+            // const ctr = document.querySelector('.carousel_categories_list')
             const div = document.createElement('div')
                   div.classList.add('category-btn-ctr', 'gap-2')
                   div.setAttribute('id', `${item.name}`)
@@ -80,15 +82,15 @@ export const getMovieGenres_Home = async () => {
             ctr.append(div)
         })
         
-    }else{
+    }else if(ctr.childElementCount === 0){
         const genresObject = JSON.parse(lsChecker)
         
-        console.log(genresObject)
+        console.log(genresObject.length)
         // dom rendering
         let i = 0
         genresObject?.map( item => {
             
-            const ctr = document.querySelector('.carousel_categories_list')
+            // const ctr = document.querySelector('.carousel_categories_list')
             const div = document.createElement('div')
                   div.classList.add('category-btn-ctr', 'gap-2')
                   div.setAttribute('id', `${item.name}`)
@@ -101,6 +103,8 @@ export const getMovieGenres_Home = async () => {
             div.append(button, h3)
             ctr.append(div)
         })
+    }else{
+        console.log('nodo lleno, no renderizar nada')
     }
 
     // traditional way
