@@ -9,25 +9,33 @@ globalThis.onload = () => {
         const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
         // dom events
         const { hiddeElements, hiddeNodeElements, hiddeNodeHomeElements } = await import('./domContent/events/hiddeElements.js')
+        // menu btn / back btn
         const { BackBtn_HomeGallery, backBtn_HomeMd } = await import('./domContent/events/ambiguousBtn.js')
 
         const main = document.querySelector('main')
-        
-        // open gallery /  del home a gallery
-        e.target.classList.contains('movies-link')||
-        e.target.classList.contains('series-link')||
-        e.target.classList.contains('documentals-link')||
-        e.target.classList.contains('realities-link')||
-        e.target.classList.contains('estrenos')||
-        e.target.classList.contains('movies-se-all')||
-        e.target.classList.contains('series-se-all')
+        const classes = [
+            'movies-link',
+            'series-link',
+            'documentals-link',
+            'realities-link',
+            'estrenos',
+            'movies-se-all',
+            'series-se-al'
+        ]
+        const filteredClasses = classes.find((className) => {
+            console.log(e.target.className)
+            return className.includes(e.target.className)
+          })
+    
+        filteredClasses
         ?(
             e.stopPropagation(),
             hiddeElements(),    
             BackBtn_HomeGallery(),
-            body.classList.toggle('gallery-view'),
+            body.classList.add('gallery-view'),
             main.append(galleryDom),
             console.log('del home a gallery'),
+            e.target.classList.add('inactive'),
             //validacion para agregar el hash correspondiente de location
             location.hash = `${e.target.dataset.name}`
             

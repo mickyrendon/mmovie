@@ -1,7 +1,4 @@
-#tipografia
-TODO (generos)
-    1.evitar el duplicado al clickear cualquier btn del menu del navbar
-    2.validar que el nodo este vacio para renderizar una sola vez el objeto mapeado
-
 TODO (menu secciones)
-    1.eliminar u ocultar el contenido mostrado al cambiar de vista
+    2.eliminar u ocultar el contenido mostrado al cambiar de vista verificando el contenido del nodo 
+TODO (navbar/ menus)
+    1.Cambiar el evento toggle e inhabilitar el btn una vez estemos en la seccion

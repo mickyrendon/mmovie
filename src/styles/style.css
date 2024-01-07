@@ -259,8 +259,11 @@ option{
     background-image: url('../../assets/icons/arrow-right.svg');
 }
 
-
-
+/* inactive style */
+.inactive{
+    opacity: 0.5;
+    cursor: default!important
+}
 
 /* hidden class */
 .hidden{
