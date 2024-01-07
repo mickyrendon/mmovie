@@ -6,7 +6,7 @@ export const estrenosHome = async () => {
     
     const responseArray = await getTrendingAll_Home()    
     
-    responseArray.forEach( movie => {
+    responseArray?.map( movie => {
         
         const ul = document.querySelector('.carousel_trending_all_list')
         const li = document.createElement('li')
@@ -25,7 +25,7 @@ export const estrenosGallery = async () => {
 
     const responseArray = await getTrendingAll_Home()    
     
-    responseArray.forEach( movie => {
+    responseArray?.map( movie => {
         const galleryCtr = document.querySelector('.gallery-ctr')
         const card = document.createElement('button')
               card.classList.add('gallery-cards')
@@ -39,7 +39,7 @@ export const moviesHome = async () => {
     
     const responseArray = await getTrendingMovies_Home()    
     
-    responseArray.forEach( movie => {
+    responseArray?.map( movie => {
         // FIXME, el slider no es loop
         const ulMovies = document.querySelector('.carousel_movies_list')
         // const ulSeries = document.querySelector('.carousel_series_list')
@@ -59,7 +59,7 @@ export const moviesGallery = async () => {
 
     const responseArray = await getTrendingMovies_Home()    
     
-    responseArray.forEach( movie => {
+    responseArray?.map( movie => {
         const galleryCtr = document.querySelector('.gallery-ctr')
         const card = document.createElement('button')
               card.classList.add('gallery-cards')
@@ -73,7 +73,7 @@ export const seriesHome = async () => {
     
     const responseArray = await getTrendingSeries_Home()    
 
-    responseArray.forEach( movie => {
+    responseArray?.map( movie => {
         const ulSeries = document.querySelector('.carousel_series_list')
         const li = document.createElement('li')
               li.classList.add('glide__slide')    
@@ -90,7 +90,7 @@ export const seriesGallery = async () => {
 
     const responseArray = await getTrendingSeries_Home()    
 
-    responseArray.forEach( movie => {
+    responseArray?.map( movie => {
         const galleryCtr = document.querySelector('.gallery-ctr')
         const card = document.createElement('button')
         card.classList.add('gallery-cards')

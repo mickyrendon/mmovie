@@ -4,18 +4,20 @@ import { slider, sliderSeries, sliderTrending } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
 export const navigation = () => {
-    console.log(`location: ${location}`)
+
+    // location.hash = '/home'
+
     // const main = document.querySelector('main')
-    location.hash.startsWith('#Estrenos')
+    location.hash.startsWith('#estrenos')
     ?(
         estrenosGallery()
     ):
-    location.hash.startsWith('#Peliculas')
+    location.hash.startsWith('#peliculas')
     ?(
         moviesGallery()
         // console.log('peliculas', location.hash)
     ):
-    location.hash.startsWith('#Series')
+    location.hash.startsWith('#series')
     ?(
         seriesGallery()
         // console.log('Series', location.hash)
@@ -23,21 +25,18 @@ export const navigation = () => {
     location.hash.startsWith('#search')
     ?(
         console.log('busqueda')
+    
     ):
     (
-        
-
         estrenosHome(),
         moviesHome(),
         seriesHome(),
         getMovieGenres_Home(),
         
-        console.log('home'),
-        location.hash = 'Home',
+        location.hash = 'home',
 
         sliderTrending.mount(),
         sliderSeries.mount(),
         setTimeout( () => { slider.mount() }, 3000 )
-       
     )
 }
