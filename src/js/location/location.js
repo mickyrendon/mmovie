@@ -8,6 +8,7 @@ import { slider, sliderSeries, sliderTrending } from "../api/glide/glide.js"
 import { hiddeElements, showElements, hiddeNodeElements, hiddeNodeHomeElements } from '../domContent/events/hiddeElements.js'
 // menu btn / back btn
 import { ambiguousBackBtn, ambiguousMenuBtn } from '../domContent/events/ambiguousBtn.js'
+import { deleteNode } from "../domContent/gallery/galleryDom.js"
 export const navigation = () => {
     //default path
     // location.hash = 'home'
@@ -56,6 +57,9 @@ export const navigation = () => {
         moviesHome()
         seriesHome()
         getMovieGenres_Home()
+        
+        // deleting gallery node if exists
+        deleteNode()
 
         // removing inactive class if exist in menu nav btns
         const peliculasBtn = document.querySelector('.movies-link')
