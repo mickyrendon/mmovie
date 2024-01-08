@@ -3,16 +3,20 @@ import { navigation } from "./location/location.js"
 globalThis.onload = () => {
     //event delegation para mostrar la galeria
     const body =  document.querySelector('body')
+    // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
+        // TODO (async import)
+        /* 
+            1.definir cuantas veces voy a usar el import asincrono
+            2.ordenar cada import en su respectiva llamada para no importar todo al darle click en cualquier lugar del body
+        */
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
-        // dom events
-        const { hiddeElements, hiddeNodeElements, hiddeNodeHomeElements } = await import('./domContent/events/hiddeElements.js')
-        // menu btn / back btn
-        const { BackBtn_HomeGallery, backBtn_HomeMd } = await import('./domContent/events/ambiguousBtn.js')
+       
 
         const main = document.querySelector('main')
+
         const classes = [
             'movies-link',
             'series-link',
@@ -29,54 +33,30 @@ globalThis.onload = () => {
     
         // 
         if (filteredClasses){
-
-            e.stopPropagation(),
-            // hidding home sections to show cards gallery
-            hiddeElements(),    
-            // changing the menu btn for back btn
-            BackBtn_HomeGallery(),
+            e.stopPropagation()
+            
             // adding class to body
-            // body.classList.add('gallery-view'),
+            body.classList.add('gallery-view')
             // rendering gallery dom wich is gallery cards
-            // TODO (filteredClasses)
-            /*
-                1.home > galleryDom
-                2.galleryDom > mapear el contenido de las cards por el seleccionado
-            */
-            main.append(galleryDom),
-            // e.target.classList.toggle('inactive')
-            
-            // adding inactive class to clicked btn
-            // FIXME, hacer que funcione el toggle cuando oprimo otro boton
-            // validar si los botones del menu tienen la clase inactive para hacer toogle
-                     // console.log(filteredClasses)
+            main.append(galleryDom)
             //changin the location path
-            // FIXME, este es el verdadero problema!, al cambiar el location renderizamos ese valor 
             location.hash = `${e.target.dataset.name}`
-            
         }
+        console.log(location.hash)
         
+        // addig and removing 'inactive' class to btns 'peliculas' & 'series'
         if(e.target.textContent === 'Peliculas'){
             e.target.classList.add('inactive')
+            // removing inactive class to next btn
             const seriesBtn = e.target.parentNode.nextElementSibling.firstElementChild
             seriesBtn.classList.remove('inactive')
             
         }else if(e.target.textContent === 'Series'){
             e.target.classList.add('inactive')
+            // removing inactive class to next btn
             const peliculasBtn = e.target.parentNode.previousElementSibling.firstElementChild
             peliculasBtn.classList.remove('inactive')
         }
-
-        // if(e.target.dataset.name === e.target.textContent){
-        //     console.log('data name y text content son iguales');
-            
-        //     if(e.target.classList.contains('inactive')){
-        //         console.log('el elemento tiene la clase inactive');
-        //         e.target.classList.remove('inactive')
-        //     }else{
-        //         e.target.classList.add('inactive')
-        //     }
-        // }
         
         // TODO (cards event)
         /* 
@@ -142,6 +122,7 @@ globalThis.onload = () => {
 
     }) 
 }
+// listening when the navigation is changin
 globalThis.addEventListener('DOMContentLoaded', navigation, false)
 globalThis.addEventListener('hashchange', navigation, false)
  

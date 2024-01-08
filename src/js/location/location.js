@@ -3,40 +3,69 @@ import { estrenosHome, estrenosGallery, moviesHome, moviesGallery, seriesHome, s
 import { slider, sliderSeries, sliderTrending } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
+// dom events
+import { hiddeElements, showElements, hiddeNodeElements, hiddeNodeHomeElements } from '../domContent/events/hiddeElements.js'
+// menu btn / back btn
+import { ambiguousBackBtn, ambiguousMenuBtn } from '../domContent/events/ambiguousBtn.js'
 export const navigation = () => {
-
-    // location.hash = '/home'
+    //default path
+    // location.hash = 'home'
 
     // const main = document.querySelector('main')
-    location.hash.startsWith('#estrenos')
-    ?(
-        estrenosGallery()
-    ):
-    location.hash.startsWith('#peliculas')
-    ?(
-        moviesGallery()
-        // console.log('peliculas', location.hash)
-    ):
-    location.hash.startsWith('#series')
-    ?(
-        seriesGallery()
-        // console.log('Series', location.hash)
-    ):
-    location.hash.startsWith('#search')
-    ?(
-        console.log('busqueda')
+    // location.hash.startsWith('#estrenos')
+    // ?(
+    //     estrenosGallery()
+    // ):
+    // location.hash.startsWith('#peliculas')
+    // ?(
+    //     moviesGallery()
+    //     // console.log('peliculas', location.hash)
+    // ):
+    // location.hash.startsWith('#series')
+    // ?(
+    //     seriesGallery()
+    //     // console.log('Series', location.hash)
+    // ):
+    // location.hash.startsWith('#search')
+    // ?(
+    //     console.log('busqueda')
     
-    ):
-    (
-        estrenosHome(),
-        moviesHome(),
-        seriesHome(),
-        getMovieGenres_Home(),
+    // )
+    if(location.hash !== '#home'){
+        // hidding home sections to show cards gallery
+        hiddeElements()   
+        // changing the menu btn for back btn
+        ambiguousBackBtn() 
+    }
+    if(location.hash === '#home'){
+        console.log('showing');
+        showElements()
+        ambiguousMenuBtn()
+    }
+        // rendering home elements
+    if(location.hash.startsWith('#peliculas')){
+        moviesGallery()
+    }
+    if(location.hash.startsWith('#series')){
+        seriesGallery()
+    }
         
-        location.hash = 'home',
+    if(location.hash.startsWith('#home')){
+        estrenosHome()
+        moviesHome()
+        seriesHome()
+        getMovieGenres_Home()
 
-        sliderTrending.mount(),
-        sliderSeries.mount(),
+        // removing inactive class if exist in menu nav btns
+        const peliculasBtn = document.querySelector('.movies-link')
+        const seriesBtn = document.querySelector('.series-link')
+        peliculasBtn.classList.remove('inactive')
+        seriesBtn.classList.remove('inactive')
+        location.hash = 'home'
+
+        sliderTrending.mount()
+        sliderSeries.mount()
         setTimeout( () => { slider.mount() }, 3000 )
-    )
+    }
+        
 }

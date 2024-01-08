@@ -19,14 +19,30 @@ export const hiddeElements = () => {
           genresSec,
     ]
 
-    body.classList.toggle('home-view')
-    filters.classList.toggle('hidden')
-    filters.classList.toggle('flex')
+    body.classList.add('home-view')
+    filters.classList.remove('hidden')
+    filters.classList.add('flex')
 //     location.hash = 'Home'
-    return htmlElements.forEach((e) => {
-          return e.classList.toggle('hidden')
+    return htmlElements?.map((e) => {
+          return e.classList.add('hidden')
     })  
 }   
+export const showElements = () => {
+      const htmlElements = [
+            mainSlider,
+            moviesSec,
+            seriesSec,
+            genresSec,
+      ]
+      
+      body.classList.remove('home-view')
+      filters.classList.add('hidden')
+      filters.classList.remove('flex')
+      //     location.hash = 'Home'
+      return htmlElements?.map((e) => {
+            return e.classList.remove('hidden')
+      })  
+}
 
 //hidding elements to show movie details from gallery
 export const hiddeNodeElements = () => {
