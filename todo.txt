@@ -1,4 +1,2 @@
 TODO (menu secciones)
-    2.eliminar u ocultar el contenido mostrado al cambiar de vista verificando el contenido del nodo 
-TODO (navbar/ menus)
-    1.Cambiar el evento toggle e inhabilitar el btn una vez estemos en la seccion
+    1.eliminar el doble renderizado

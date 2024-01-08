@@ -48,7 +48,7 @@ export const estrenosHome = async () => {
         console.log('nodo de trendings lleno, no renderizar nada')
     }
 }
-
+// FIXME, evitar el duplicado de elementos al recargar la pagina una vez que ya se han guardado en el ls
 // movies slider home
 export const moviesHome = async () => {
     
@@ -158,30 +158,32 @@ export const estrenosGallery = async () => {
     })
 }
 // movies gallery
-export const moviesGallery = async () => {
+// creating gallery dom
+export const galleryDom = async (value) => {
+    //param wich contains the value of localstorage btn object
+    const objectLS = localStorage.getItem(`${value}`)
+    const render = JSON.parse(objectLS)
+    //cards ctr
+    const galleryCtr = document.querySelector('.gallery-ctr')
+    // saving in array the cards
+    const childrenArray = [...galleryCtr.children]
+    let i = 0
 
-    const responseArray = await getTrendingMovies_Home()    
-    
-    responseArray?.map( movie => {
-        const galleryCtr = document.querySelector('.gallery-ctr')
-        const card = document.createElement('button')
-              card.classList.add('gallery-cards')
-              card.setAttribute('data-name', 'card')
-              card.style.backgroundImage = `url(${imgW300}${movie.poster_path})`
-        galleryCtr.append(card)
-    })
-}
-// series gallery
-export const seriesGallery = async () => {
+    // creating the cards
+    galleryCtr.childElementCount === 0?
+    (
+        render?.map( item => {
+            const card = document.createElement('button')
+                  card.classList.add('gallery-cards')
+                  card.setAttribute('data-name', 'card')
+                  card.style.backgroundImage = `url(${imgW300}${item.poster_path})`
+            galleryCtr.append(card)
+        })
 
-    const responseArray = await getTrendingSeries_Home()    
-
-    responseArray?.map( movie => {
-        const galleryCtr = document.querySelector('.gallery-ctr')
-        const card = document.createElement('button')
-        card.classList.add('gallery-cards')
-        card.setAttribute('data-name', 'card')
-        card.style.backgroundImage = `url(${imgW300}${movie.poster_path})`
-        galleryCtr.append(card)
-    })
+    ):(
+        // changin url card
+        childrenArray?.forEach( item => {
+            item.style.backgroundImage = `url(${imgW300}${render[i++].poster_path})`
+        })
+    )
 }
