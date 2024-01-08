@@ -15,6 +15,7 @@ export const getTrendingAll_Home = async () => {
     
     return responseArray
 }
+
 // trending for home
 export const getTrendingMovies_Home = async () => {
     // llamada tradicional
@@ -44,7 +45,6 @@ export const getTrendingSeries_Home = async () => {
     return responseArray
 }
 //movie genres / movie categories for home
-// TODO, guardar en el ls si no esta, si esta mapear y renderizar
 export const getMovieGenres_Home = async () => {
     
     // axios
@@ -104,7 +104,7 @@ export const getMovieGenres_Home = async () => {
             ctr.append(div)
         })
     }else{
-        console.log('nodo lleno, no renderizar nada')
+        console.log('nodo de generos lleno, no renderizar nada')
     }
 
     // traditional way
@@ -119,7 +119,49 @@ export const getMovieGenres_Home = async () => {
 
 
 
+// codigo que funciona hecho desde el principio
 
+//all trending for home
+// export const getTrendingAll_Home = async () => {
+//     // llamada tradicional 
+//     // const getTrending = await fetch(`${URLALL}${API_KEY}`)
+//     // const response =  await getTrending.json()
+    
+//     // usando axios
+//     const { data } = await api(`${URLALL}${API_KEY}${esp}`)
+
+//     const responseArray = data.results
+    
+//     return responseArray
+// }
+// // trending for home
+// export const getTrendingMovies_Home = async () => {
+//     // llamada tradicional
+//     // const getTrending = await fetch(`${URLMOVIES}${API_KEY}`)
+//     // const response =  await getTrending.json()
+//     // const responseArray = response.results
+
+//      // usando axios
+//     const { data } = await api(`${URLMOVIES}${API_KEY}${esp}`)
+
+//     const responseArray = data.results
+
+//     return responseArray
+// }
+// // trending for home
+// export const getTrendingSeries_Home = async () => {
+//     // tradicional way
+//     // const getTrending = await fetch(`${URLSERIES}${API_KEY}`)
+//     // const response =  await getTrending.json()
+//     // const responseArray = response.results
+
+//     // axios
+//     const { data } = await api(`${URLSERIES}${API_KEY}${esp}`)
+
+//     const responseArray = data.results
+
+//     return responseArray
+// }
 
 
 

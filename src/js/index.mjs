@@ -5,16 +5,11 @@ globalThis.onload = () => {
     const body =  document.querySelector('body')
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
-        // TODO (async import)
-        /* 
-            1.definir cuantas veces voy a usar el import asincrono
-            2.ordenar cada import en su respectiva llamada para no importar todo al darle click en cualquier lugar del body
-        */
+
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
-       
-
+        //node to insert
         const main = document.querySelector('main')
 
         const classes = [
@@ -42,16 +37,17 @@ globalThis.onload = () => {
             //changin the location path
             location.hash = `${e.target.dataset.name}`
         }
-        console.log(location.hash)
         
         // addig and removing 'inactive' class to btns 'peliculas' & 'series'
         if(e.target.textContent === 'Peliculas'){
+
             e.target.classList.add('inactive')
             // removing inactive class to next btn
             const seriesBtn = e.target.parentNode.nextElementSibling.firstElementChild
             seriesBtn.classList.remove('inactive')
             
         }else if(e.target.textContent === 'Series'){
+            
             e.target.classList.add('inactive')
             // removing inactive class to next btn
             const peliculasBtn = e.target.parentNode.previousElementSibling.firstElementChild
