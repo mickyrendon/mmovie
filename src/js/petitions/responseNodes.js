@@ -45,7 +45,7 @@ export const estrenosHome = async () => {
                   ul.append(li)
         })
     }else{
-        console.log('nodo de trendings lleno, no renderizar nada')
+        console.log('nodo trendings lleno')
     }
 }
 // FIXME, evitar el duplicado de elementos al recargar la pagina una vez que ya se han guardado en el ls
@@ -56,44 +56,48 @@ export const moviesHome = async () => {
     //saving in localstorage
     //ls content checker
     const lsChecker = localStorage.getItem('movies')
-    const ctr = document.querySelector('.carousel_movies_list')
-    
+    // const ctr = document.querySelector('.carousel_movies_list')
+    const ulMovies = document.querySelector('.carousel_movies_list')
+
     if (lsChecker === null){
         localStorage.setItem('movies', JSON.stringify(responseArray))  
         const newMoviesObject = JSON.parse(localStorage.getItem('movies')) 
-
         // dom rendering
         newMoviesObject?.map( movie => {
             // FIXME, el slider no es loop
-            const ulMovies = document.querySelector('.carousel_movies_list')
+            // const ulMovies = document.querySelector('.carousel_movies_list')
             // const ulSeries = document.querySelector('.carousel_series_list')
             const li = document.createElement('li')
                   li.classList.add('glide__slide')    
             const img = document.createElement('img')
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
-    
+
             li.append(img)
             ulMovies.append(li)
         })
+                
+    // }else if(ulMovies.childElementCount > JSON.parse(lsChecker).length){
+    }else if(ulMovies.childElementCount === 0){
         
-    }else if(ctr.childElementCount === 0){
+        // console.log(`childElementCount: ${ctr.childElementCount}; length del objeto movies en ls: ${JSON.parse(lsChecker).lenght}`)
         const moviesObject = JSON.parse(lsChecker)
         // dom rendering
-        moviesObject?.map( movie => {
-            // FIXME, el slider no es loop
-            const ulMovies = document.querySelector('.carousel_movies_list')
-            const li = document.createElement('li')
-                  li.classList.add('glide__slide')    
-            const img = document.createElement('img')
-                  img.src = `${imgW300}${movie.poster_path}`
-                  img.setAttribute('data-name', 'card')
-    
-            li.append(img)
-            ulMovies.append(li)
+        return moviesObject?.map( movie => {
+        // FIXME, el slider no es loop
+        // const ulMovies = document.querySelector('.carousel_movies_list')
+        const li = document.createElement('li')
+                li.classList.add('glide__slide')    
+                const img = document.createElement('img')
+                img.src = `${imgW300}${movie.poster_path}`
+                img.setAttribute('data-name', 'card')
+                
+                li.append(img)
+                ulMovies.append(li)
         })
     }else{
-        console.log('nodo de movies lleno, no renderizar nada')
+
+        return console.log(`childElementCount: ${ulMovies.childElementCount}; length del objeto movies en ls: ${JSON.parse(lsChecker).length}`)
     }
 }
 
@@ -168,15 +172,14 @@ export const galleryDom = async (value) => {
     // saving in array the cards
     const childrenArray = [...galleryCtr.children]
     let i = 0
-
     // creating the cards
     galleryCtr.childElementCount === 0?
     (
         render?.map( item => {
             const card = document.createElement('button')
-                  card.classList.add('gallery-cards')
-                  card.setAttribute('data-name', 'card')
-                  card.style.backgroundImage = `url(${imgW300}${item.poster_path})`
+            card.classList.add('gallery-cards')
+            card.setAttribute('data-name', 'card')
+            card.style.backgroundImage = `url(${imgW300}${item.poster_path})`
             galleryCtr.append(card)
         })
 

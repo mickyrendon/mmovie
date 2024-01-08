@@ -49,10 +49,11 @@ const newDom = () => {
 }
 export const galleryDom = newDom()
 
-export const deleteNode = () =>{
-      const section = document.querySelector('.gallery-section')
-
-      section?
-      galleryDom.remove()
+export const deleteNode = (ctr) =>{
+      // ctr = container
+      const childrends = [...ctr.children]
+      console.log(ctr.children)
+      ctr.childElementCount > 0?
+            childrends.forEach((item) => item.remove())
       : console.log('no existe el nodo section gallery')
 }

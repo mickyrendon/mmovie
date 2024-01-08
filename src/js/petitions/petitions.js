@@ -104,7 +104,7 @@ export const getMovieGenres_Home = async () => {
             ctr.append(div)
         })
     }else{
-        console.log('nodo de generos lleno, no renderizar nada')
+        console.log('nodo generos lleno')
     }
 
     // traditional way
