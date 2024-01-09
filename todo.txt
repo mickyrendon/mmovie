@@ -1,2 +1,2 @@
-TODO (menu secciones)
-    1.eliminar el doble renderizado
+TODO (cards event)
+    1.card>detalles view

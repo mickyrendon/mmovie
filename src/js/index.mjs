@@ -1,11 +1,13 @@
 import { navigation } from "./location/location.js"
     
 globalThis.onload = () => {
+    // naming the path home, specially to first rendering
+    location.hash = 'home'
     //event delegation para mostrar la galeria
     const body =  document.querySelector('body')
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
-
+        e.preventDefault()
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
@@ -13,8 +15,8 @@ globalThis.onload = () => {
         const main = document.querySelector('main')
 
         const classes = [
-            'movies-link',
             'series-link',
+            'movies-link',
             'estrenos',
             'movies-se-all',
             'series-se-al'
@@ -26,7 +28,7 @@ globalThis.onload = () => {
             return className.includes(e.target.className)
           })
     
-        // 
+        // FIXME, no funciona como se espera
         if (filteredClasses){
             e.stopPropagation()
             
@@ -36,6 +38,7 @@ globalThis.onload = () => {
             main.append(galleryDom)
             //changin the location path
             location.hash = `${e.target.dataset.name}`
+            console.log('test' + filteredClasses)
         }
         
         // addig and removing 'inactive' class to btns 'peliculas' & 'series'
@@ -60,6 +63,7 @@ globalThis.onload = () => {
             2.click en galleria de cards > vista detallada 
         */
 
+        console.log(e.target)
         // // todo, agregar el location a cada vista y la clase de cada vista al body
         // // back btn / de gallery a home
         // // evaluando si el btn click contiene la clase back btn y si el ultimo elemento hijo del main contiene la clase 'gallery section', tambien puedo agregar otra evaluacion para cuando este en la vista a detalle de la pelicula
