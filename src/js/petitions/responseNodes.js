@@ -2,6 +2,7 @@ import { getTrendingAll_Home, getTrendingMovies_Home, getTrendingSeries_Home } f
 import { imgW300, imgW500 } from '../api/secret.js'
 
 // estreno slider home
+// TODO(refactorizar las funciones de moviesHome, seriesHome por una sola)
 // FIXME, solucionar el error la primera vez que renderiza despues de haber guardado en el ls
 export const estrenosHome = async () => {
     
@@ -48,7 +49,7 @@ export const estrenosHome = async () => {
         console.log('nodo trendings lleno')
     }
 }
-// FIXME, evitar el duplicado de elementos al recargar la pagina una vez que ya se han guardado en el ls
+
 // movies slider home
 export const moviesHome = async () => {
     
@@ -89,6 +90,7 @@ export const moviesHome = async () => {
         const li = document.createElement('li')
                 li.classList.add('glide__slide')    
                 const img = document.createElement('img')
+                img.id = movie.id  
                 img.src = `${imgW300}${movie.poster_path}`
                 img.setAttribute('data-name', 'card')
                 
@@ -120,6 +122,7 @@ export const seriesHome = async () => {
             const li = document.createElement('li')
                   li.classList.add('glide__slide')    
             const img = document.createElement('img')
+                  img.id = movie.id  
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
     
@@ -177,6 +180,7 @@ export const galleryDom = async (value) => {
     (
         render?.map( item => {
             const card = document.createElement('button')
+            card.id = item.id  
             card.classList.add('gallery-cards')
             card.setAttribute('data-name', 'card')
             card.style.backgroundImage = `url(${imgW300}${item.poster_path})`

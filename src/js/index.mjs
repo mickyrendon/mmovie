@@ -7,38 +7,52 @@ globalThis.onload = () => {
     const body =  document.querySelector('body')
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
-        const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
         //node to insert
         const main = document.querySelector('main')
 
         const classes = [
+            'estrenos',
             'series-link',
             'movies-link',
-            'estrenos',
-            'movies-se-all',
-            'series-se-al'
+            'movies-all',
+            'series-all'
             // 'documentals-link',
             // 'realities-link',
         ]
         // filtering according the array
         const filteredClasses = classes.find((className) => {
             return className.includes(e.target.className)
+            // const clase = className.includes(e.target.className)
+            // return clase
           })
     
-        // FIXME, no funciona como se espera
-        if (filteredClasses){
+
+        // FIXME, filteredClasses es 'undefined' al clickear los botones 'ver todo' y 'ver estrenos' del home
+        console.log(filteredClasses)
+        //verifying filteredClasses & card element
+        if(filteredClasses === e.target.className){
             e.stopPropagation()
-            
             // adding class to body
             body.classList.add('gallery-view')
             // rendering gallery dom wich is gallery cards
             main.append(galleryDom)
             //changin the location path
             location.hash = `${e.target.dataset.name}`
-            console.log('test' + filteredClasses)
+
+        }else if(e.target.dataset.name === 'card'){
+            const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
+            // rendering gallery dom wich is gallery cards
+            main.append(movieDetailsDom)
+            //changin the location path
+            location.hash = 'detalles'
+            console.log()
+
+        }else{
+            e.stopPropagation()
+            console.log('la clase del elemento no coincide con filtered ' + filteredClasses)
         }
         
         // addig and removing 'inactive' class to btns 'peliculas' & 'series'
@@ -62,9 +76,9 @@ globalThis.onload = () => {
             1.validar que el click ocurre en el home > ocultar home + vista detallada
             2.click en galleria de cards > vista detallada 
         */
-
-        console.log(e.target)
-        // // todo, agregar el location a cada vista y la clase de cada vista al body
+        // card event to open details view
+         // hidding background elements & showing movie details elements
+        
         // // back btn / de gallery a home
         // // evaluando si el btn click contiene la clase back btn y si el ultimo elemento hijo del main contiene la clase 'gallery section', tambien puedo agregar otra evaluacion para cuando este en la vista a detalle de la pelicula
         // e.target.classList.contains('back-btn') && main.lastElementChild.classList.contains ('gallery-section')
