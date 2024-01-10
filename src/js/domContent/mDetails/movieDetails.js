@@ -12,7 +12,13 @@ const content = {
       cta: 'Ver Película'
 }
 
-
+// funcion que toma la clase de la card y en base a eso busca la categoria en el localstorage y compara el id de la card con el id del ls para renderizar el contenido en el newDom
+export const cardData = async(clase, id) => {
+      // TODO, mejorar el codigo para agregar un index a cada card que sera el mismo del ls y asi compararlo en esta funcion y obtener el contenido requerido porque esta funcion recorre uno por uno el array y requiere mas memoria
+      const lsCategory = JSON.parse(localStorage.getItem(`${clase.slice(0, clase.indexOf("-card"))}`))
+      // TODO, devolver un array de objetos con el contenido de la pelicula, titulo, descripcion,ano etc
+      return lsCategory?.map((item) => item.id === parseInt(id)?console.log(item.id): console.log(null))
+}
 
 //i create html content & fill it with content using the parameter
 const newDom = () => {

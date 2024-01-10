@@ -70,9 +70,10 @@ export const moviesHome = async () => {
             // const ulSeries = document.querySelector('.carousel_series_list')
             const li = document.createElement('li')
                   li.classList.add('glide__slide')    
-            const img = document.createElement('img')
+                  const img = document.createElement('img')
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
+                  img.classList.add('movies-card')    
 
             li.append(img)
             ulMovies.append(li)
@@ -93,6 +94,7 @@ export const moviesHome = async () => {
                 img.id = movie.id  
                 img.src = `${imgW300}${movie.poster_path}`
                 img.setAttribute('data-name', 'card')
+                img.classList.add('movies-card')    
                 
                 li.append(img)
                 ulMovies.append(li)
@@ -125,6 +127,8 @@ export const seriesHome = async () => {
                   img.id = movie.id  
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
+                  img.classList.add('series-card')    
+
     
             li.append(img)
             ulSeries.append(li)
@@ -140,6 +144,8 @@ export const seriesHome = async () => {
             const img = document.createElement('img')
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
+                  img.classList.add('series-card')    
+
     
             li.append(img)
             ulSeries.append(li)
@@ -182,6 +188,8 @@ export const galleryDom = async (value) => {
             const card = document.createElement('button')
             card.id = item.id  
             card.classList.add('gallery-cards')
+            // FIXME, validar que el valor de la clase no se agregue si ya existe
+            // card.classList.add(`${value}-card`)
             card.setAttribute('data-name', 'card')
             card.style.backgroundImage = `url(${imgW300}${item.poster_path})`
             galleryCtr.append(card)
@@ -190,6 +198,8 @@ export const galleryDom = async (value) => {
     ):(
         // changin url card
         childrenArray?.forEach( item => {
+            // FIXME, validar que el valor de la clase no se agregue si ya existe
+            // item.classList.add(`${value}-card`)
             item.style.backgroundImage = `url(${imgW300}${render[i++].poster_path})`
         })
     )

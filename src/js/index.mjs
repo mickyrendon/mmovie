@@ -43,12 +43,15 @@ globalThis.onload = () => {
             location.hash = `${e.target.dataset.name}`
 
         }else if(e.target.dataset.name === 'card'){
-            const { movieDetailsDom } = await import('./domContent/mDetails/movieDetails.js')
+            const { movieDetailsDom, cardData } = await import('./domContent/mDetails/movieDetails.js')
+            // searching in Ls
+            const clase = e.target.className
+            const id = e.target.id
+            cardData(clase, id)
             // rendering gallery dom wich is gallery cards
             main.append(movieDetailsDom)
             //changin the location path
             location.hash = 'detalles'
-            console.log()
 
         }else{
             e.stopPropagation()
