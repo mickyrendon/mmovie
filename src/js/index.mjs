@@ -49,6 +49,7 @@ globalThis.onload = () => {
             const clase = e.target.className
             const id = e.target.id
             const result = cardData(clase, id)
+            console.log(result)
             // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
             main.append(newDom(result))
             // main.append(movieDetailsDom)

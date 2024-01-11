@@ -142,6 +142,7 @@ export const seriesHome = async () => {
             const li = document.createElement('li')
                   li.classList.add('glide__slide')    
             const img = document.createElement('img')
+                  img.id = movie.id  
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
                   img.classList.add('series-card')    

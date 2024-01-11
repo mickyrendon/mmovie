@@ -28,8 +28,10 @@ export const cardData = (clase, id) => {
 }
 //i create html content & fill it with content using the parameter
 export const newDom = (movie) => {
+      // evaluating if any of those is truth to getting
+      const movieTitle = movie.name ? [movie.name] : movie.title ? [movie.title] : null;
+      
       //changin the location path
-      const movieTitle = [movie.title]
       location.hash = `detalles/${movieTitle[0].trim().split(' ').join('-')}`
 
       const movieCtr = document.createElement('div')
@@ -43,7 +45,7 @@ export const newDom = (movie) => {
       // movie description title
       const h2 = document.createElement('h2')
             h2.classList.add('text-base')
-            h2.innerText = movie.title
+            h2.innerText = movie.title || movie.name
       // movie description
       const p = document.createElement('p')
             p.classList.add('text-sm')
