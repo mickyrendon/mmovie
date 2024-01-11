@@ -29,7 +29,8 @@ export const cardData = (clase, id) => {
 //i create html content & fill it with content using the parameter
 export const newDom = (movie) => {
       //changin the location path
-      location.hash = `detalles-${movie.title}`
+      const movieTitle = [movie.title]
+      location.hash = `detalles/${movieTitle[0].trim().split(' ').join('-')}`
 
       const movieCtr = document.createElement('div')
             movieCtr.className = [
