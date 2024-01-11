@@ -5,7 +5,7 @@ import { slider, sliderSeries, sliderTrending } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
 // dom events
-import { hiddeElements, showElements, hiddeNodeElements, hiddeNodeHomeElements } from '../domContent/events/hiddeElements.js'
+import { hiddeElements, hiddeNavElements, showElements, showNavElements } from '../domContent/events/hiddeElements.js'
 // menu btn / back btn
 import { ambiguousBackBtn, ambiguousMenuBtn } from '../domContent/events/ambiguousBtn.js'
 // import { deleteNode } from "../domContent/gallery/galleryDom.js"
@@ -41,9 +41,10 @@ export const navigation = () => {
     }
     if(location.hash === '#home'){
         showElements()
+        showNavElements()
         ambiguousMenuBtn()
     }
-        // rendering home elements
+    // rendering home elements
     if(location.hash.startsWith('#peliculas')){
         galleryDom('movies')
     }
@@ -52,7 +53,7 @@ export const navigation = () => {
     }
     if(location.hash.startsWith('#detalles')){
         // galleryDom('series')
-        document.querySelector('main').style.width = '100%'
+        hiddeNavElements()
     }
         
     if(location.hash.startsWith('#home')){

@@ -30,10 +30,10 @@ export const cardData = (clase, id) => {
 export const newDom = (movie) => {
       //changin the location path
       location.hash = `detalles-${movie.title}`
-      
+
       const movieCtr = document.createElement('div')
             movieCtr.className = [
-                  'w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-center', 'bg-no-repeat', 'from-black', 'bg-contain'
+                  'pb-8 w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-top', 'bg-no-repeat', 'from-black', 'bg-contain'
             ].join(' ')
             movieCtr.style.backgroundImage = `url(${imgW500}${movie.poster_path})`
       // description container
@@ -49,7 +49,7 @@ export const newDom = (movie) => {
             p.innerText = movie.overview
       // description details list container
       const details = document.createElement('ul')
-            details.classList.add('px-2', 'w-1/2', 'flex', 'justify-between', 'gap-1', 'text-xs', 'list-disc')
+            details.classList.add('px-2', 'w-full', 'flex', 'gap-8', 'text-xs', 'list-disc')
       const li1 = document.createElement('li')
             li1.innerHTML = movie.release_date
       const li2 = document.createElement('li')

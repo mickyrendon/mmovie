@@ -7,6 +7,7 @@ globalThis.onload = () => {
     const body =  document.querySelector('body')
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
+        document.documentElement.scrollTop = 0;
         // e.preventDefault()
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')

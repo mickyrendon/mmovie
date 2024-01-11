@@ -39,9 +39,7 @@ export const hiddeElements = () => {
       htmlElements?.map((e) => {
             return e.classList.add('hidden')
       })  
-
 }   
-
 export const showElements = () => {
       const htmlElements = [
             mainSlider,
@@ -54,47 +52,36 @@ export const showElements = () => {
       filters.classList.add('hidden')
       filters.classList.remove('flex')
       //     location.hash = 'Home'
-      return htmlElements?.map((e) => {
+      return htmlElements?.forEach((e) => {
             return e.classList.remove('hidden')
       })  
 }
-
-//hidding elements to show movie details from gallery
-export const hiddeNodeElements = () => {
-      // llamo a gallery section dentro de la funcion porque creo que al ser creado dinamicamente y no estar en el  nodo original puede ser la razon del error 'e es null' que me tira al declarar la variable globalmente
-      const gallerySec = document.querySelector('.gallery-section')
-      
+//hidding elements to show 'details' view, used in location 
+export const hiddeNavElements = () => {
       const htmlElements = [
-            searcher,
             globalNav,
+            searcher,
             filters,
-            gallerySec,
             footerTag
       ]
       htmlElements.forEach((e) => {
             e.classList.toggle('hidden')
       })        
-
-      body.classList.toggle('gallery-view')
-      body.classList.toggle('mdetails-view')
-      body.classList.toggle('from-gallery')
+      const main = document.querySelector('main')
+      main.style.width = '100%'
 }   
-//hidding elements to show movie details from gallery
-export const hiddeNodeHomeElements = () => {
+
+export const showNavElements = () => {
       const htmlElements = [
             globalNav,
             searcher,
-            mainSlider,
-            moviesSec,
-            seriesSec,
-            genresSec,
             footerTag
       ]
-      htmlElements.forEach((e) => {
-            e.classList.toggle('hidden')
-      })        
-
-      body.classList.toggle('home-view')
-      body.classList.toggle('mdetails-view')
-      body.classList.toggle('from-home')
-}   
+      
+      // filters.classList.add('hidden')
+      // filters.classList.remove('flex')
+      //     location.hash = 'Home'
+      return htmlElements?.forEach((e) => {
+            return e.classList.remove('hidden')
+      })  
+}
