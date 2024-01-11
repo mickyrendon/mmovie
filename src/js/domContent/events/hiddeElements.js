@@ -58,6 +58,9 @@ export const showElements = () => {
 }
 //hidding elements to show 'details' view, used in location 
 export const hiddeNavElements = () => {
+      const galleryCtr = document.querySelector('.gallery-section')
+      const main = document.querySelector('main')
+            main.style.width = '100%'
       const htmlElements = [
             globalNav,
             searcher,
@@ -67,8 +70,9 @@ export const hiddeNavElements = () => {
       htmlElements.forEach((e) => {
             e.classList.toggle('hidden')
       })        
-      const main = document.querySelector('main')
-      main.style.width = '100%'
+
+      console.log(galleryCtr)
+      galleryCtr?.classList.add('hidden')
 }   
 
 export const showNavElements = () => {
