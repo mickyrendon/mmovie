@@ -188,7 +188,8 @@ export const galleryDom = async (value) => {
         render?.map( item => {
             const card = document.createElement('button')
             card.id = item.id  
-            card.classList.add('gallery-cards')
+            //pongo la clase '${value}-card para que sea la primera clase que evalua la funcion cardData en el evento click del index.mjs
+            card.classList.add(`${value}-card`, 'gallery-cards')
             // FIXME, validar que el valor de la clase no se agregue si ya existe
             // card.classList.add(`${value}-card`)
             card.setAttribute('data-name', 'card')

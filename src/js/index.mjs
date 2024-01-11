@@ -43,6 +43,7 @@ globalThis.onload = () => {
             //changin the location path
             location.hash = `${e.target.dataset.name}`
 
+            // else if para abrir la vista de detalles al clickar cualquier tarjeta 
         }else if(e.target.dataset.name === 'card'){
             const { newDom, cardData } = await import('./domContent/mDetails/movieDetails.js')
             // searching in Ls

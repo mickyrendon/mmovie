@@ -18,12 +18,13 @@ export const cardData = (clase, id) => {
       // TODO, mejorar el codigo para agregar un index a cada card que sera el mismo del ls y asi compararlo en esta funcion y obtener el contenido requerido porque esta funcion recorre uno por uno el array y requiere mas memoria
       const lsCategory = JSON.parse(localStorage.getItem(`${clase.slice(0, clase.indexOf("-card"))}`))
       let element 
+      // evaluo la primera clase del elemento clickado (card) por esto la primera clase puesta en card ha sido de manera estrategica
       lsCategory?.map((item) => item.id === parseInt(id)?
       (
             element = item
       ): console.log(null))
             
-      // devuelve el objeto que conincide con el id enviado
+      // devuelve el objeto que coincide con el id enviado
       return element
 }
 //i create html content & fill it with content using the parameter
