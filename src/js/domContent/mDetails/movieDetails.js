@@ -1,3 +1,4 @@
+import { imgW300, imgW500 } from '../../api/secret.js'
 // content for hardcode html
 const content = {
       img: 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg',
@@ -13,37 +14,44 @@ const content = {
 }
 
 // funcion que toma la clase de la card y en base a eso busca la categoria en el localstorage y compara el id de la card con el id del ls para renderizar el contenido en el newDom
-export const cardData = async(clase, id) => {
+export const cardData = (clase, id) => {
       // TODO, mejorar el codigo para agregar un index a cada card que sera el mismo del ls y asi compararlo en esta funcion y obtener el contenido requerido porque esta funcion recorre uno por uno el array y requiere mas memoria
       const lsCategory = JSON.parse(localStorage.getItem(`${clase.slice(0, clase.indexOf("-card"))}`))
-      // TODO, devolver un array de objetos con el contenido de la pelicula, titulo, descripcion,ano etc
-      return lsCategory?.map((item) => item.id === parseInt(id)?console.log(item.id): console.log(null))
+      let element 
+      lsCategory?.map((item) => item.id === parseInt(id)?
+      (
+            element = item
+      ): console.log(null))
+            
+      // devuelve el objeto que conincide con el id enviado
+      return element
 }
-
 //i create html content & fill it with content using the parameter
-const newDom = () => {
-      // background image ctr
+export const newDom = (movie) => {
+      //changin the location path
+      location.hash = `detalles-${movie.title}`
+      
       const movieCtr = document.createElement('div')
             movieCtr.className = [
-                  'w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-cover', 'bg-center', 'bg-no-repeat', 'from-black'
+                  'w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-center', 'bg-no-repeat', 'from-black', 'bg-contain'
             ].join(' ')
-            movieCtr.style.backgroundImage = `url(${content.img})`
+            movieCtr.style.backgroundImage = `url(${imgW500}${movie.poster_path})`
       // description container
       const descriptionCtr = document.createElement('div')        
             descriptionCtr.classList.add('backdrop-blur-sm', 'p-4', 'grid', 'gap-2')
       // movie description title
       const h2 = document.createElement('h2')
             h2.classList.add('text-base')
-            h2.innerText = content.title
+            h2.innerText = movie.title
       // movie description
       const p = document.createElement('p')
             p.classList.add('text-sm')
-            p.innerText = content.description
+            p.innerText = movie.overview
       // description details list container
       const details = document.createElement('ul')
             details.classList.add('px-2', 'w-1/2', 'flex', 'justify-between', 'gap-1', 'text-xs', 'list-disc')
       const li1 = document.createElement('li')
-            li1.innerHTML = content.details.year
+            li1.innerHTML = movie.release_date
       const li2 = document.createElement('li')
             li2.innerHTML = content.details.gender
       const li3 = document.createElement('li')
@@ -90,5 +98,5 @@ const newDom = () => {
       return movieCtr
 }
 
-export const movieDetailsDom = newDom()
+// export const movieDetailsDom = newDom()
 

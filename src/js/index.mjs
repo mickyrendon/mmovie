@@ -31,7 +31,7 @@ globalThis.onload = () => {
     
 
         // FIXME, filteredClasses es 'undefined' al clickear los botones 'ver todo' y 'ver estrenos' del home
-        console.log(filteredClasses)
+        // console.log(filteredClasses)
         //verifying filteredClasses & card element
         if(filteredClasses === e.target.className){
             e.stopPropagation()
@@ -43,15 +43,14 @@ globalThis.onload = () => {
             location.hash = `${e.target.dataset.name}`
 
         }else if(e.target.dataset.name === 'card'){
-            const { movieDetailsDom, cardData } = await import('./domContent/mDetails/movieDetails.js')
+            const { newDom, cardData } = await import('./domContent/mDetails/movieDetails.js')
             // searching in Ls
             const clase = e.target.className
             const id = e.target.id
-            cardData(clase, id)
-            // rendering gallery dom wich is gallery cards
-            main.append(movieDetailsDom)
-            //changin the location path
-            location.hash = 'detalles'
+            const result = cardData(clase, id)
+            // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
+            main.append(newDom(result))
+            // main.append(movieDetailsDom)
 
         }else{
             e.stopPropagation()
@@ -73,7 +72,7 @@ globalThis.onload = () => {
             const peliculasBtn = e.target.parentNode.previousElementSibling.firstElementChild
             peliculasBtn.classList.remove('inactive')
         }
-        
+
         // TODO (cards event)
         /* 
             1.validar que el click ocurre en el home > ocultar home + vista detallada

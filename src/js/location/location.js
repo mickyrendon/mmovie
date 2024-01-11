@@ -50,9 +50,10 @@ export const navigation = () => {
     if(location.hash.startsWith('#series')){
         galleryDom('series')
     }
-    // if(location.hash.startsWith('#detalles')){
-    //     // galleryDom('series')
-    // }
+    if(location.hash.startsWith('#detalles')){
+        // galleryDom('series')
+        document.querySelector('main').style.width = '100%'
+    }
         
     if(location.hash.startsWith('#home')){
         estrenosHome()
