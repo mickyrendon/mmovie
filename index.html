@@ -140,8 +140,8 @@
                 <div class="glide__arrows" data-glide-el="controls">
                     <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
                     <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
-                  </div>
-              </div>
+                </div>
+            </div>    
             
         </section>
         <section class="series-section">
@@ -162,13 +162,26 @@
         </section>
         <!-- btns menu genres -->
         <section class="genres-section">
-            <h2 class="pl-2">Categorias</h2>
-            <div class="glide categories-slider">
-                <div class="glide__track w-full" data-glide-el="track">
-                    <!-- genres container -->
-                    <div class="glide__slides carousel_categories_list grid grid-cols-3 md:grid-cols-4 gap-4 gap-x-12 gap-y-8"></div>  
-                </div>
+            <div class="section_details">
+                <h2 class="pl-2">Categorias</h2>
             </div>
+            <div class="glide glide_genres">
+                <div class="glide__track" data-glide-el="track">
+                    <!-- filling with cars from api -->
+                  <!-- <ul class="glide__slides carousel_movies_list"></ul> -->
+                  <ul class="glide__slides carousel_categories_list grid grid-cols-4"></ul> 
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+                </div>
+            </div>  
+            <!-- <div class="glide categories-slider">
+                <div class="glide__track w-full" data-glide-el="track">
+                    <!-- genres container --
+                    <div class="glide__slides carousel_categories_list flex flex-row  w-auto max-h-44 overflow-x-auto md:grid-cols-4 gap-4 gap-x-12 gap-y-8"></div>  
+                </div>
+            </div> -->
         </section>
     </main>
     <footer class="w-full grid grid-flow-row auto-rows-auto items-bottom m-black-gray">

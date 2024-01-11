@@ -20,3 +20,4 @@ const rulesTrendAndSeries = {
 export const slider = new Glide('.glide', rulesHeader)
 export const sliderTrending = new Glide('.glide_trending', rulesTrendAndSeries)
 export const sliderSeries = new Glide('.glide_series', rulesTrendAndSeries)
+export const sliderGenres = new Glide('.glide_genres', rulesTrendAndSeries)

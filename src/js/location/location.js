@@ -1,7 +1,7 @@
 import { getMovieGenres_Home} from "../petitions/petitions.js"
 import { estrenosHome, moviesHome, seriesHome, galleryDom} from "../petitions/responseNodes.js"
 // import { estrenosHome, estrenosGallery, moviesHome, moviesGallery, seriesHome, seriesGallery, galleryDom } from "../petitions/responseNodes.js"
-import { slider, sliderSeries, sliderTrending } from "../api/glide/glide.js"
+import { slider, sliderSeries, sliderTrending, sliderGenres } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
 // dom events
@@ -76,6 +76,7 @@ export const navigation = () => {
 
         sliderTrending.mount()
         sliderSeries.mount()
+        sliderGenres.mount()
         setTimeout( () => { slider.mount() }, 3000 )
     }
         
