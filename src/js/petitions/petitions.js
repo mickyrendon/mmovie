@@ -70,12 +70,13 @@ export const getMovieGenres_Home = async () => {
             
             // const ctr = document.querySelector('.carousel_categories_list')
             const div = document.createElement('div')
-                  div.classList.add('category-btn-ctr', 'gap-2')
+                  div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4')
                   div.setAttribute('id', `${item.name}`)
             const button = document.createElement('button')
                   button.className = `${item.name}, ${genresColors[i++]}`
             const h3 = document.createElement('h3')
             const textNode = document.createTextNode(`${item.name}`)
+                  textNode.classList.add('text-wrap', 'line-clamp-2')
     
             h3.append(textNode)
             div.append(button, h3)

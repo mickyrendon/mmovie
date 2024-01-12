@@ -7,7 +7,7 @@ export const ambiguousBackBtn = () => {
     /*
         home>peliculas>series y si vuelvo me dirige al home, si del home>series y vuelvo al home me dirge a peliculas
     */
-    backBtn.addEventListener('click', () => console.log('yendo atras'))
+    backBtn.addEventListener('click', () => history.back())
     // backBtn.addEventListener('click', () => history.back())
 }
 

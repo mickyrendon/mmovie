@@ -1,8 +1,6 @@
 import { imgW300, imgW500 } from '../../api/secret.js'
 // content for hardcode html
 const content = {
-      img: 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg',
-      title: 'The Godfather',
       description: 'The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Micha...',
       details: {
           year: 2022,
@@ -10,7 +8,6 @@ const content = {
           time: '120 minutos'
       },
       star: '../../assets/icons/star.svg',
-      cta: 'Ver Película'
 }
 
 // funcion que toma la clase de la card y en base a eso busca la categoria en el localstorage y compara el id de la card con el id del ls para renderizar el contenido en el newDom
@@ -35,9 +32,9 @@ export const newDom = (movie) => {
       //changin the location path
       location.hash = `detalles/${movieTitle[0].trim().split(' ').join('-')}`
 
-      const movieCtr = document.createElement('div')
+      const movieCtr = document.createElement('section')
             movieCtr.className = [
-                  'pb-8 w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-top', 'bg-no-repeat', 'from-black', 'bg-contain'
+                  'movie-details-section', 'pb-8 w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-top', 'bg-no-repeat', 'from-black', 'bg-contain'
             ].join(' ')
             movieCtr.style.backgroundImage = `url(${imgW500}${movie.poster_path})`
       // description container
@@ -85,7 +82,7 @@ export const newDom = (movie) => {
       // cta btn
       const cta  = document.createElement('button')
             cta.classList.add('py-2', 'px-4','rounded-lg', 'auburn', 'font-medium')
-            cta.innerHTML = content.cta
+            cta.innerHTML = 'Ver Pelicula'
 
 
       // movieCtr>descriptionCtr

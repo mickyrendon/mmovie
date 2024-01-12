@@ -64,8 +64,11 @@ export const navigation = () => {
 
 
         // removing gallery node if exists, using remove() instead deleteNode() because deleteNode remove childrens node of an element and here i need to delete all the section and thereby newDom() works properly
-        const section = document.querySelector('.gallery-section')
-        section?.remove()
+        const section = [
+            document.querySelector('.gallery-section'), 
+            document.querySelector('.movie-details-section')
+        ]
+        section?.forEach(node => node?node.remove():null)
 
         // removing inactive class if exist in menu nav btns
         const peliculasBtn = document.querySelector('.movies-link')
