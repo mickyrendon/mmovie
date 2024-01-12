@@ -1,6 +1,7 @@
 import { navigation } from "./location/location.js"
     
 globalThis.onload = () => {
+
     // naming the path home, specially to first rendering
     location.hash = 'home'
     //event delegation para mostrar la galeria

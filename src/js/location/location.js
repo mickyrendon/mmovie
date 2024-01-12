@@ -77,10 +77,10 @@ export const navigation = () => {
         seriesBtn.classList.remove('inactive')
         location.hash = 'home'
 
-        sliderTrending.mount()
-        sliderSeries.mount()
-        sliderGenres.mount()
-        setTimeout( () => { slider.mount() }, 3000 )
+        sliderTrending?.mount()
+        sliderSeries?.mount()
+        sliderGenres?.mount()
+        setTimeout( () => { slider?.mount() }, 3000 )
     }
         
 }

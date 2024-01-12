@@ -12,10 +12,8 @@ export const getTrendingAll_Home = async () => {
     const { data } = await api(`${URLALL}${API_KEY}${esp}`)
 
     const responseArray = data.results
-    
     return responseArray
 }
-
 // trending for home
 export const getTrendingMovies_Home = async () => {
     // llamada tradicional
@@ -86,7 +84,6 @@ export const getMovieGenres_Home = async () => {
     }else if(ctr.childElementCount === 0){
         const genresObject = JSON.parse(lsChecker)
         
-        console.log(genresObject.length)
         // dom rendering
         let i = 0
         genresObject?.map( item => {

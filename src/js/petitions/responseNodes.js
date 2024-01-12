@@ -10,16 +10,14 @@ export const estrenosHome = async () => {
     //saving in localstorage
     //ls content checker
     const lsChecker = localStorage.getItem('trending')
-    const ctr = document.querySelector('.main-slider')
+    const ul = document.querySelector('.carousel_trending_all_list')
     
     if (lsChecker === null){
         localStorage.setItem('trending', JSON.stringify(responseArray))  
         const newTrendingObject = JSON.parse(localStorage.getItem('trending')) 
-
         // dom rendering
         newTrendingObject?.map( movie => {
         
-            const ul = document.querySelector('.carousel_trending_all_list')
             const li = document.createElement('li')
                   li.classList.add('glide__slide')
             const img = document.createElement('img')
@@ -30,12 +28,11 @@ export const estrenosHome = async () => {
                   ul.append(li)
         })
         
-    }else if(ctr.childElementCount === 0){
+    }else if(ul.childElementCount === 0){
         const trendingObject = JSON.parse(lsChecker)
         // dom rendering
         trendingObject?.map( movie => {
         
-            const ul = document.querySelector('.carousel_trending_all_list')
             const li = document.createElement('li')
                   li.classList.add('glide__slide')
             const img = document.createElement('img')
