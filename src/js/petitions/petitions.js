@@ -48,62 +48,7 @@ export const getMovieGenres_Home = async () => {
     // axios
     const { data } = await api(`${URLGENRES}${API_KEY}${esp}`)
     const responseArray = data.genres
-
-    const { genresColors } = await import('../domContent/home/categoriesColors.js')
-    // parent dom container
-    const ctr = document.querySelector('.carousel_categories_list')
-
-    //saving in localstorage
-    //ls content checker
-    const lsChecker = localStorage.getItem('genres')
-    // const genresParsed =  JSON.parse(lsChecker)
-    
-    if (lsChecker === null){
-        localStorage.setItem('genres', JSON.stringify(responseArray))  
-        const newGenresObject = JSON.parse(localStorage.getItem('genres')) 
-
-        // dom rendering
-        let i = 0
-        newGenresObject?.map( item => {
-            
-            // const ctr = document.querySelector('.carousel_categories_list')
-            const div = document.createElement('div')
-                  div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4')
-                  div.setAttribute('id', `${item.name}`)
-            const button = document.createElement('button')
-                  button.className = `${item.name}, ${genresColors[i++]}`
-            const h3 = document.createElement('h3')
-            const textNode = document.createTextNode(`${item.name}`)
-                  textNode.classList.add('text-wrap', 'line-clamp-2')
-    
-            h3.append(textNode)
-            div.append(button, h3)
-            ctr.append(div)
-        })
-        
-    }else if(ctr.childElementCount === 0){
-        const genresObject = JSON.parse(lsChecker)
-        
-        // dom rendering
-        let i = 0
-        genresObject?.map( item => {
-            
-            // const ctr = document.querySelector('.carousel_categories_list')
-            const div = document.createElement('div')
-                  div.classList.add('category-btn-ctr', 'gap-2')
-                  div.setAttribute('id', `${item.name}`)
-            const button = document.createElement('button')
-                  button.className = `${item.name}, ${genresColors[i++]}`
-            const h3 = document.createElement('h3')
-            const textNode = document.createTextNode(`${item.name}`)
-    
-            h3.append(textNode)
-            div.append(button, h3)
-            ctr.append(div)
-        })
-    }else{
-        console.log('nodo generos lleno')
-    }
+    return responseArray
 
     // traditional way
     // const getGenres = await fetch(`${URLGENRES}${API_KEY}${esp}`)
@@ -111,6 +56,26 @@ export const getMovieGenres_Home = async () => {
     // const responseArray = response.genres
 
 }
+
+// filters
+//... by category
+export const getMovieCategory = async (id) => {
+    // usando axios
+    const { data } = await api(`${URLMOVIECATEGORIES}`, {
+        params: {
+            without_genres: id
+        }
+    })
+    
+    const responseArray = data.results
+    console.log(responseArray)
+    return responseArray
+    // llamada tradicional 
+    // const getTrending = await fetch(`${URLALL}${API_KEY}`)
+    // const response =  await getTrending.json()
+    
+}
+
 
 
 

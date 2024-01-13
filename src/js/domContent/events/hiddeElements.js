@@ -9,6 +9,7 @@ const genresSec = document.querySelector('.genres-section')
 // home sliders / movie & series
 const movieSlider = document.querySelector('.carousel_movies_list')
 const serieSlider = document.querySelector('.carousel_series_list')
+const categoriesSlider = document.querySelector('.carousel_categories_list')
 // gallery elements
 const searcher = document.querySelector('.searcher')
 const globalNav = document.querySelector('.global-nav')
@@ -18,14 +19,15 @@ const footerTag = document.querySelector('footer')
 // hidding home elements to show gallery
 export const hiddeElements = () => {
       const htmlElements = [
-      mainSlider,
-      moviesSec,
-      seriesSec,
-      genresSec,
+            mainSlider,
+            moviesSec,
+            seriesSec,
+            genresSec,
       ]
       const nodeToRemove = [
-      movieSlider,
-      serieSlider
+            movieSlider,
+            serieSlider,
+            categoriesSlider
       ]
 
       body.classList.add('home-view')

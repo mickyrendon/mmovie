@@ -37,7 +37,7 @@
             <a href="index.html"><span id="logo" class="logo md:mr-1 inline-block"></span></a>
 
         </nav>
-        <nav class="global-nav px-4 py-2 w-full flex justify-center">
+        <nav class="global-nav px-4 pt-1 pb-4 w-full flex justify-center">
             <menu class="w-1/2 flex flex-row justify-center gap-4 text-xs">
                 <!-- vinculo los links a un mismo template. depende del link que use, hago el fetch a la api, pero reutilizo el template -->
                 <li>
@@ -126,7 +126,23 @@
              </select>
          </div>
      </nav>
-    <main class="w-[90%]">
+     <main class="w-[90%]">
+        <section class="series-section">
+            <div class="section_details">
+                <h2>Series</h2>
+                <button class="series-all links" data-name="series">Ver todo</button>
+            </div>
+            <div class="glide glide_series">
+                <div class="glide__track" data-glide-el="track">
+                <!-- filling with cars from api -->
+                  <ul class="glide__slides carousel_series_list"></ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+                  </div>
+              </div>
+        </section>
         <section class="movies-section">
             <div class="section_details">
                 <h2>Películas</h2>
@@ -143,22 +159,6 @@
                 </div>
             </div>    
             
-        </section>
-        <section class="series-section">
-            <div class="section_details">
-                <h2>Series</h2>
-                <button class="series-all links" data-name="series">Ver todo</button>
-            </div>
-            <div class="glide glide_series">
-                <div class="glide__track" data-glide-el="track">
-                <!-- filling with cars from api -->
-                  <ul class="glide__slides carousel_series_list"></ul>
-                </div>
-                <div class="glide__arrows" data-glide-el="controls">
-                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
-                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
-                  </div>
-              </div>
         </section>
         <!-- btns menu genres -->
         <section class="genres-section">
@@ -184,8 +184,8 @@
             </div> -->
         </section>
     </main>
-    <footer class="w-full grid grid-flow-row auto-rows-auto items-bottom m-black-gray">
-        <div class="info h-40 flex justify-around ">
+    <footer class="mt-12 w-full grid grid-flow-row auto-rows-auto text-xs items-bottom m-black-gray">
+        <div class="info h-20 flex justify-around ">
             <ul class="w-1/2 h-full py-2 flex flex-col items-center justify-center">
                 <li>
                     <a href="#">Acerca de</a>

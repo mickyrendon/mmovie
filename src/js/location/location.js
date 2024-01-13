@@ -1,5 +1,5 @@
 import { getMovieGenres_Home} from "../petitions/petitions.js"
-import { estrenosHome, moviesHome, seriesHome, galleryDom} from "../petitions/responseNodes.js"
+import { estrenosHome, moviesHome, seriesHome, galleryDom, categoriesHome} from "../petitions/responseNodes.js"
 // import { estrenosHome, estrenosGallery, moviesHome, moviesGallery, seriesHome, seriesGallery, galleryDom } from "../petitions/responseNodes.js"
 import { slider, sliderSeries, sliderTrending, sliderGenres } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
@@ -60,7 +60,7 @@ export const navigation = () => {
         estrenosHome()
         moviesHome()
         seriesHome()
-        getMovieGenres_Home()
+        categoriesHome()
 
 
         // removing gallery node if exists, using remove() instead deleteNode() because deleteNode remove childrens node of an element and here i need to delete all the section and thereby newDom() works properly
@@ -73,8 +73,8 @@ export const navigation = () => {
         // removing inactive class if exist in menu nav btns
         const peliculasBtn = document.querySelector('.movies-link')
         const seriesBtn = document.querySelector('.series-link')
-        peliculasBtn.classList.remove('inactive')
-        seriesBtn.classList.remove('inactive')
+        peliculasBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+        seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
         location.hash = 'home'
 
         sliderTrending?.mount()

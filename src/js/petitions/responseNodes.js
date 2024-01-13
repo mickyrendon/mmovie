@@ -1,8 +1,8 @@
-import { getTrendingAll_Home, getTrendingMovies_Home, getTrendingSeries_Home } from './petitions.js'
+import { getTrendingAll_Home, getTrendingMovies_Home, getTrendingSeries_Home, getMovieGenres_Home } from './petitions.js'
 import { imgW300, imgW500 } from '../api/secret.js'
 
 // estreno slider home
-// TODO(refactorizar las funciones de moviesHome, seriesHome por una sola)
+// TODO(refactorizar las funciones de estrenosHome, moviesHome, seriesHome por una sola)
 // FIXME, solucionar el error la primera vez que renderiza despues de haber guardado en el ls
 export const estrenosHome = async () => {
     
@@ -36,6 +36,7 @@ export const estrenosHome = async () => {
             const li = document.createElement('li')
                   li.classList.add('glide__slide')
             const img = document.createElement('img')
+                  img.id = movie.id  
                   img.src = `${imgW500}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
     
@@ -67,7 +68,8 @@ export const moviesHome = async () => {
             // const ulSeries = document.querySelector('.carousel_series_list')
             const li = document.createElement('li')
                   li.classList.add('glide__slide')    
-                  const img = document.createElement('img')
+            const img = document.createElement('img')
+                  img.id = movie.id  
                   img.src = `${imgW300}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
                   img.classList.add('movies-card')    
@@ -152,7 +154,67 @@ export const seriesHome = async () => {
         console.log('nodo de movies lleno, no renderizar nada')
     }
 }
+// categories slider home
+export const categoriesHome =  async () => {
 
+    const responseArray = await (getMovieGenres_Home())   
+    
+    const { genresColors } = await import('../domContent/home/categoriesColors.js')
+    // parent dom container
+    const ctr = document.querySelector('.carousel_categories_list')
+
+    //saving in localstorage
+    //ls content checker
+    const lsChecker = localStorage.getItem('genres')
+    // const genresParsed =  JSON.parse(lsChecker)
+    
+    if (lsChecker === null){
+        localStorage.setItem('genres', JSON.stringify(responseArray))  
+        const newGenresObject = JSON.parse(localStorage.getItem('genres')) 
+
+        // dom rendering
+        let i = 0
+        newGenresObject?.map( item => {
+            
+            // const ctr = document.querySelector('.carousel_categories_list')
+            const div = document.createElement('div')
+                  div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4')
+                  div.setAttribute('id', `${item.id}`)
+            const button = document.createElement('button')
+                  button.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
+            const h3 = document.createElement('h3')
+            const textNode = document.createTextNode(`${item.name}`)
+                  textNode.classList.add('text-wrap', 'line-clamp-2')
+    
+            h3.append(textNode)
+            div.append(button, h3)
+            ctr.append(div)
+        })
+        
+    }else if(ctr.childElementCount === 0){
+        const genresObject = JSON.parse(lsChecker)
+        
+        // dom rendering
+        let i = 0
+        genresObject?.map( item => {
+            
+            // const ctr = document.querySelector('.carousel_categories_list')
+            const div = document.createElement('div')
+                  div.classList.add('category-btn', 'category-btn-ctr', 'gap-2')
+                  div.setAttribute('id', `${item.id}`)
+            const button = document.createElement('button')
+                  button.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
+            const h3 = document.createElement('h3')
+            const textNode = document.createTextNode(`${item.name}`)
+    
+            h3.append(textNode)
+            div.append(button, h3)
+            ctr.append(div)
+        })
+    }else{
+        console.log('nodo generos lleno')
+    }
+}
 // petitions to show in gallery card
 // estrenos gallery
 export const estrenosGallery = async () => {

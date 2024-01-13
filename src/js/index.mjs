@@ -20,7 +20,8 @@ globalThis.onload = () => {
             'series-link',
             'movies-link',
             'movies-all',
-            'series-all'
+            'series-all',
+            'category-btn'
             // 'documentals-link',
             // 'realities-link',
         ]
@@ -64,17 +65,17 @@ globalThis.onload = () => {
         // addig and removing 'inactive' class to btns 'peliculas' & 'series'
         if(e.target.textContent === 'Peliculas'){
 
-            e.target.classList.add('inactive')
+            e.target.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
             // removing inactive class to next btn
             const seriesBtn = e.target.parentNode.nextElementSibling.firstElementChild
-            seriesBtn.classList.remove('inactive')
+            seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
             
         }else if(e.target.textContent === 'Series'){
             
-            e.target.classList.add('inactive')
+            e.target.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
             // removing inactive class to next btn
             const peliculasBtn = e.target.parentNode.previousElementSibling.firstElementChild
-            peliculasBtn.classList.remove('inactive')
+            peliculasBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
         }
 
         // TODO (cards event)
