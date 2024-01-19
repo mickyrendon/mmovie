@@ -160,7 +160,7 @@ form{
     flex-direction: column;
     align-items: center;
 }
-.category-btn-ctr > button{
+.category-btn-ctr > span{
     width:  2.75rem;
     height: 2.75rem;
     background-repeat: no-repeat;

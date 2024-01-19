@@ -8,6 +8,7 @@ globalThis.onload = () => {
     const body =  document.querySelector('body')
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
+        const element = e.target
         document.documentElement.scrollTop = 0;
         // e.preventDefault()
         // dom nodes
@@ -27,30 +28,30 @@ globalThis.onload = () => {
         ]
         // filtering according the array
         const filteredClasses = classes.find((className) => {
-            return className.includes(e.target.className)
-            // const clase = className.includes(e.target.className)
+            return className.includes(element.className)
+            // const clase = className.includes(element.className)
             // return clase
           })
     
 
         // FIXME, filteredClasses es 'undefined' al clickear los botones 'ver todo' y 'ver estrenos' del home
-        // console.log(filteredClasses)
+        console.log(filteredClasses, element.className)
         //verifying filteredClasses & card element
-        if(filteredClasses === e.target.className){
+        if(filteredClasses === element.className){
             e.stopPropagation()
             // adding class to body
             body.classList.add('gallery-view')
             // rendering gallery dom wich is gallery cards
             main.append(galleryDom)
             //changin the location path
-            location.hash = `${e.target.dataset.name}`
+            location.hash = `${element.dataset.name}`
 
             // else if para abrir la vista de detalles al clickar cualquier tarjeta 
-        }else if(e.target.dataset.name === 'card'){
+        }else if(element.dataset.name === 'card'){
             const { newDom, cardData } = await import('./domContent/mDetails/movieDetails.js')
             // searching in Ls
-            const clase = e.target.className
-            const id = e.target.id
+            const clase = element.className
+            const id = element.id
             const result = cardData(clase, id)
             console.log(result)
             // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
@@ -63,32 +64,32 @@ globalThis.onload = () => {
         }
         
         // addig and removing 'inactive' class to btns 'peliculas' & 'series'
-        if(e.target.textContent === 'Peliculas'){
-
-            e.target.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
-            // removing inactive class to next btn
-            const seriesBtn = e.target.parentNode.nextElementSibling.firstElementChild
-            seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+        if(element.textContent === 'Series'){
             
-        }else if(e.target.textContent === 'Series'){
-            
-            e.target.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+            element.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
             // removing inactive class to next btn
-            const peliculasBtn = e.target.parentNode.previousElementSibling.firstElementChild
+            const peliculasBtn = element.parentNode.nextElementSibling.firstElementChild
             peliculasBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+            
+        }else if(element.textContent === 'Peliculas'){
+            element.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+            // removing inactive class to next btn
+            const seriesBtn = element.parentNode.previousElementSibling.firstElementChild
+            seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
         }
 
-        // TODO (cards event)
-        /* 
-            1.validar que el click ocurre en el home > ocultar home + vista detallada
-            2.click en galleria de cards > vista detallada 
-        */
-        // card event to open details view
-         // hidding background elements & showing movie details elements
-        
+        // evento category btns
+        // const categoryBtnsCtr = element.closest('.category-btn')
+        if (categoryBtnsCtr !== null) {
+            // Llama a la función de evento del elemento padre
+            categoryBtnsCtr.click()
+            // console.log(categoryBtnsCtr)
+          }
+
+
         // // back btn / de gallery a home
         // // evaluando si el btn click contiene la clase back btn y si el ultimo elemento hijo del main contiene la clase 'gallery section', tambien puedo agregar otra evaluacion para cuando este en la vista a detalle de la pelicula
-        // e.target.classList.contains('back-btn') && main.lastElementChild.classList.contains ('gallery-section')
+        // element.classList.contains('back-btn') && main.lastElementChild.classList.contains ('gallery-section')
         // ?(  
         //     // elimina la seccion gallery del main
         //     main.lastElementChild.remove(),
@@ -104,23 +105,23 @@ globalThis.onload = () => {
 
         // // gallery => md & vice versa
         // // validando si es la card de la galeria
-        // e.target.dataset.name === 'card' && body.classList.contains('gallery-view')
+        // element.dataset.name === 'card' && body.classList.contains('gallery-view')
         // ?(
         //     hiddeNodeElements(),
         //     main.append(movieDetailsDom),
         //     console.log('de gallery a md')
 
-        // ):  e.target.dataset.name === 'card' && body.classList.contains('home-view')
+        // ):  element.dataset.name === 'card' && body.classList.contains('home-view')
         // ?(
         //     hiddeNodeHomeElements(),
         //     backBtn_HomeMd(),
         //     main.append(movieDetailsDom),
         //     console.log('de home a md')
             
-        // ): console.log(e.target.tagName + ' no es la card del home') 
+        // ): console.log(element.tagName + ' no es la card del home') 
         
         // // del md a gallery
-        // e.target.classList.contains('back-btn') && main.lastElementChild.tagName === 'DIV'
+        // element.classList.contains('back-btn') && main.lastElementChild.tagName === 'DIV'
         // ?(  
         //     body.classList.contains('from-gallery')
         //     ?(

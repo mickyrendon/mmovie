@@ -100,7 +100,7 @@ export const moviesHome = async () => {
         })
     }else{
 
-        return console.log(`childElementCount: ${ulMovies.childElementCount}; length del objeto movies en ls: ${JSON.parse(lsChecker).length}`)
+        return console.log('nodo lleno')
     }
 }
 
@@ -180,14 +180,14 @@ export const categoriesHome =  async () => {
             const div = document.createElement('div')
                   div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4')
                   div.setAttribute('id', `${item.id}`)
-            const button = document.createElement('button')
-                  button.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
+            const circle = document.createElement('span')
+                  circle.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
             const h3 = document.createElement('h3')
             const textNode = document.createTextNode(`${item.name}`)
                   textNode.classList.add('text-wrap', 'line-clamp-2')
     
             h3.append(textNode)
-            div.append(button, h3)
+            div.append(circle, h3)
             ctr.append(div)
         })
         
@@ -202,13 +202,13 @@ export const categoriesHome =  async () => {
             const div = document.createElement('div')
                   div.classList.add('category-btn', 'category-btn-ctr', 'gap-2')
                   div.setAttribute('id', `${item.id}`)
-            const button = document.createElement('button')
-                  button.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
+            const circle = document.createElement('span')
+                  circle.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
             const h3 = document.createElement('h3')
             const textNode = document.createTextNode(`${item.name}`)
     
             h3.append(textNode)
-            div.append(button, h3)
+            div.append(circle, h3)
             ctr.append(div)
         })
     }else{
