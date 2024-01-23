@@ -261,7 +261,8 @@ option{
 
 /* inactive style */
 .inactive{
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    color: rgba(128, 128, 128, 0.89);
     cursor: default!important
 }
 

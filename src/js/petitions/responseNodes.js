@@ -178,10 +178,10 @@ export const categoriesHome =  async () => {
             
             // const ctr = document.querySelector('.carousel_categories_list')
             const div = document.createElement('div')
-                  div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4')
+                  div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4', `${item.name.toLowerCase()}`)
                   div.setAttribute('id', `${item.id}`)
             const circle = document.createElement('span')
-                  circle.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
+                  circle.className = `${genresColors[i++]}`
             const h3 = document.createElement('h3')
             const textNode = document.createTextNode(`${item.name}`)
                   textNode.classList.add('text-wrap', 'line-clamp-2')
@@ -200,10 +200,11 @@ export const categoriesHome =  async () => {
             
             // const ctr = document.querySelector('.carousel_categories_list')
             const div = document.createElement('div')
+                  div.className = `${item.name.toLowerCase()}`
                   div.classList.add('category-btn', 'category-btn-ctr', 'gap-2')
                   div.setAttribute('id', `${item.id}`)
             const circle = document.createElement('span')
-                  circle.className = `${item.name.toLowerCase()}, ${genresColors[i++]}`
+                  circle.className = `${genresColors[i++]}`
             const h3 = document.createElement('h3')
             const textNode = document.createTextNode(`${item.name}`)
     

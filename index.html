@@ -38,7 +38,7 @@
 
         </nav>
         <nav class="global-nav px-4 pt-1 pb-4 w-full flex justify-center">
-            <menu class="w-1/2 flex flex-row justify-center gap-4 text-xs">
+            <menu id="menu" class="w-1/2 flex flex-row justify-center gap-4 text-xs">
                 <!-- vinculo los links a un mismo template. depende del link que use, hago el fetch a la api, pero reutilizo el template -->
                 <li>
                     <button class="series-link" data-name="series">Series</button>
@@ -133,7 +133,7 @@
                 <button class="series-all links" data-name="series">Ver todo</button>
             </div>
             <div class="glide glide_series">
-                <div class="glide__track" data-glide-el="track">
+                <div id="series" class="glide__track" data-glide-el="track">
                 <!-- filling with cars from api -->
                   <ul class="glide__slides carousel_series_list"></ul>
                 </div>
@@ -149,7 +149,7 @@
                 <button class="movies-all links" data-name="peliculas">Ver todo</button>
             </div>
             <div class="glide glide_trending">
-                <div class="glide__track" data-glide-el="track">
+                <div id="movies" class="glide__track" data-glide-el="track">
                     <!-- filling with cars from api -->
                   <ul class="glide__slides carousel_movies_list"></ul>
                 </div>
@@ -169,7 +169,7 @@
                 <div class="glide__track" data-glide-el="track">
                     <!-- filling with cars from api -->
                   <!-- <ul class="glide__slides carousel_movies_list"></ul> -->
-                  <ul class="glide__slides carousel_categories_list flex"></ul> 
+                  <ul id="genresCtr" class="glide__slides carousel_categories_list flex"></ul> 
                 </div>
                 <!-- <div class="glide__arrows" data-glide-el="controls">
                     <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
