@@ -10,9 +10,23 @@ export const estrenosHome = async () => {
     //saving in localstorage
     //ls content checker
     const lsChecker = localStorage.getItem('trending')
+     // creating arrays to compare twice
+    let arrayLS = []
+    let arrayResponse = []
+    // spread operator to save the response in an array to iterate titles and save in one of the arrays
+    const responseTitles =  [...responseArray]
+          responseTitles?.map(item => arrayResponse.push(item.title))
+    const trendingObject = JSON.parse(lsChecker)
+          trendingObject?.map(item => arrayLS.push(item.title))
+
+    // comparing between arrays to know if have the exactly content
+    const arrayComparator = arrayLS.every((element1, index) => {
+        return element1 === arrayResponse[index]
+    })
+
     const ul = document.querySelector('.carousel_trending_all_list')
     
-    if (lsChecker === null){
+    if (lsChecker === null || arrayComparator !== true){
         localStorage.setItem('trending', JSON.stringify(responseArray))  
         const newTrendingObject = JSON.parse(localStorage.getItem('trending')) 
         // dom rendering
@@ -29,7 +43,6 @@ export const estrenosHome = async () => {
         })
         
     }else if(ul.childElementCount === 0){
-        const trendingObject = JSON.parse(lsChecker)
         // dom rendering
         trendingObject?.map( movie => {
         
@@ -51,14 +64,27 @@ export const estrenosHome = async () => {
 // movies slider home
 export const moviesHome = async () => {
     
-    const responseArray = await getTrendingMovies_Home()    
-    //saving in localstorage
+    const responseArray = await getTrendingMovies_Home()   
     //ls content checker
     const lsChecker = localStorage.getItem('movies')
+    // creating arrays to compare twice
+    let arrayLS = []
+    let arrayResponse = []
+    // spread operator to save the response in an array to iterate titles and save in one of the arrays
+    const responseTitles =  [...responseArray]
+          responseTitles?.map(item => arrayResponse.push(item.title))
+    const moviesObject = JSON.parse(lsChecker)
+          moviesObject?.map(item => arrayLS.push(item.title))
+
+          // comparing between arrays to know if have the exactly content
+          const arrayComparator = arrayLS.every((element1, index) => {
+              return element1 === arrayResponse[index]
+          })
+
     // const ctr = document.querySelector('.carousel_movies_list')
     const ulMovies = document.querySelector('.carousel_movies_list')
 
-    if (lsChecker === null){
+    if (lsChecker === null || arrayComparator !== true){
         localStorage.setItem('movies', JSON.stringify(responseArray))  
         const newMoviesObject = JSON.parse(localStorage.getItem('movies')) 
         // dom rendering
@@ -80,10 +106,8 @@ export const moviesHome = async () => {
                 
     // }else if(ulMovies.childElementCount > JSON.parse(lsChecker).length){
     }else if(ulMovies.childElementCount === 0){
-        
-        // console.log(`childElementCount: ${ctr.childElementCount}; length del objeto movies en ls: ${JSON.parse(lsChecker).lenght}`)
-        const moviesObject = JSON.parse(lsChecker)
-        // dom rendering
+        // gettin the array of LS to iterate & save the titles in the empty array
+              
         return moviesObject?.map( movie => {
         // FIXME, el slider no es loop
         // const ulMovies = document.querySelector('.carousel_movies_list')
@@ -98,6 +122,7 @@ export const moviesHome = async () => {
                 li.append(img)
                 ulMovies.append(li)
         })
+        // dom rendering
     }else{
 
         return console.log('nodo lleno')
@@ -106,14 +131,26 @@ export const moviesHome = async () => {
 
 // series slider home
 export const seriesHome = async () => {
-    
-    const responseArray = await getTrendingSeries_Home()   
     //saving in localstorage
     //ls content checker
+    const responseArray = await getTrendingSeries_Home()   
     const lsChecker = localStorage.getItem('series')
+    let arrayLS = []
+    let arrayResponse = []
+    // spread operator to save the response in an array to iterate titles and save in one of the arrays
+    const responseTitles =  [...responseArray]
+          responseTitles?.map(item => arrayResponse.push(item.name))
+    const seriesObject = JSON.parse(lsChecker)
+          seriesObject?.map(item => arrayLS.push(item.name))
+
+    // comparing between arrays to know if have the exactly content
+    const arrayComparator = arrayLS.every((element1, index) => {
+        return element1 === arrayResponse[index]
+    })
+    console.log(arrayComparator)
     const ctr = document.querySelector('.carousel_series_list')
     
-    if (lsChecker === null){
+    if (lsChecker === null || arrayComparator !== true){
         localStorage.setItem('series', JSON.stringify(responseArray))  
         const newSeriesObject = JSON.parse(localStorage.getItem('series')) 
 
@@ -134,7 +171,6 @@ export const seriesHome = async () => {
         })
         
     }else if(ctr.childElementCount === 0){
-        const seriesObject = JSON.parse(lsChecker)
         // dom rendering
         seriesObject?.map( movie => {
             const ulSeries = document.querySelector('.carousel_series_list')

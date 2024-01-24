@@ -1,5 +1,5 @@
 import { api } from '../api/myModule.mjs'
-import { URLALL, URLMOVIES, URLSERIES, URLGENRES, API_KEY, esp} from '../api/secret.js'
+import { URLALL, URLMOVIES, URLSERIES, URLGENRES, URLMOVIECATEGORIES, API_KEY, esp} from '../api/secret.js'
 
 
 //all trending for home
@@ -61,11 +61,8 @@ export const getMovieGenres_Home = async () => {
 //... by category
 export const getMovieCategory = async (id) => {
     // usando axios
-    const { data } = await api(`${URLMOVIECATEGORIES}`, {
-        params: {
-            without_genres: id
-        }
-    })
+    // TODO, verificar el path
+    const { data } = await api(`${URLMOVIECATEGORIES}${API_KEY}${esp}${id}`)
     
     const responseArray = data.results
     console.log(responseArray)

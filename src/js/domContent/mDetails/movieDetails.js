@@ -22,9 +22,10 @@ export const cardData = (clase, id) => {
       ): console.log(null))
             
       // devuelve el objeto que coincide con el id enviado
+      console.log(element)
       return element
 }
-//i create html content & fill it with content using the parameter
+//i create html content & fill it with content form the object using the parameter
 export const newDom = (movie) => {
       // evaluating if any of those is truth to getting
       const movieTitle = movie.name ? [movie.name] : movie.title ? [movie.title] : null;

@@ -9,6 +9,9 @@ globalThis.onload = () => {
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
         const element = e.target
+        const tagName = element.tagName
+        const parent = element.parentElement
+
         // console.log(element.parentNode.id);
         // document.documentElement.scrollTop = 0;
         // e.preventDefault()
@@ -42,7 +45,6 @@ globalThis.onload = () => {
         //verifying filteredClasses & card element
         // const parentCtr = element.parentElement.id
         // if(parentCtr.includes('menu') || parentCtr.includes('series') || parentCtr.includes ('movies')){
-        const tagName = element.tagName
         if(tagName.includes('BUTTON') || tagName.includes('IMG')){
             if(filteredClasses === element.className){
                 e.stopPropagation()
@@ -87,30 +89,44 @@ globalThis.onload = () => {
         // evento category btns
         // const categoryBtnsCtr = element.closest('.category-btn')
     
-        const categoriesLS = JSON.parse(localStorage.getItem('genres'))
-        const categories = [...categoriesLS]
-        const categoriesName = categories?.map(item => item.name.toLowerCase())
-        // filtering according the array
-        const filteredCategories = categoriesName.find(className => {
-            return className.includes(element.className)
-          })
-
-        if(element.id.includes('genresCtr')){
         
-            console.log('en ul')
-        //     document.querySelector('#genresCtr')
-        // .addEventListener('click', () => {
+        if(parent.classList.contains('category-btn-ctr')){   
+            /* 
+                1.importing this function to send id param 
+                2.obtener la respuesta 
+                3.renderizar la respuesta 
+            */
+            const { getMovieCategory } = await import('./petitions/petitions.js')
             
-            // const 
-            // element.id.includes('genresCtr')? console.log('true ' + element): null
-        //     if (filteredCategories === element.className) {
-        //         // Llama a la función de evento del elemento padre
-        //         // categoryBtnsCtr.click()
-        //         console.log(filteredCategories, element.className)
-        //   }
+            
+            // const categoriesLS = JSON.parse(localStorage.getItem('genres'))
+            // const categories = [...categoriesLS]
+            // const categoriesName = categories?.map(item => item.name.toLowerCase())
+            
+            //getting parent element id as string
+            const nodeId = parent.id.toString()
+            // getting parent classes as array
+            const nodeClasses =  parent.className.split(' ')
+            // getting the first class of the parent as string, the type of genre
+            const firstClass = [...nodeClasses]?.slice(0,1).toString()
+            // is category
+            const getSecondClass = [...nodeClasses]?.slice(1,2).toString().split('-')
+            const secondClass = getSecondClass?.slice(0,1).toString()
+            console.log(firstClass, secondClass)
+            // TODO, crear una promesa para enviar el id y renderizar la respuesta y ocultar el otro contenido
+            // sending as param the category id to fetch the api
+            getMovieCategory(nodeId)
+            .then(
+                console.log(getMovieCategory())
+            )
+            
+            // rendering gallery dom wich is gallery cards
+            main.append(galleryDom)
+            //changin the location path
+            location.hash = `${secondClass}`      
         }
 
-        // // back btn / de gallery a home
+        // // back btn / de gallery a homeee
         // // evaluando si el btn click contiene la clase back btn y si el ultimo elemento hijo del main contiene la clase 'gallery section', tambien puedo agregar otra evaluacion para cuando este en la vista a detalle de la pelicula
         // element.classList.contains('back-btn') && main.lastElementChild.classList.contains ('gallery-section')
         // ?(  
