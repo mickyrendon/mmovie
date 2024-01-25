@@ -66,6 +66,8 @@ globalThis.onload = () => {
                 // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
                 main.append(newDom(result))
                 // main.append(movieDetailsDom)
+                document.documentElement.scrollTop = 0
+
 
             }else{
                 e.stopPropagation()
@@ -121,7 +123,8 @@ globalThis.onload = () => {
             // rendering gallery dom wich is gallery cards
             main.append(galleryDom)
             //changin the location path
-            location.hash = `${secondClass}`      
+            location.hash = `${secondClass}-${firstClass}`   
+            document.documentElement.scrollTop = 0
         }
 
         // // back btn / de gallery a homeee
