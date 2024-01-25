@@ -73,21 +73,20 @@ export const hiddeNavElements = () => {
             e.classList.toggle('hidden')
       })        
 
-      console.log(galleryCtr)
       galleryCtr?.classList.add('hidden')
 }   
 
 export const showNavElements = () => {
+      const galleryCtr = document.querySelector('.gallery-section')
       const htmlElements = [
             globalNav,
             searcher,
             footerTag
       ]
       
-      // filters.classList.add('hidden')
-      // filters.classList.remove('flex')
-      //     location.hash = 'Home'
+      !galleryCtr? null : galleryCtr?.classList.remove('hidden')
       return htmlElements?.forEach((e) => {
             return e.classList.remove('hidden')
       })  
+
 }

@@ -10,29 +10,7 @@ import { hiddeElements, hiddeNavElements, showElements, showNavElements } from '
 import { ambiguousBackBtn, ambiguousMenuBtn } from '../domContent/events/ambiguousBtn.js'
 // import { deleteNode } from "../domContent/gallery/galleryDom.js"
 export const navigation = () => {
-    //default path
-    // location.hash = 'home'
-
-    // const main = document.querySelector('main')
-    // location.hash.startsWith('#estrenos')
-    // ?(
-    //     estrenosGallery()
-    // ):
-    // location.hash.startsWith('#peliculas')
-    // ?(
-    //     moviesGallery()
-    //     // console.log('peliculas', location.hash)
-    // ):
-    // location.hash.startsWith('#series')
-    // ?(
-    //     seriesGallery()
-    //     // console.log('Series', location.hash)
-    // ):
-    // location.hash.startsWith('#search')
-    // ?(
-    //     console.log('busqueda')
-    
-    // )
+ 
     if(location.hash !== '#home'){
         // hidding home sections to show cards gallery
         hiddeElements()   
@@ -51,8 +29,8 @@ export const navigation = () => {
     if(location.hash.startsWith('#series')){
         galleryDom('series')
     }
-    if(location.hash.startsWith('#categories')){
-        galleryDom('series')
+    if(location.hash.startsWith('#category')){
+        galleryDom('category')
     }
     if(location.hash.startsWith('#detalles')){
         // galleryDom('series')

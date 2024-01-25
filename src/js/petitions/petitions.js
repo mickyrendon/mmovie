@@ -63,10 +63,11 @@ export const getMovieCategory = async (id) => {
     // usando axios
     // TODO, verificar el path
     const { data } = await api(`${URLMOVIECATEGORIES}${API_KEY}${esp}${id}`)
-    
     const responseArray = data.results
-    console.log(responseArray)
+    // saving in LS the results of category
+    localStorage.setItem(`category`, JSON.stringify(responseArray))
     return responseArray
+
     // llamada tradicional 
     // const getTrending = await fetch(`${URLALL}${API_KEY}`)
     // const response =  await getTrending.json()

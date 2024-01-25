@@ -1,3 +1,2 @@
-TODO (detalles view)
-    1.ocultar los elementos inecesarios
-    2.obtener el contenido del elemento por medio del id buscandolo en el localstorage segun la categoria en la que se encuentre la card
+TODO (categories)
+    1.renderizar la respuesta a la api en gallery view

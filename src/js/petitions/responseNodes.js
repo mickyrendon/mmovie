@@ -270,18 +270,45 @@ export const estrenosGallery = async () => {
 // movies gallery
 // creating gallery dom
 export const galleryDom = async (value) => {
-    //param wich contains the value of localstorage btn object
     const objectLS = localStorage.getItem(`${value}`)
+    //param wich contains the value of localstorage btn object
     const render = JSON.parse(objectLS)
+    console.log(value);
     //cards ctr
     const galleryCtr = document.querySelector('.gallery-ctr')
     // saving in array the cards
     const childrenArray = [...galleryCtr.children]
-    let i = 0
-    // creating the cards
-    galleryCtr.childElementCount === 0?
-    (
-        render?.map( item => {
+
+    if(objectLS !== null){
+        let i = 0
+        // creating the cards
+        galleryCtr.childElementCount === 0?
+        (
+            render?.map( item => {
+                const card = document.createElement('button')
+                card.id = item.id  
+                //pongo la clase '${value}-card para que sea la primera clase que evalua la funcion cardData en el evento click del index.mjs
+                card.classList.add(`${value}-card`, 'gallery-cards')
+                // FIXME, validar que el valor de la clase no se agregue si ya existe
+                // card.classList.add(`${value}-card`)
+                card.setAttribute('data-name', 'card')
+                card.style.backgroundImage = `url(${imgW300}${item.poster_path})`
+                galleryCtr.append(card)
+            })
+    
+        ):(
+            // changin url card
+            childrenArray?.forEach( item => {
+                // FIXME, validar que el valor de la clase no se agregue si ya existe
+                // item.classList.add(`${value}-card`)
+                item.style.backgroundImage = `url(${imgW300}${render[i++].poster_path})`
+            })
+        )
+    }else{
+        const getObjectLS = localStorage.getItem(`${value}`)
+        //param wich contains the value of localstorage btn object
+        const newRender = JSON.parse(getObjectLS)
+        newRender?.map( item => {
             const card = document.createElement('button')
             card.id = item.id  
             //pongo la clase '${value}-card para que sea la primera clase que evalua la funcion cardData en el evento click del index.mjs
@@ -292,13 +319,5 @@ export const galleryDom = async (value) => {
             card.style.backgroundImage = `url(${imgW300}${item.poster_path})`
             galleryCtr.append(card)
         })
-
-    ):(
-        // changin url card
-        childrenArray?.forEach( item => {
-            // FIXME, validar que el valor de la clase no se agregue si ya existe
-            // item.classList.add(`${value}-card`)
-            item.style.backgroundImage = `url(${imgW300}${render[i++].poster_path})`
-        })
-    )
+    }
 }

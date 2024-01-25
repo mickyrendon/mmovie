@@ -98,7 +98,6 @@ globalThis.onload = () => {
             */
             const { getMovieCategory } = await import('./petitions/petitions.js')
             
-            
             // const categoriesLS = JSON.parse(localStorage.getItem('genres'))
             // const categories = [...categoriesLS]
             // const categoriesName = categories?.map(item => item.name.toLowerCase())
@@ -116,9 +115,8 @@ globalThis.onload = () => {
             // TODO, crear una promesa para enviar el id y renderizar la respuesta y ocultar el otro contenido
             // sending as param the category id to fetch the api
             getMovieCategory(nodeId)
-            .then(
-                console.log(getMovieCategory())
-            )
+            
+            // searching in Ls
             
             // rendering gallery dom wich is gallery cards
             main.append(galleryDom)
