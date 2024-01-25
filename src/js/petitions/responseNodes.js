@@ -76,10 +76,10 @@ export const moviesHome = async () => {
     const moviesObject = JSON.parse(lsChecker)
           moviesObject?.map(item => arrayLS.push(item.title))
 
-          // comparing between arrays to know if have the exactly content
-          const arrayComparator = arrayLS.every((element1, index) => {
-              return element1 === arrayResponse[index]
-          })
+    // comparing between arrays to know if have the exactly content
+    const arrayComparator = arrayLS.every((element1, index) => {
+        return element1 === arrayResponse[index]
+    })
 
     // const ctr = document.querySelector('.carousel_movies_list')
     const ulMovies = document.querySelector('.carousel_movies_list')
@@ -273,13 +273,13 @@ export const galleryDom = async (value) => {
     const objectLS = localStorage.getItem(`${value}`)
     //param wich contains the value of localstorage btn object
     const render = JSON.parse(objectLS)
-    console.log(value);
     //cards ctr
     const galleryCtr = document.querySelector('.gallery-ctr')
     // saving in array the cards
     const childrenArray = [...galleryCtr.children]
 
     if(objectLS !== null){
+        
         let i = 0
         // creating the cards
         galleryCtr.childElementCount === 0?

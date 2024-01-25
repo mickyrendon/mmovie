@@ -62,10 +62,38 @@ export const getMovieGenres_Home = async () => {
 export const getMovieCategory = async (id) => {
     // usando axios
     // TODO, verificar el path
-    const { data } = await api(`${URLMOVIECATEGORIES}${API_KEY}${esp}${id}`)
+    const { data } = await api(`${URLMOVIECATEGORIES}?with_genres=${id}`)
+    // const { data } = await api(`${URLMOVIECATEGORIES}${API_KEY}${esp}with_genres=${id}`)
     const responseArray = data.results
+    // getting ls array
+    const lsChecker = localStorage.getItem('category')
+     // creating arrays to compare twice
+     let arrayLS = []
+     let arrayResponse = []
+     if(lsChecker !== null){
+         // spread operator to save the response in an array to iterate titles and save in one of the arrays
+        const responseTitles =  [...responseArray]
+              responseTitles?.map(item => arrayResponse.push(item.title))
+        const categoriesObject = JSON.parse(lsChecker)
+              categoriesObject?.map(item => arrayLS.push(item.title))
+     
+         // comparing between arrays to know if have the exactly content
+        const arrayComparator = arrayLS.every((element1, index) => {
+            return element1 === arrayResponse[index]
+        })
+
+        if(arrayComparator !== true){
+            localStorage.setItem(`category`, JSON.stringify(responseArray))
+        }else{
+            console.log('iguales')
+        }
+
+     }else{
+         
+         localStorage.setItem(`category`, JSON.stringify(responseArray))
+     }
+
     // saving in LS the results of category
-    localStorage.setItem(`category`, JSON.stringify(responseArray))
     return responseArray
 
     // llamada tradicional 

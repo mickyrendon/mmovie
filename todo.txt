@@ -1,2 +1,5 @@
 TODO (categories)
-    1.renderizar la respuesta a la api en gallery view
+    1.validar si la respuesta es igual al array del LS
+    2.hacer bien la peticion, corregir la ruta
+TODO (api paths)
+    1.verificar la rebundancia de la api key y el idioma en las peticiones

@@ -113,15 +113,15 @@ globalThis.onload = () => {
             // is category
             const getSecondClass = [...nodeClasses]?.slice(1,2).toString().split('-')
             const secondClass = getSecondClass?.slice(0,1).toString()
-            console.log(firstClass, secondClass)
-            // TODO, crear una promesa para enviar el id y renderizar la respuesta y ocultar el otro contenido
+
+            // TODO, hacer un callback para actualizar el contenido del ls y renderizarlo
             // sending as param the category id to fetch the api
             getMovieCategory(nodeId)
+            .then(
+                // rendering gallery dom wich is gallery cards
+                main.append(galleryDom)
+            )
             
-            // searching in Ls
-            
-            // rendering gallery dom wich is gallery cards
-            main.append(galleryDom)
             //changin the location path
             location.hash = `${secondClass}-${firstClass}`   
             document.documentElement.scrollTop = 0
