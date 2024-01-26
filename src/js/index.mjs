@@ -114,17 +114,15 @@ globalThis.onload = () => {
             const getSecondClass = [...nodeClasses]?.slice(1,2).toString().split('-')
             const secondClass = getSecondClass?.slice(0,1).toString()
 
-            // TODO, hacer un callback para actualizar el contenido del ls y renderizarlo
-            // sending as param the category id to fetch the api
-            getMovieCategory(nodeId)
-            .then(
-                // rendering gallery dom wich is gallery cards
+            //callback to send as param the category id to fetch the api and render the updated content
+            const render = () => {
                 main.append(galleryDom)
-            )
-            
-            //changin the location path
-            location.hash = `${secondClass}-${firstClass}`   
-            document.documentElement.scrollTop = 0
+                //changin the location path
+                location.hash = `${secondClass}-${firstClass}`   
+                // scroll top
+                document.documentElement.scrollTop = 0
+            }
+            getMovieCategory(nodeId, render)
         }
 
         // // back btn / de gallery a homeee

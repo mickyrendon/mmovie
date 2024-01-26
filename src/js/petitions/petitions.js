@@ -59,17 +59,19 @@ export const getMovieGenres_Home = async () => {
 
 // filters
 //... by category
-export const getMovieCategory = async (id) => {
+export const getMovieCategory = async (id, callback) => {
     // usando axios
     // TODO, verificar el path
     const { data } = await api(`${URLMOVIECATEGORIES}?with_genres=${id}`)
     // const { data } = await api(`${URLMOVIECATEGORIES}${API_KEY}${esp}with_genres=${id}`)
     const responseArray = data.results
+
     // getting ls array
     const lsChecker = localStorage.getItem('category')
      // creating arrays to compare twice
      let arrayLS = []
      let arrayResponse = []
+     let arrayComparator
      if(lsChecker !== null){
          // spread operator to save the response in an array to iterate titles and save in one of the arrays
         const responseTitles =  [...responseArray]
@@ -78,7 +80,7 @@ export const getMovieCategory = async (id) => {
               categoriesObject?.map(item => arrayLS.push(item.title))
      
          // comparing between arrays to know if have the exactly content
-        const arrayComparator = arrayLS.every((element1, index) => {
+        arrayComparator = arrayLS.every((element1, index) => {
             return element1 === arrayResponse[index]
         })
 
@@ -87,14 +89,16 @@ export const getMovieCategory = async (id) => {
         }else{
             console.log('iguales')
         }
+        
+    }else{
+        
+        localStorage.setItem(`category`, JSON.stringify(responseArray))
+    }
+    // rendering gallery dom wich is gallery cards
 
-     }else{
-         
-         localStorage.setItem(`category`, JSON.stringify(responseArray))
-     }
-
+    callback()
     // saving in LS the results of category
-    return responseArray
+    return arrayComparator
 
     // llamada tradicional 
     // const getTrending = await fetch(`${URLALL}${API_KEY}`)
