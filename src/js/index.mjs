@@ -19,6 +19,7 @@ globalThis.onload = () => {
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         //node to insert
         const main = document.querySelector('main')
+        const title = document.querySelector('.category-title')
 
         const classes = [
             'estrenos',
@@ -117,6 +118,7 @@ globalThis.onload = () => {
             //callback to send as param the category id to fetch the api and render the updated content
             const render = () => {
                 main.append(galleryDom)
+                title.innerHTML = firstClass.toUpperCase().charAt[0]
                 //changin the location path
                 location.hash = `${secondClass}-${firstClass}`   
                 // scroll top

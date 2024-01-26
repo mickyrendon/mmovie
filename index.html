@@ -53,6 +53,69 @@
                     <button class="realities-link" data-name="Realitis">Realities</button>
                 </li> -->
             </menu>
+            <!-- TODO, crear un dropdown menu -->
+            <button class="filter-icon w-4 h-4">
+            </button>
+            <ul class="flex flex-col gap-2  filter-icon hidden">
+                <li>
+                    <div class="filter-ctr">
+                        <label for="filterBy">
+                            <span class="filter-icon"></span>
+                        </label>
+                        <select name="filterBy" id="filterBy">
+                            <optgroup label="Género">
+                                <option value="action">Género</option>
+                                <option value="adventure">Aventura</option>
+                                <option value="comedy">Comedia</option>
+                                <option value="drama">Drama</option>
+                                <option value="thriller">Terror</option>
+                                <option value="cf">Ciencia ficción</option>
+                                <option value="romance">Romance</option>
+                            </optgroup>
+                            <optgroup label="Año de lanzamiento">
+                                <option value="23">2023</option>
+                                <option value="22">2022</option>
+                                <option value="21">2021</option>
+                                <option value="20">2020</option>
+                                <option value="19">2019</option>
+                                <option value="18">2018</option>
+                            </optgroup>
+                            <optgroup label="Popularidad">
+                                <option value="populars">Más populares</option>
+                                <option value="valorations">Mejor valoradas</option>
+                                <option value="recents">Recién llegadas</option>
+                            </optgroup>
+                            <optgroup label="Idioma">
+                                <option value="spanish">Español</option>
+                                <option value="english">Inglés</option>
+                                <option value="portugues">Portugués</option>
+                            </optgroup>
+                            <optgroup label="Duración">
+                                <option value="short-film">Cortometraje</option>
+                                <option value="movie">Película</option>
+                                <option value="extended">Version extendida</option>
+                            </optgroup>
+                            <optgroup label="Director">
+                                <option value="d-1">Steven Spielberg</option>
+                                <option value="d-2">Christopher Nolan</option>
+                                <option value="d-3">Quentin Tarantino</option>
+                                <option value="d-4">Martin Scorsese</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="sort-ctr">
+                        <label for="orderBy">
+                            <span class="sort-icon"></span>
+                        </label>
+                        <select name="orderBy" id="orderBy">
+                            <option value="falling">Descendente</option>
+                            <option value="upward">Ascendente</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
         </nav>
         <!-- slider -->
         <div class="glide main-slider">
@@ -71,60 +134,7 @@
           
     </header>
     <nav class="filter my-4 w-full h-12 justify-between hidden">
-        <div class="filter-ctr">
-         <label for="filterBy">
-             <span class="filter-icon"></span>
-         </label>
-         <select name="filterBy" id="filterBy">
-             <optgroup label="Género">
-                 <option value="action">Género</option>
-                 <option value="adventure">Aventura</option>
-                 <option value="comedy">Comedia</option>
-                 <option value="drama">Drama</option>
-                 <option value="thriller">Terror</option>
-                 <option value="cf">Ciencia ficción</option>
-                 <option value="romance">Romance</option>
-             </optgroup>
-             <optgroup label="Año de lanzamiento">
-                 <option value="23">2023</option>
-                 <option value="22">2022</option>
-                 <option value="21">2021</option>
-                 <option value="20">2020</option>
-                 <option value="19">2019</option>
-                 <option value="18">2018</option>
-             </optgroup>
-             <optgroup label="Popularidad">
-                 <option value="populars">Más populares</option>
-                 <option value="valorations">Mejor valoradas</option>
-                 <option value="recents">Recién llegadas</option>
-             </optgroup>
-             <optgroup label="Idioma">
-                 <option value="spanish">Español</option>
-                 <option value="english">Inglés</option>
-                 <option value="portugues">Portugués</option>
-             </optgroup>
-             <optgroup label="Duración">
-                 <option value="short-film">Cortometraje</option>
-                 <option value="movie">Película</option>
-                 <option value="extended">Version extendida</option>
-             </optgroup>
-             <optgroup label="Director">
-                 <option value="d-1">Steven Spielberg</option>
-                 <option value="d-2">Christopher Nolan</option>
-                 <option value="d-3">Quentin Tarantino</option>
-                 <option value="d-4">Martin Scorsese</option>
-             </optgroup>
-         </select>
-        </div>
-         <div class="sort-ctr">
-             <label for="orderBy">
-                 <span class="sort-icon"></span>
-             </label>
-             <select name="orderBy" id="orderBy">
-                 <option value="falling">Descendente</option>
-                 <option value="upward">Ascendente</option>
-             </select>
-         </div>
+        <h1 class="px-4 category-title"></h1>
      </nav>
      <main class="w-[90%]">
         <section class="series-section">
