@@ -13,7 +13,8 @@ const categoriesSlider = document.querySelector('.carousel_categories_list')
 // gallery elements
 const searcher = document.querySelector('.searcher')
 const globalNav = document.querySelector('.global-nav')
-const filters = document.querySelector('.filter')
+// const filters = document.querySelector('.filter')
+const title = document.querySelector('.category-title')
 const footerTag = document.querySelector('footer')
 
 // hidding home elements to show gallery
@@ -31,8 +32,8 @@ export const hiddeElements = () => {
       ]
 
       body.classList.add('home-view')
-      filters.classList.remove('hidden')
-      filters.classList.add('flex')
+      // filters.classList.remove('hidden')
+      // filters.classList.add('flex')
       //     location.hash = 'Home'
 
       // deleting carousels
@@ -51,8 +52,8 @@ export const showElements = () => {
       ]
       
       body.classList.remove('home-view')
-      filters.classList.add('hidden')
-      filters.classList.remove('flex')
+      // filters.classList.add('hidden')
+      // filters.classList.remove('flex')
       //     location.hash = 'Home'
       return htmlElements?.forEach((e) => {
             return e.classList.remove('hidden')
@@ -66,7 +67,7 @@ export const hiddeNavElements = () => {
       const htmlElements = [
             globalNav,
             searcher,
-            filters,
+            // filters,
             footerTag
       ]
       htmlElements.forEach((e) => {
@@ -89,4 +90,7 @@ export const showNavElements = () => {
             return e.classList.remove('hidden')
       })  
 
+}
+export const hiddeH1 = () => {
+      return title.classList.add('hidden')
 }

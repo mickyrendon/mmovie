@@ -48,6 +48,22 @@ const newDom = () => {
 }
 export const galleryDom = newDom()
 
+// export const title = (value) => {
+//       const main = document.querySelector('main')
+//       const title = document.querySelector('.category-title')
+//       if(title === null){
+//             const title = document.createElement('h1')
+//                   title.classList.add('category-title', 'py-2')
+//                   title.innerHTML = value
+
+//             return main.append(title)
+//       }else{
+//             title.innerHTML = value
+//             return main.append(title)
+//       }
+
+// }
+
 export const deleteNode = (ctr) =>{
       // ctr = container
       const childrends = [...ctr.children]

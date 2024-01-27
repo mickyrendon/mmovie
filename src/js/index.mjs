@@ -19,7 +19,6 @@ globalThis.onload = () => {
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         //node to insert
         const main = document.querySelector('main')
-        const title = document.querySelector('.category-title')
 
         const classes = [
             'estrenos',
@@ -100,6 +99,7 @@ globalThis.onload = () => {
                 3.renderizar la respuesta 
             */
             const { getMovieCategory } = await import('./petitions/petitions.js')
+            const { title } = await import('./domContent/gallery/galleryDom.js')
             
             // const categoriesLS = JSON.parse(localStorage.getItem('genres'))
             // const categories = [...categoriesLS]
@@ -117,8 +117,17 @@ globalThis.onload = () => {
 
             //callback to send as param the category id to fetch the api and render the updated content
             const render = () => {
-                main.append(galleryDom)
-                title.innerHTML = firstClass.toUpperCase().charAt[0]
+                // category value to uppercase capitalize
+                const firstClassUpperCase = firstClass.replace(/^\w/, (match) => match.toUpperCase())
+                // getting h1 main tag & setting a value
+                const title = document.querySelector('.category-title')
+                title.innerHTML =firstClassUpperCase
+                // checking if hidden class exists
+                if(title.classList.contains('hidden')){
+                    title.classList.remove('hidden')
+                }
+                // adding new content main dom
+                main.append(title, galleryDom)
                 //changin the location path
                 location.hash = `${secondClass}-${firstClass}`   
                 // scroll top
