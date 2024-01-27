@@ -1,5 +1,5 @@
-TODO (categories)
-    1.validar si la respuesta es igual al array del LS
-    2.hacer bien la peticion, corregir la ruta
+TODO (gallery views, categories, series, peliculas)
+    1.renombrar la funcion galleryNode de responseNodes o de galleryDom, la que mas convenga
+    2.al seleccionar galleria por segunda vez consecutiva no renderiza la tarjeta clickeada en detalle
 TODO (api paths)
     1.verificar la rebundancia de la api key y el idioma en las peticiones

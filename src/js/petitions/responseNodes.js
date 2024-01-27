@@ -281,6 +281,7 @@ export const galleryDom = async (value) => {
     if(objectLS !== null){
         
         let i = 0
+        let idx = 0
         // creating the cards
         galleryCtr.childElementCount === 0?
         (
@@ -301,6 +302,7 @@ export const galleryDom = async (value) => {
             childrenArray?.forEach( item => {
                 // FIXME, validar que el valor de la clase no se agregue si ya existe
                 // item.classList.add(`${value}-card`)
+                item.setAttribute('id', `${render[idx++].id}`)
                 item.style.backgroundImage = `url(${imgW300}${render[i++].poster_path})`
             })
         )

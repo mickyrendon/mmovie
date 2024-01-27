@@ -99,7 +99,6 @@ globalThis.onload = () => {
                 3.renderizar la respuesta 
             */
             const { getMovieCategory } = await import('./petitions/petitions.js')
-            const { title } = await import('./domContent/gallery/galleryDom.js')
             
             // const categoriesLS = JSON.parse(localStorage.getItem('genres'))
             // const categories = [...categoriesLS]
