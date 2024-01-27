@@ -64,6 +64,7 @@ globalThis.onload = () => {
                 const result = cardData(clase, id)
                 console.log(result)
                 // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
+                // FIXME, checkear que result funcione al cambiar entre galerias
                 main.append(newDom(result))
                 // main.append(movieDetailsDom)
                 document.documentElement.scrollTop = 0

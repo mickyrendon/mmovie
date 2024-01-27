@@ -13,16 +13,18 @@ const content = {
 // funcion que toma la clase de la card y en base a eso busca la categoria en el localstorage y compara el id de la card con el id del ls para renderizar el contenido en el newDom
 export const cardData = (clase, id) => {
       // TODO, mejorar el codigo para agregar un index a cada card que sera el mismo del ls y asi compararlo en esta funcion y obtener el contenido requerido porque esta funcion recorre uno por uno el array y requiere mas memoria
+      // FIXME, el ls array no se actualiza cuando cambio entre peliculas y series y la clase tampoco
       const lsCategory = JSON.parse(localStorage.getItem(`${clase.slice(0, clase.indexOf("-card"))}`))
       let element 
       // evaluo la primera clase del elemento clickado (card) por esto la primera clase puesta en card ha sido de manera estrategica
-      lsCategory?.map((item) => item.id === parseInt(id)?
-      (
-            element = item
-      ): console.log(null))
-            
+      console.log(lsCategory, id, clase)
+      lsCategory?.map((item) => {
+            if(item.id === parseInt(id)){
+                  return element = item
+            }
+      })
       // devuelve el objeto que coincide con el id enviado
-      console.log(element)
+      console.log(lsCategory, element)
       return element
 }
 //i create html content & fill it with content form the object using the parameter

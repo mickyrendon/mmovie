@@ -301,7 +301,9 @@ export const galleryDom = async (value) => {
             // changin url card
             childrenArray?.forEach( item => {
                 // FIXME, validar que el valor de la clase no se agregue si ya existe
-                // item.classList.add(`${value}-card`)
+                
+                const gettingClasses = item.className.split(' ').slice(0,1).toString()
+                item.classList.replace(gettingClasses, `${value}-card`)
                 item.setAttribute('id', `${render[idx++].id}`)
                 item.style.backgroundImage = `url(${imgW300}${render[i++].poster_path})`
             })
