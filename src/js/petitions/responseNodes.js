@@ -269,7 +269,7 @@ export const estrenosGallery = async () => {
 }
 // movies gallery
 // creating gallery dom
-export const galleryDom = async (value) => {
+export const cardsGalleryDom = async (value) => {
     const objectLS = localStorage.getItem(`${value}`)
     //param wich contains the value of localstorage btn object
     const render = JSON.parse(objectLS)

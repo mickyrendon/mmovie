@@ -1,5 +1,5 @@
-TODO (gallery views, categories, series, peliculas)
-    1.renombrar la funcion galleryNode de responseNodes o de galleryDom, la que mas convenga
-    2.al seleccionar galleria por segunda vez consecutiva no renderiza la tarjeta clickeada en detalle
+TODO (searcher)
+    1.UI, outline input active/inactive
+    2.cambiar el location path, enviar la busqueda y renderizar resultados en la vista de galleria al ingresar el segundo caracter
 TODO (api paths)
     1.verificar la rebundancia de la api key y el idioma en las peticiones

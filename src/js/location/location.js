@@ -1,5 +1,5 @@
 import { getMovieGenres_Home} from "../petitions/petitions.js"
-import { estrenosHome, moviesHome, seriesHome, galleryDom, categoriesHome} from "../petitions/responseNodes.js"
+import { estrenosHome, moviesHome, seriesHome, cardsGalleryDom, categoriesHome} from "../petitions/responseNodes.js"
 // import { estrenosHome, estrenosGallery, moviesHome, moviesGallery, seriesHome, seriesGallery, galleryDom } from "../petitions/responseNodes.js"
 import { slider, sliderSeries, sliderTrending, sliderGenres } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
@@ -27,22 +27,24 @@ export const navigation = () => {
     }
     // rendering home elements
     if(location.hash.startsWith('#peliculas')){
-        galleryDom('movies')
+        cardsGalleryDom('movies')
         hiddeH1()
     }
     if(location.hash.startsWith('#series')){
-        galleryDom('series')
+        cardsGalleryDom('series')
         hiddeH1()
     }
     if(location.hash.startsWith('#category')){
-        galleryDom('category')
+        cardsGalleryDom('category')
         // title()
     }
     if(location.hash.startsWith('#detalles')){
         // galleryDom('series')
         hiddeNavElements()
         hiddeH1()
-
+    }
+    if(location.hash.startsWith('#query')){
+        cardsGalleryDom('query')
     }
         
     if(location.hash.startsWith('#home')){

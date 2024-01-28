@@ -1,4 +1,5 @@
 import { navigation } from "./location/location.js"
+import { getMovieBySearch } from "./petitions/petitions.js"
     
 globalThis.onload = () => {
 
@@ -12,14 +13,12 @@ globalThis.onload = () => {
         const tagName = element.tagName
         const parent = element.parentElement
 
-        // console.log(element.parentNode.id);
-        // document.documentElement.scrollTop = 0;
         // e.preventDefault()
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         //node to insert
         const main = document.querySelector('main')
-
+        // classes of especific btns of home
         const classes = [
             'estrenos',
             'series-link',
@@ -36,8 +35,44 @@ globalThis.onload = () => {
             return className.includes(element.className)
             // const clase = className.includes(element.className)
             // return clase
-          })
+        })
     
+        // searcher
+        if(tagName.includes('INPUT')){
+            const { getMovieBySearch } = await import('./petitions/petitions.js')
+            const searcherElement = element
+            
+            //callback to send as param the category id to fetch the api and render the updated content
+            const render = (query) => {
+                const path = 'query'
+                const queryPath =  query.split(' ').join('-')
+                // category value to uppercase capitalize
+                const queryTitle = query.replace(/^\w/, (match) => match.toUpperCase())
+                // getting h1 main tag & setting a value
+                const title = document.querySelector('.category-title')
+                title.innerHTML = queryTitle
+                // checking if hidden class exists
+                if(title.classList.contains('hidden')){
+                    title.classList.remove('hidden')
+                }
+                // adding new content main dom
+                main.append(title, galleryDom)   
+                //changin the location path
+                location.hash = `${path}-${queryPath}`   
+                // scroll top
+                document.documentElement.scrollTop = 0
+            }
+
+            searcherElement.addEventListener('input', (e) => {
+                const value = e.target.value
+                if(value.length > 2){
+                    console.log('buscar: ' + value)
+                    getMovieBySearch(value, render(value))
+                    
+                }
+            })
+        }
+
 
         // FIXME, filteredClasses es 'undefined' al clickear los botones 'ver todo' y 'ver estrenos' del home
         // TODO, mejorar la validacion ya que no es especifica, se cruza con cualquier 'element.className del script. 
@@ -127,7 +162,7 @@ globalThis.onload = () => {
                     title.classList.remove('hidden')
                 }
                 // adding new content main dom
-                main.append(title, galleryDom)
+                main.append(title, galleryDom)   
                 //changin the location path
                 location.hash = `${secondClass}-${firstClass}`   
                 // scroll top
