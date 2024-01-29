@@ -107,6 +107,8 @@ export const getMovieCategory = async (id, callback) => {
 }
 //... by category
 export const getMovieBySearch = async (query, callback) => {
+    
+    console.log(query)
     // usando axios
     // TODO, verificar el path
     const { data } = await api(`search/multi?query=${query}`)

@@ -1,5 +1,7 @@
 TODO (searcher)
     1.UI, outline input active/inactive
-    2.cambiar el location path, enviar la busqueda y renderizar resultados en la vista de galleria al ingresar el segundo caracter
+    2.sincronizar el ls con la busqueda actual para mostrar la vista en detalle, pide que coincidan el id y la clase
+    3.limpiar la busqueda y darle click al boton o a la tecla enter en desktop
+    4.en mobile anular el evento click  o search, input active cambiar la lupa por una x para limpiar el input
 TODO (api paths)
     1.verificar la rebundancia de la api key y el idioma en las peticiones

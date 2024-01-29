@@ -39,8 +39,10 @@ globalThis.onload = () => {
     
         // searcher
         if(tagName.includes('INPUT')){
+
             const { getMovieBySearch } = await import('./petitions/petitions.js')
             const searcherElement = element
+
             
             //callback to send as param the category id to fetch the api and render the updated content
             const render = (query) => {
@@ -64,12 +66,16 @@ globalThis.onload = () => {
             }
 
             searcherElement.addEventListener('input', (e) => {
+                element.form.addEventListener('keydown', ev => {
+                    if (ev.keyCode === 13) {
+                        ev.preventDefault()
+                      }
+                })
                 const value = e.target.value
-                if(value.length > 2){
-                    console.log('buscar: ' + value)
+                if(value.length > 0){
                     getMovieBySearch(value, render(value))
-                    
                 }
+                // return value = ''
             })
         }
 
