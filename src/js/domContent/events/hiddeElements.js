@@ -92,5 +92,6 @@ export const showNavElements = () => {
 
 }
 export const hiddeH1 = () => {
-      return title.classList.add('hidden')
+      const query = document.querySelector('.searchbar')
+      return title.classList.add('hidden'), query.value = ''
 }

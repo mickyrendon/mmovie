@@ -107,8 +107,6 @@ export const getMovieCategory = async (id, callback) => {
 }
 //... by category
 export const getMovieBySearch = async (query, callback) => {
-    
-    console.log(query)
     // usando axios
     // TODO, verificar el path
     const { data } = await api(`search/multi?query=${query}`)
@@ -116,25 +114,29 @@ export const getMovieBySearch = async (query, callback) => {
     const responseArray = data.results
 
     // getting ls array
-    const lsChecker = localStorage.getItem('category')
-     // creating arrays to compare twice
-     let arrayLS = []
-     let arrayResponse = []
-     let arrayComparator
-     if(lsChecker !== null){
-         // spread operator to save the response in an array to iterate titles and save in one of the arrays
-        const responseTitles =  [...responseArray]
-              responseTitles?.map(item => arrayResponse.push(item.title))
-        const categoriesObject = JSON.parse(lsChecker)
-              categoriesObject?.map(item => arrayLS.push(item.title))
-     
+    const lsChecker = localStorage.getItem('query')
+    // TODO, si lsChecker || responsArray estan vacios entonces renderizar la pagina de error o cambiar el location para mostrar el error
+    // creating arrays to compare twice
+    let arrayLS = []
+    let arrayResponse = []
+    let arrayComparator
+    lsChecker
+     // spread operator to save the response in an array to iterate titles and save in one of the arrays
+    const responseTitles =  [...responseArray]
+          responseTitles?.map(item => arrayResponse.push(item.title || item.name))
+    const categoriesObject = JSON.parse(lsChecker)
+          categoriesObject?.map(item => arrayLS.push(item.title || item.name))
+
+     if(arrayResponse.length > 0 && arrayLS.length > 0){
          // comparing between arrays to know if have the exactly content
         arrayComparator = arrayLS.every((element1, index) => {
-            return element1 === arrayResponse[index]
+            return element1[index] === arrayResponse[index]
         })
 
         if(arrayComparator !== true){
+            console.log('no son iguales');
             localStorage.setItem(`query`, JSON.stringify(responseArray))
+            return callback
         }else{
             console.log('iguales')
         }
@@ -142,10 +144,11 @@ export const getMovieBySearch = async (query, callback) => {
     }else{
         
         localStorage.setItem(`query`, JSON.stringify(responseArray))
+        return callback
     }
     // rendering gallery dom wich is gallery cards
-
-    callback
+    
+    // callback
     // saving in LS the results of category
     return arrayComparator
 

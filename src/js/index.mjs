@@ -43,11 +43,11 @@ globalThis.onload = () => {
             const { getMovieBySearch } = await import('./petitions/petitions.js')
             const searcherElement = element
 
-            
+            // FIXME, encontrar porque no se renderiza el contenido instantaneamente
             //callback to send as param the category id to fetch the api and render the updated content
+            const path = 'query'
+            // const queryPath =  query.split(' ').join('-')
             const render = (query) => {
-                const path = 'query'
-                const queryPath =  query.split(' ').join('-')
                 // category value to uppercase capitalize
                 const queryTitle = query.replace(/^\w/, (match) => match.toUpperCase())
                 // getting h1 main tag & setting a value
@@ -58,9 +58,8 @@ globalThis.onload = () => {
                     title.classList.remove('hidden')
                 }
                 // adding new content main dom
-                main.append(title, galleryDom)   
-                //changin the location path
-                location.hash = `${path}-${queryPath}`   
+                main.append(title, galleryDom)
+                
                 // scroll top
                 document.documentElement.scrollTop = 0
             }
@@ -69,11 +68,20 @@ globalThis.onload = () => {
                 element.form.addEventListener('keydown', ev => {
                     if (ev.keyCode === 13) {
                         ev.preventDefault()
-                      }
+                    }
                 })
-                const value = e.target.value
+                const value = e.target.value.trim()
                 if(value.length > 0){
+                    const queryPath =  value.split(' ').join('-')
                     getMovieBySearch(value, render(value))
+                    .then(
+
+                        //changin the location path
+                        location.hash = `${path}-${queryPath}`   
+                    )
+                    // return location.hash = `${path}-${queryPath}`   
+                }else{
+                    location.hash = 'home'
                 }
                 // return value = ''
             })

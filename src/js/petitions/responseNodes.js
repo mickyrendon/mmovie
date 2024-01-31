@@ -270,8 +270,9 @@ export const estrenosGallery = async () => {
 // movies gallery
 // creating gallery dom
 export const cardsGalleryDom = async (value) => {
-    const objectLS = localStorage.getItem(`${value}`)
     //param wich contains the value of localstorage btn object
+    const objectLS = localStorage.getItem(`${value}`)
+    // FIXME, como resultado de search, toma el array del ls desactualizado  y lo renderiza
     const render = JSON.parse(objectLS)
     //cards ctr
     const galleryCtr = document.querySelector('.gallery-ctr')
