@@ -1,7 +1,8 @@
 TODO (searcher)
-    1.UI, outline input active/inactive
-    2.sincronizar el ls con la busqueda actual para mostrar la vista en detalle, pide que coincidan el id y la clase
-    3.limpiar la busqueda y darle click al boton o a la tecla enter en desktop
-    4.en mobile anular el evento click  o search, input active cambiar la lupa por una x para limpiar el input
+    1.sincronizar el ls con la busqueda actual para mostrar la vista en detalle, pide que coincidan el id y la clase
+    2.renderizar el array del ls actualizado segun el valor del input
+    3.click al boton lupa o a la tecla enter para mostrar un resultado especifico en desktop
+TODO (filteredClasses)
+    1.hacer que funcione el filteredClasses para que funcione el gallery al clickear los botones de ver mas etc del home
 TODO (api paths)
     1.verificar la rebundancia de la api key y el idioma en las peticiones
