@@ -75,10 +75,12 @@ h3{
 form{
     padding: 0 1rem;
     max-width: 24rem;
+    max-height: 32px;
     display: flex;
     align-items: center;
-    border-radius: 3rem;
-    outline: 2px solid var(--coral);
+    border-radius: 0.5rem;
+    /* border: 1.5px solid white; */
+    outline: 1px ridge var(--coral);
 }
 .searchbar{
     width: 8rem;
@@ -86,13 +88,19 @@ form{
     background-color: transparent;
     font-size: small;
     line-height: 2;
-    color: var(--coral);
+    color: var(--ghost-white);
 }
 .lupa{
-    width: 2rem; 
-    height:2rem;
-    background-color: transparent;
-    background-image: url('../../assets/icons/lupa.svg');
+    width: 1.3rem; 
+    height:1.3rem;
+    background-size: contain;
+    /* background-color: transparent; */
+}
+.lupa-icon{
+    background-image: url('../../assets/icons/lupa.svg')!important;
+}
+.close-icon{
+    background-image: url('../../assets/icons/close.svg')!important;
 }
 /* slider header*/
 .carousel_trending_all_list > li > img{

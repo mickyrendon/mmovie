@@ -37,34 +37,55 @@ globalThis.onload = () => {
             // return clase
         })
     
-        // searcher
+        // searcher by btn lupa
+        // if(tagName.includes('INPUT')){
+            
+        // }
+        // searcher by input
         if(tagName.includes('INPUT')){
-
             const { getMovieBySearch } = await import('./petitions/petitions.js')
             const searcherElement = element
+            const lupa = document.querySelector('.lupa')
+
+
+            // if click was on lupa btn, active input search
+            if(searcherElement.name === 'lupa'){
+                searcherElement.form.firstElementChild.focus()
+            }else if(searcherElement.name === 'close'){
+                searcherElement.name = 'lupa'
+                searcherElement.classList.remove('close-icon')
+                searcherElement.classList.add('lupa-icon')
+                location.hash = 'home'
+            }
+
 
             // FIXME, encontrar porque no se renderiza el contenido instantaneamente
             //callback to send as param the category id to fetch the api and render the updated content
-            const path = 'query'
-            // const queryPath =  query.split(' ').join('-')
             const render = (query) => {
+                const path = 'query'
+                const queryPath =  query.split(' ').join('-')
                 // category value to uppercase capitalize
                 const queryTitle = query.replace(/^\w/, (match) => match.toUpperCase())
-                // getting h1 main tag & setting a value
+                // getting h1 main tag & setting value
                 const title = document.querySelector('.category-title')
-                title.innerHTML = queryTitle
+                      title.innerHTML = queryTitle
                 // checking if hidden class exists
                 if(title.classList.contains('hidden')){
                     title.classList.remove('hidden')
                 }
+                //toggle lupa img
+                lupa.name = 'close'
+                lupa.classList.remove('lupa-icon')
+                lupa.classList.add('close-icon')
                 // adding new content main dom
                 main.append(title, galleryDom)
-                
+                //changin the location path
+                location.hash = `${path}-${queryPath}`   
                 // scroll top
                 document.documentElement.scrollTop = 0
             }
-
-            searcherElement.addEventListener('input', (e) => {
+            const searcherInput = document.querySelector('#search')
+            searcherInput.addEventListener('input', (e) => {
                 element.form.addEventListener('keydown', ev => {
                     if (ev.keyCode === 13) {
                         ev.preventDefault()
@@ -72,15 +93,9 @@ globalThis.onload = () => {
                 })
                 const value = e.target.value.trim()
                 if(value.length > 0){
-                    const queryPath =  value.split(' ').join('-')
-                    getMovieBySearch(value, render(value))
-                    .then(
-
-                        //changin the location path
-                        location.hash = `${path}-${queryPath}`   
-                    )
-                    // return location.hash = `${path}-${queryPath}`   
+                    return getMovieBySearch(value, render(value))
                 }else{
+                    
                     location.hash = 'home'
                 }
                 // return value = ''

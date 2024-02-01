@@ -93,5 +93,12 @@ export const showNavElements = () => {
 }
 export const hiddeH1 = () => {
       const query = document.querySelector('.searchbar')
+      const lupa = document.querySelector('.lupa')
+
+      if(lupa.name = 'close'){
+            lupa.name = 'lupa'
+            lupa.classList.remove('close-icon')
+            lupa.classList.add('lupa-icon')
+        }
       return title.classList.add('hidden'), query.value = ''
 }
