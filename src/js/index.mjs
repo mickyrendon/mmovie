@@ -1,5 +1,5 @@
 import { navigation } from "./location/location.js"
-import { getMovieBySearch } from "./petitions/petitions.js"
+// import { getMovieBySearch } from "./petitions/petitions.js"
     
 globalThis.onload = () => {
 
@@ -9,15 +9,16 @@ globalThis.onload = () => {
     const body =  document.querySelector('body')
     // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
-        const element = e.target
-        const tagName = element.tagName
-        const parent = element.parentElement
-
-        // e.preventDefault()
+        e.preventDefault()
+        e.stopPropagation()
         // dom nodes
         const { galleryDom } = await import('./domContent/gallery/galleryDom.js')
         //node to insert
         const main = document.querySelector('main')
+        const element = e.target
+        const tagName = element.tagName
+        const parent = element.parentElement
+
         // classes of especific btns of home
         const classes = [
             'estrenos',
@@ -31,12 +32,12 @@ globalThis.onload = () => {
         ]
         // filtering according the array
         const filteredClasses = classes.find((className) => {
-            // console.log(className);
-            return className.includes(element.className)
+            const elementClass = element.className.split(' ')
+            return className.includes(elementClass[0]) //? console.log(true) : console.log(false)
             // const clase = className.includes(element.className)
             // return clase
         })
-    
+        console.log(filteredClasses)    
         // searcher by btn lupa
         // if(tagName.includes('INPUT')){
             
@@ -110,17 +111,22 @@ globalThis.onload = () => {
         // const parentCtr = element.parentElement.id
         // if(parentCtr.includes('menu') || parentCtr.includes('series') || parentCtr.includes ('movies')){
         if(tagName.includes('BUTTON') || tagName.includes('IMG')){
-            if(filteredClasses === element.className){
+            const dataName = element.dataset.name
+            const firstClass = element.className.split(' ')
+            if(filteredClasses === firstClass[0]){
+                const { navBarBtns } = await import('./domContent/gallery/galleryDom.js')
                 e.stopPropagation()
                 // adding class to body
                 body.classList.add('gallery-view')
                 // rendering gallery dom wich is gallery cards
                 main.append(galleryDom)
                 //changin the location path
-                location.hash = `${element.dataset.name}`
+                location.hash = `${dataName}`
+                // changin styles of clicked menu nav bar btns
+                navBarBtns(element, dataName, firstClass)
 
                 // else if para abrir la vista de detalles al clickar cualquier tarjeta 
-            }else if(element.dataset.name === 'card'){
+            }else if(dataName === 'card'){
                 const { newDom, cardData } = await import('./domContent/mDetails/movieDetails.js')
                 // searching in Ls
                 const clase = element.className
@@ -138,20 +144,7 @@ globalThis.onload = () => {
                 e.stopPropagation()
                 console.log('la clase del elemento no coincide con filtered ' + filteredClasses)
             }
-            // addig and removing 'inactive' class to btns 'peliculas' & 'series'
-            if(element.textContent === 'Series'){
-                
-                element.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
-                // removing inactive class to next btn
-                const peliculasBtn = element.parentNode.nextElementSibling.firstElementChild
-                peliculasBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
-                
-            }else if(element.textContent === 'Peliculas'){
-                element.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
-                // removing inactive class to next btn
-                const seriesBtn = element.parentNode.previousElementSibling.firstElementChild
-                seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
-            }
+            
         }
         // evento category btns
         // const categoryBtnsCtr = element.closest('.category-btn')

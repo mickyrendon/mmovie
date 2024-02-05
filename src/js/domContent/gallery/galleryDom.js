@@ -56,3 +56,41 @@ export const deleteNode = (ctr) =>{
             childrends.forEach((item) => item.remove())
       : console.log('no existe el nodo section gallery')
 }
+export const navBarBtns = (element, hash, firstclass) => {
+      // global vars
+      const elementDataName = element.dataset.name
+      const elementClass = element.classList
+
+      if( elementDataName === hash){
+      
+            const parent = element.parentElement.parentElement
+            const brothers = [...parent.children]
+            const newArray = []
+            
+            brothers.forEach(item => {
+                  let child = item.firstElementChild
+                  newArray.push(child)
+            })
+            
+            console.log(newArray)
+            // addig and removing 'inactive' class to btns 'peliculas' & 'series'
+            
+            elementClass.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+            // removing inactive class to next btn
+            newArray?.map(item => {
+                  if(item.dataset.name !== hash){
+                        // const brothersBtn = 
+                        item.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+                  }
+            })
+                  
+              }else{
+                  elementClass.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+              }
+      //   else if(element.textContent === 'Peliculas'){
+      //       element.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+      //       // removing inactive class to next btn
+      //       const seriesBtn = element.parentNode.previousElementSibling.firstElementChild
+      //       seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+      //   }
+}
