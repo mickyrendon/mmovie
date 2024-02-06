@@ -1,5 +1,5 @@
 import { api } from '../api/myModule.mjs'
-import { URLALL, URLMOVIES, URLSERIES, URLGENRES, URLMOVIECATEGORIES, API_KEY, esp} from '../api/secret.js'
+import { URLALL, URLMOVIES, URLSERIES, URLGENRES, URLMOVIECATEGORIES} from '../api/secret.js'
 
 
 //all trending for home
@@ -9,7 +9,7 @@ export const getTrendingAll_Home = async () => {
     // const response =  await getTrending.json()
     
     // usando axios
-    const { data } = await api(`${URLALL}${API_KEY}${esp}`)
+    const { data } = await api(`${URLALL}`)
 
     const responseArray = data.results
     return responseArray
@@ -22,7 +22,7 @@ export const getTrendingMovies_Home = async () => {
     // const responseArray = response.results
 
      // usando axios
-    const { data } = await api(`${URLMOVIES}${API_KEY}${esp}`)
+    const { data } = await api(`${URLMOVIES}`)
 
     const responseArray = data.results
 
@@ -36,7 +36,7 @@ export const getTrendingSeries_Home = async () => {
     // const responseArray = response.results
 
     // axios
-    const { data } = await api(`${URLSERIES}${API_KEY}${esp}`)
+    const { data } = await api(`${URLSERIES}`)
 
     const responseArray = data.results
 
@@ -46,7 +46,7 @@ export const getTrendingSeries_Home = async () => {
 export const getMovieGenres_Home = async () => {
     
     // axios
-    const { data } = await api(`${URLGENRES}${API_KEY}${esp}`)
+    const { data } = await api(`${URLGENRES}`)
     const responseArray = data.genres
     return responseArray
 
