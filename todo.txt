@@ -8,7 +8,6 @@ TODO (searcher)
     2.renderizar el array del ls actualizado segun el valor del input
     3.click al boton lupa o a la tecla enter para mostrar un resultado especifico en desktop
 TODO (filteredClasses)
-    1.agrupar por separado los botones del menu para aplicarles estilos cuando sea clickeado otro btn que no se parte de ese grupo como los links
-    2.agregar 'tendencias' al menu de navegacion y renderizarlo en el gallery view
+    1.agregar 'tendencias' al menu de navegacion y renderizarlo en el gallery view
 TODO (api paths)
     1.verificar la rebundancia de la api key y el idioma en las peticiones
