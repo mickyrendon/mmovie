@@ -37,6 +37,8 @@ export const estrenosHome = async () => {
             const img = document.createElement('img')
                   img.src = `${imgW500}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
+                  img.classList.add('trending-card')    
+
     
                   li.append(img)
                   ul.append(li)
@@ -52,6 +54,8 @@ export const estrenosHome = async () => {
                   img.id = movie.id  
                   img.src = `${imgW500}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
+                  img.classList.add('trending-card')    
+
     
                   li.append(img)
                   ul.append(li)
