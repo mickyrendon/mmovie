@@ -276,8 +276,7 @@ export const cardsGalleryDom = async (value) => {
     const render = JSON.parse(objectLS)
     //cards ctr
     const galleryCtr = document.querySelector('.gallery-ctr')
-    // saving in array the cards
-    const childrenArray = [...galleryCtr.children]
+    let childrenArray = []
 
     if(objectLS !== null){
         
@@ -299,6 +298,8 @@ export const cardsGalleryDom = async (value) => {
             })
     
         ):(
+            // saving in array the cards
+            childrenArray = [...galleryCtr.children],
             // changin url card
             childrenArray?.forEach( item => {
                 // FIXME, validar que el valor de la clase no se agregue si ya existe

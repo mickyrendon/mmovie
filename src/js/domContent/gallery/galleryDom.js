@@ -56,7 +56,7 @@ export const deleteNode = (ctr) =>{
             childrends.forEach((item) => item.remove())
       : console.log('no existe el nodo section gallery')
 }
-export const navBarBtns = (element, hash, firstclass) => {
+export const navBarBtns = (element, hash) => {
       // global vars
       const elementDataName = element.dataset.name
       // const elementClass = element.classList
@@ -68,16 +68,15 @@ export const navBarBtns = (element, hash, firstclass) => {
             if(parentTag !== 'MENU'){
                   // saving menu btns
                   const menuBtns = [
+                        document.querySelector('.estrenos-link'),
                         document.querySelector('.series-link'),
                         document.querySelector('.movies-link')
-                        // document.querySelector('.estrenos-link')
                   ]
                   
                   // removing inactive class to next btn
                   menuBtns?.map(item => {
                         item.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
                         if(item.dataset.name !== hash){
-                              // const brothersBtn = 
                               item.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
                         }
                   })
@@ -95,7 +94,6 @@ export const navBarBtns = (element, hash, firstclass) => {
                   newArray?.map(item => {
                         item.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
                         if(item.dataset.name !== hash){
-                              // const brothersBtn = 
                               item.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
                         }
                   })

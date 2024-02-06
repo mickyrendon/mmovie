@@ -21,7 +21,7 @@ globalThis.onload = () => {
 
         // classes of especific btns of home
         const classes = [
-            'estrenos',
+            'estrenos-link',
             'series-link',
             'movies-link',
             'movies-all',
@@ -85,7 +85,9 @@ globalThis.onload = () => {
                 // scroll top
                 document.documentElement.scrollTop = 0
             }
+
             const searcherInput = document.querySelector('#search')
+
             searcherInput.addEventListener('input', (e) => {
                 element.form.addEventListener('keydown', ev => {
                     if (ev.keyCode === 13) {
@@ -103,16 +105,10 @@ globalThis.onload = () => {
             })
         }
 
-
-        // FIXME, filteredClasses es 'undefined' al clickear los botones 'ver todo' y 'ver estrenos' del home
-        // TODO, mejorar la validacion ya que no es especifica, se cruza con cualquier 'element.className del script. 
-        // console.log(filteredClasses, element.className)
-        //verifying filteredClasses & card element
-        // const parentCtr = element.parentElement.id
-        // if(parentCtr.includes('menu') || parentCtr.includes('series') || parentCtr.includes ('movies')){
         if(tagName.includes('BUTTON') || tagName.includes('IMG')){
             const dataName = element.dataset.name
             const firstClass = element.className.split(' ')
+
             if(filteredClasses === firstClass[0]){
                 const { navBarBtns } = await import('./domContent/gallery/galleryDom.js')
                 e.stopPropagation()
@@ -134,21 +130,15 @@ globalThis.onload = () => {
                 const result = cardData(clase, id)
                 console.log(result)
                 // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
-                // FIXME, checkear que result funcione al cambiar entre galerias
                 main.append(newDom(result))
                 // main.append(movieDetailsDom)
                 document.documentElement.scrollTop = 0
-
-
             }else{
                 e.stopPropagation()
                 console.log('la clase del elemento no coincide con filtered ' + filteredClasses)
             }
             
         }
-        // evento category btns
-        // const categoryBtnsCtr = element.closest('.category-btn')
-    
         
         if(parent.classList.contains('category-btn-ctr')){   
             /* 

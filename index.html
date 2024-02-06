@@ -41,17 +41,14 @@
             <menu id="menu" class="w-1/2 flex flex-row justify-center gap-4 text-xs">
                 <!-- vinculo los links a un mismo template. depende del link que use, hago el fetch a la api, pero reutilizo el template -->
                 <li>
+                    <button class="estrenos-link" data-name="estrenos">Estrenos</button>
+                </li>
+                <li>
                     <button class="series-link" data-name="series">Series</button>
                 </li>
                 <li>
                     <button class="movies-link" data-name="peliculas">Peliculas</button>
                 </li>
-                <!-- <li>
-                    <button class="documentals-link" data-name="Documentales">Documentales</button>
-                </li>
-                <li>
-                    <button class="realities-link" data-name="Realitis">Realities</button>
-                </li> -->
             </menu>
             <!-- TODO, crear un dropdown menu -->
             <button class="filter-icon w-4 h-4">
@@ -122,8 +119,8 @@
             <div class="glide__track" data-glide-el="track">
             <!-- filling with api info -->
               <ul class="glide__slides carousel_trending_all_list"></ul>
-                <button class="estrenos p-3 auburn text-sm font-semibold rounded-md absolute bottom-4 right-4" data-name="Estrenos">
-                    Ver estrenos
+                <button class="estrenos-link p-3 auburn text-sm font-semibold rounded-md absolute bottom-4 right-4" data-name="estrenos">
+                    Ver Estrenos
                 </button>
             </div>
             <div class="glide__arrows" data-glide-el="controls">

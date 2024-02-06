@@ -34,6 +34,10 @@ export const navigation = () => {
         cardsGalleryDom('series')
         hiddeH1()
     }
+    if(location.hash.startsWith('#estrenos')){
+        cardsGalleryDom('trending')
+        hiddeH1()
+    }
     if(location.hash.startsWith('#category')){
         cardsGalleryDom('category')
         // title()
@@ -62,11 +66,17 @@ export const navigation = () => {
         section?.forEach(node => node?node.remove():null)
         // hidding gallery title
         hiddeH1()
+        // saving menu btns
+        const menuBtns = [
+            document.querySelector('.estrenos-link'),
+            document.querySelector('.series-link'),
+            document.querySelector('.movies-link')
+        ]
         // removing inactive class if exist in menu nav btns
-        const peliculasBtn = document.querySelector('.movies-link')
-        const seriesBtn = document.querySelector('.series-link')
-        peliculasBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
-        seriesBtn.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+        menuBtns?.map(item => {
+            item.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+        })
+
         location.hash = 'home'
 
         sliderTrending?.mount()
