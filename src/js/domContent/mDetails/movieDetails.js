@@ -55,7 +55,7 @@ export const newDom = (movie) => {
       const details = document.createElement('ul')
             details.classList.add('px-2', 'w-full', 'flex', 'gap-8', 'text-xs', 'list-disc')
       const li1 = document.createElement('li')
-            li1.innerHTML = movie.release_date
+            li1.innerHTML = movie.release_date || movie.first_air_date
       const li2 = document.createElement('li')
             li2.innerHTML = content.details.gender
       const li3 = document.createElement('li')
@@ -64,24 +64,16 @@ export const newDom = (movie) => {
       const actionBtnsCtr = document.createElement('div')
             actionBtnsCtr.classList.add('flex', 'flex-row', 'items-center', 'justify-between')
       // stars container
-      const opinionsCtr = document.createElement('ul')
-            opinionsCtr.classList.add('list-none', 'inline-flex', 'gap-1')
+      const opinionsCtr = document.createElement('div')
+            opinionsCtr.classList.add('flex', 'justify-between', 'items-center', 'gap-1')
       // stars
-      const opinionItems1 = document.createElement('li')
+      const opinionItems1 = document.createElement('span')
             opinionItems1.classList.add('w-4', 'h-4', 'bg-contain', 'bg-center', 'bg-no-repeat')
-            opinionItems1.style.backgroundImage = `url(${content.star})`
-      const opinionItems2 = document.createElement('li')
-            opinionItems2.classList.add('w-4', 'h-4', 'bg-contain', 'bg-center', 'bg-no-repeat')
-            opinionItems2.style.backgroundImage = `url(${content.star})`
-      const opinionItems3 = document.createElement('li')
-            opinionItems3.classList.add('w-4', 'h-4', 'bg-contain', 'bg-center', 'bg-no-repeat')
-            opinionItems3.style.backgroundImage = `url(${content.star})`
-      const opinionItems4 = document.createElement('li')
-            opinionItems4.classList.add('w-4', 'h-4', 'bg-contain', 'bg-center', 'bg-no-repeat')
-            opinionItems4.style.backgroundImage = `url(${content.star})`
-      const opinionItems5 = document.createElement('li')
-            opinionItems5.classList.add('w-4', 'h-4', 'bg-contain', 'bg-center', 'bg-no-repeat')
-            opinionItems5.style.backgroundImage = `url(${content.star})`
+            opinionItems1.style.backgroundImage = `url(../../assets/icons/star.svg)`
+      // votes
+      const opinionInt = document.createElement('span')
+            opinionInt.classList.add('w-auto', 'h-auto')
+            opinionInt.innerHTML = `${Math.round(movie.vote_average * 10) / 10}`
       // cta btn
       const cta  = document.createElement('button')
             cta.classList.add('py-2', 'px-4','rounded-lg', 'auburn', 'font-medium')
@@ -97,7 +89,7 @@ export const newDom = (movie) => {
       // actionBtnsCtr>opinionsCtr+cta
       actionBtnsCtr.append(opinionsCtr, cta)
       // opinionsCtr>opinionsItems
-      opinionsCtr.append(opinionItems1, opinionItems2, opinionItems3, opinionItems4, opinionItems5)
+      opinionsCtr.append(opinionItems1, opinionInt)
 
       return movieCtr
 }
