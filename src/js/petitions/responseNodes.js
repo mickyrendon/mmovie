@@ -331,3 +331,4 @@ export const cardsGalleryDom = async (value) => {
         })
     }
 }
+// movie details, recomendations
