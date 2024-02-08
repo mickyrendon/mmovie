@@ -25,36 +25,45 @@ export const cardData = (clase, id) => {
 
 // const categories node
 const categories = (item) => {
+      // const { genresColors } = await import('../home/categoriesColors.js')
       /* TODO 
-            1.evaluar si item.category.length > 0
-            2.llamar a category de ls y comparar que el id === al id de la categoria
-            3.si es correcto cambiar los valores del nodo por los del ls
+            3.si es correcto cambiar los valores del nodo por los del ls, reparar bugs
             */
       const movieCategories = item.genre_ids
-      let i = 0
+      const idArray = []
       if (movieCategories.length > 0){
             const genresObject = JSON.parse(localStorage.getItem('genres')) 
-            // getting id of genres
-            const comparator = genresObject?.some(object1 => movieCategories.some(object2 => object1.id === object2[i++]))
-            console.log(comparator)
-            // genresObject?.map(item => {
-            //       console.log(movieCategories[i++])
-            //       return item.id.includes(movieCategories[i++])
-            // })
-        // dom rendering
-      }
-      // const div = document.createElement('div')
-      //       div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4', `${item.name.toLowerCase()}`)
-      //       div.setAttribute('id', `${item.id}`)
-      // const circle = document.createElement('span')
-      //       circle.className = `${genresColors[i++]}`
-      // const h3 = document.createElement('h3')
-      // const textNode = document.createTextNode(`${item.name}`)
-      //       textNode.classList.add('text-wrap', 'line-clamp-2')
+            let i = 0
 
-      // h3.append(textNode)
-      // div.append(circle, h3)
-      // ctr.append(div)
+            // getting id of genres and pushing on array
+            genresObject.some(element => {
+                  if(movieCategories.includes(element.id)){
+                        idArray.push({
+                              id: element.id,
+                              name: element.name
+                        })
+                  }else{
+                        null
+                  }
+            })
+
+            idArray?.map(item => {
+                  console.log(item.id)
+                  const div = document.createElement('div')
+                        div.classList.add(`${item.name.toLowerCase()}`)
+                        // div.classList.add('category-btn-ctr','gap-2','max-w-4',`${element.name.toLowerCase()}`)
+                        div.setAttribute('id', `${item.id}`)
+                  const circle = document.createElement('span')
+                        // circle.className = `${genresColors[i++]}`
+                  const h3 = document.createElement('h3')
+                  const textNode = document.createTextNode(`${item.name}`)
+                        // textNode.className.add('text-wrap', 'line-clamp-2')
+            
+                  h3.append(textNode)
+                  div.append(circle, h3)
+            })
+      }
+      return idArray
 }
 const categoriesNode =  categories
 //i create html content & fill it with content form the object using the parameter
@@ -166,9 +175,10 @@ export const newDom = (movie) => {
       // li>span*2
       li1.append(icon1, value1)
       // categoryCtr > ul
-      categoryCtr.append(ul)
+      categoryCtr.append(categoryUl)
       // ul > categoriesNode
-      ul.append(categoriesNode(movie))
+      categoryUl.append(categoriesNode(movie))
+      // categoriesNode(movie)
       // recomended > titleCtr + slider
       recomendedCtr.append(titleCtr, slider)
       // titleCtr > title
