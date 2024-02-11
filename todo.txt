@@ -1,6 +1,5 @@
 TODO (detalles view)
-    1.botones de categorias, cambiar la vista entre gallery view  y detalles movie
-    3.agregar slider de peliculas relacionadas
+    1.agregar slider de peliculas relacionadas
 TODO (historial de navegacion)
     1.agregar a un array el path de cada vista para usarla en el historial de navegacion y que devuelva justo a la pg anterior y no directo al home
 TODO (searcher)

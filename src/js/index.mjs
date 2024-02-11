@@ -1,13 +1,16 @@
-import { navigation } from "./location/location.js"
+import { navigation } from './location/location.js'
+import { preloader } from './preloader/preloader.js'
 // import { getMovieBySearch } from "./petitions/petitions.js"
     
 globalThis.onload = () => {
-
-    // naming the path home, specially to first rendering
+    // location.href = '../templates/index.html'
+    // preloader()
+    // setTimeout(() => {
+    // },3000)
+    // naming the path home, specially to f irst rendering
     location.hash = 'home'
     //event delegation para mostrar la galeria
     const body =  document.querySelector('body')
-    // FIXME, renderizar el contenido de acuerdo al path del location
     body.addEventListener('click', async (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -183,62 +186,6 @@ globalThis.onload = () => {
             }
             getMovieCategory(nodeId, render)
         }
-
-        // // back btn / de gallery a homeee
-        // // evaluando si el btn click contiene la clase back btn y si el ultimo elemento hijo del main contiene la clase 'gallery section', tambien puedo agregar otra evaluacion para cuando este en la vista a detalle de la pelicula
-        // element.classList.contains('back-btn') && main.lastElementChild.classList.contains ('gallery-section')
-        // ?(  
-        //     // elimina la seccion gallery del main
-        //     main.lastElementChild.remove(),
-        //     body.classList.toggle('gallery-view'),
-        //     hiddeElements(),
-        //     BackBtn_HomeGallery(),
-        //     console.log('de gallery al home'),
-        //     e.stopPropagation()
-        // ):
-        // (
-        //     console.log('no es back btn')
-        // )
-
-        // // gallery => md & vice versa
-        // // validando si es la card de la galeria
-        // element.dataset.name === 'card' && body.classList.contains('gallery-view')
-        // ?(
-        //     hiddeNodeElements(),
-        //     main.append(movieDetailsDom),
-        //     console.log('de gallery a md')
-
-        // ):  element.dataset.name === 'card' && body.classList.contains('home-view')
-        // ?(
-        //     hiddeNodeHomeElements(),
-        //     backBtn_HomeMd(),
-        //     main.append(movieDetailsDom),
-        //     console.log('de home a md')
-            
-        // ): console.log(element.tagName + ' no es la card del home') 
-        
-        // // del md a gallery
-        // element.classList.contains('back-btn') && main.lastElementChild.tagName === 'DIV'
-        // ?(  
-        //     body.classList.contains('from-gallery')
-        //     ?(
-        //         // elimina la seccion gallery del main
-        //         main.lastElementChild.remove(),
-        //         hiddeNodeElements(),
-        //         console.log('de md a gallery'),
-        //         e.stopPropagation()
-        //     ):
-        //     body.classList.contains('from-home')
-        //     ?(
-        //         main.lastElementChild.remove(),
-        //         hiddeNodeHomeElements(),
-        //         backBtn_HomeMd(),
-        //         console.log('de md al home'),
-        //         e.stopPropagation()
-        //     ): console.log('no')
-
-        // ): console.log('no es back btn')
-
     }) 
 }
 // listening when the navigation is changin

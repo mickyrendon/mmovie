@@ -202,7 +202,6 @@ export const categoriesHome =  async () => {
     const { genresColors } = await import('../domContent/home/categoriesColors.js')
     // parent dom container
     const ctr = document.querySelector('.carousel_categories_list')
-    console.log(responseArray);
     //saving in localstorage
     //ls content checker
     const lsChecker = localStorage.getItem('genres')

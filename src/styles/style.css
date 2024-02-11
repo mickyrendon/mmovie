@@ -12,7 +12,8 @@
     color: var(--ghost-white);
 }
 body{
-    height: 100vh;
+    min-height: fit-content;
+    max-height:max-content;
 }
 h1,h2,h3{
     font-family: var(--righteous);
