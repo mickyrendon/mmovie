@@ -40,7 +40,9 @@ export const navigation = () => {
     }
     if(location.hash.startsWith('#category')){
         cardsGalleryDom('category')
-        // title()
+        showNavElements()
+        // removing gallery node if exists, using remove() instead deleteNode() because deleteNode remove childrens node of an element and here i need to delete all the section and thereby newDom() works properly
+        document.querySelector('.movie-details-section')?.remove()
     }
     if(location.hash.startsWith('#detalles')){
         // galleryDom('series')
@@ -56,7 +58,6 @@ export const navigation = () => {
         moviesHome()
         seriesHome()
         categoriesHome()
-
 
         // removing gallery node if exists, using remove() instead deleteNode() because deleteNode remove childrens node of an element and here i need to delete all the section and thereby newDom() works properly
         const section = [

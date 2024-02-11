@@ -168,6 +168,7 @@ globalThis.onload = () => {
                 const firstClassUpperCase = firstClass.replace(/^\w/, (match) => match.toUpperCase())
                 // getting h1 main tag & setting a value
                 const title = document.querySelector('.category-title')
+                      title.classList.add('pl-1')
                 title.innerHTML =firstClassUpperCase
                 // checking if hidden class exists
                 if(title.classList.contains('hidden')){

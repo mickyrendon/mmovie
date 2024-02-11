@@ -181,21 +181,6 @@ form{
     border-radius: 50%;
     opacity: 0.8;
 }
-.action{
-    background-image: url('../../assets/icons/action.png');
-}
-.adventure{
-    background-image: url('../../assets/icons/adventure.png');
-}
-.comedy{
-    background-image: url('../../assets/icons/comedy.png');
-}
-.drama{
-    background-image: url('../../assets/icons/drama.png');
-}
-.thriller{
-    background-image: url('../../assets/icons/thriller.svg');
-}
 /* footer */
 .info ul li{
     margin-bottom: 1rem;
@@ -284,4 +269,7 @@ option{
 }
 .show{
     display: flex;
+}
+.pointer:hover{
+    cursor: pointer;
 }

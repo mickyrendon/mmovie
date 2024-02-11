@@ -202,7 +202,7 @@ export const categoriesHome =  async () => {
     const { genresColors } = await import('../domContent/home/categoriesColors.js')
     // parent dom container
     const ctr = document.querySelector('.carousel_categories_list')
-
+    console.log(responseArray);
     //saving in localstorage
     //ls content checker
     const lsChecker = localStorage.getItem('genres')
@@ -211,11 +211,17 @@ export const categoriesHome =  async () => {
     if (lsChecker === null){
         localStorage.setItem('genres', JSON.stringify(responseArray))  
         const newGenresObject = JSON.parse(localStorage.getItem('genres')) 
+        let newArray = []
 
         // dom rendering
         let i = 0
+        let inc = 0
         newGenresObject?.map( item => {
-            
+            newArray.push({
+                id: item.id,
+                name: item.name.toLowerCase(),
+                color: genresColors[inc++]
+            })
             // const ctr = document.querySelector('.carousel_categories_list')
             const div = document.createElement('div')
                   div.classList.add('category-btn-ctr', 'gap-2', 'max-w-4', `${item.name.toLowerCase()}`)
@@ -224,21 +230,27 @@ export const categoriesHome =  async () => {
                   circle.className = `${genresColors[i++]}`
             const h3 = document.createElement('h3')
             const textNode = document.createTextNode(`${item.name}`)
-                  textNode.classList.add('text-wrap', 'line-clamp-2')
+                //   textNode.classList.add('text-wrap', 'line-clamp-2')
     
             h3.append(textNode)
             div.append(circle, h3)
             ctr.append(div)
         })
+        localStorage.setItem('genres', JSON.stringify(newArray))
         
     }else if(ctr.childElementCount === 0){
         const genresObject = JSON.parse(lsChecker)
+        let newArray = []
         
         // dom rendering
         let i = 0
+        let inc = 0
         genresObject?.map( item => {
-            
-            // const ctr = document.querySelector('.carousel_categories_list')
+            newArray.push({
+                id: item.id,
+                name: item.name.toLowerCase(),
+                color: genresColors[inc++]
+            })
             const div = document.createElement('div')
                   div.className = `${item.name.toLowerCase()}`
                   div.classList.add('category-btn', 'category-btn-ctr', 'gap-2')
@@ -252,6 +264,8 @@ export const categoriesHome =  async () => {
             div.append(circle, h3)
             ctr.append(div)
         })
+        localStorage.setItem('genres', JSON.stringify(newArray))
+
     }else{
         console.log('nodo generos lleno')
     }

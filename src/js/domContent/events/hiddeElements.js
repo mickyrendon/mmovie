@@ -102,3 +102,11 @@ export const hiddeH1 = () => {
         }
       return title.classList.add('hidden'), query.value = ''
 }
+export const removeSection = () => {
+      // removing gallery node if exists, using remove() instead deleteNode() because deleteNode remove childrens node of an element and here i need to delete all the section and thereby newDom() works properly
+      const section = [
+            document.querySelector('.gallery-section'), 
+            document.querySelector('.movie-details-section'),
+        ]
+        return section?.forEach(node => node?node.remove():null)
+}
