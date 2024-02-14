@@ -1,7 +1,7 @@
 import { getMovieGenres_Home} from "../petitions/petitions.js"
 import { estrenosHome, moviesHome, seriesHome, cardsGalleryDom, categoriesHome} from "../petitions/responseNodes.js"
 // import { estrenosHome, estrenosGallery, moviesHome, moviesGallery, seriesHome, seriesGallery, galleryDom } from "../petitions/responseNodes.js"
-import { slider, sliderSeries, sliderTrending, sliderGenres } from "../api/glide/glide.js"
+import { slider, sliderSeries, sliderTrending, sliderGenres, sliderRecommendations } from "../api/glide/glide.js"
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
 // dom events
@@ -47,7 +47,7 @@ export const navigation = () => {
     if(location.hash.startsWith('#detalles')){
         // galleryDom('series')
         hiddeNavElements()
-        hiddeH1()
+        hiddeH1()      
     }
     if(location.hash.startsWith('#query')){
         cardsGalleryDom('query')

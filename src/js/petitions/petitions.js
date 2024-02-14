@@ -1,5 +1,6 @@
 import { api } from '../api/myModule.mjs'
 import { URLALL, URLMOVIES, URLSERIES, URLGENRES, URLMOVIECATEGORIES} from '../api/secret.js'
+import { cardsRecomendedMoviesDom } from './responseNodes.js'
 
 
 //all trending for home
@@ -56,7 +57,14 @@ export const getMovieGenres_Home = async () => {
     // const responseArray = response.genres
 
 }
-
+// recommended movies
+export const getRecommendedMovie = async (movie, parent) => {
+    
+    // axios
+    const { data } = await api(`movie/${movie.id}/recommendations`)
+    const responseArray = data.results
+    cardsRecomendedMoviesDom(responseArray, parent)
+}
 // filters
 //... by category
 export const getMovieCategory = async (id, callback) => {
@@ -95,7 +103,6 @@ export const getMovieCategory = async (id, callback) => {
         localStorage.setItem(`category`, JSON.stringify(responseArray))
     }
     // rendering gallery dom wich is gallery cards
-
     callback()
     // saving in LS the results of category
     return arrayComparator

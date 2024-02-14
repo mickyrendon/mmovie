@@ -125,19 +125,19 @@ form{
     font-weight: 600;
     color: var(--coral);
 }
-.carousel_movies_list, .carousel_series_list, .carousel_categories_list{
+.carousel_movies_list, .carousel_series_list, .carousel_categories_list, .carousel_recommended_list{
     padding: 1rem;
-    /* gap: 1rem; */
-}
-.carousel_movies_list, .carousel_series_list, .carousel_categories_list{
     width: max-content !important;
     gap: 1rem;
 }
-.carousel_movies_list > li, .carousel_series_list > li{   
-    width: auto;
-    height: auto;
+.carousel_movies_list > li, .carousel_series_list > li, .carousel_categories_list > li, .carousel_recommended_list > li{   
+    width: auto !important;
+    height: auto!important;
 } 
-.carousel_movies_list > li > img, .carousel_series_list > li > img{   
+.carousel_recommended_list > li{
+    margin: 0 !important;
+}
+.carousel_movies_list > li > img, .carousel_series_list > li > img, .carousel_recommended_list > li > img{   
     /* width: 10rem; */
     height: 16rem; 
     /* todo, cambiar por fit screen > 520px */

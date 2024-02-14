@@ -1,4 +1,6 @@
 import { imgW300, imgW500 } from '../../api/secret.js'
+import { getRecommendedMovie } from '../../petitions/petitions.js'
+import { sliderRecommendations } from '../../api/glide/glide.js'
 // content for hardcode html
 const content = {
       star: '../../assets/icons/star.svg',
@@ -25,8 +27,6 @@ export const cardData = (clase, id) => {
 
 // const categories node
 const categories = async(item, node) => {
-      const { genresColors } = await import('../home/categoriesColors.js')
-      console.log(item)
       const movieCategories = item.genre_ids
       // const bgColor = item
       const parent =  node
@@ -56,7 +56,8 @@ const categories = async(item, node) => {
 
       idArray?.map(item => {
             const div = document.createElement('div')
-                  div.classList.add(`${item.name.toLowerCase()}`)
+            // FIXME, reparar el error de algunas cards ya que dice que no permite espacios en classlist
+                  // div.classList.add(`${item.name.toLowerCase()}`)
                   div.classList.add('category-btn-ctr','gap-2', 'w-auto', 'pointer', `${item.name.toLowerCase()}`)
                   div.setAttribute('id', `${item.id}`)
             const circle = document.createElement('span')
@@ -77,6 +78,7 @@ const categories = async(item, node) => {
             console.log('categorias vacias')
       }
 }
+
 //i create html content & fill it with content form the object using the parameter
 export const newDom = (movie) => {
 
@@ -141,11 +143,14 @@ export const newDom = (movie) => {
             title.classList.add('pl-2')
             title.innerHTML = 'Títulos Similares'
       
+      const sliderCtr = document.createElement('div')
+            sliderCtr.classList.add('glide', 'glide_recommendations')
       const slider = document.createElement('div')
-            slider.classList.add('glide', 'glide_genres')
+            slider.classList.add('glide__track')
+            slider.setAttribute('data-glide-el', 'track')
       const ul = document.createElement('ul')
-            ul.setAttribute('id', 'similarsCtr')
-            ul.classList.add('glide__slides', 'carousel_categories_list', 'flex')
+            ul.setAttribute('id', 'recommendedCtr')
+            ul.classList.add('glide__slides', 'carousel_recommended_list', 'flex')
       
       
 
@@ -183,16 +188,23 @@ export const newDom = (movie) => {
       li1.append(icon1, value1)
       // categoriesNode(movie)
       // recomended > titleCtr + slider
-      recomendedCtr.append(titleCtr, slider)
+      recomendedCtr.append(titleCtr, sliderCtr)
       // titleCtr > title
       titleCtr.append(title)
+      // sliderCtr > slider
+      sliderCtr.append(slider)
       // slider > ul
       slider.append(ul)
       // li2.append(icon2, value2)
       // actionBtnsCtr>opinionsCtr+cta
       // actionBtnsCtr.append(cta)
       categories(movie, categoryCtr)
+      // calling api
+      getRecommendedMovie(movie, ul)
 
+      setTimeout(() => {sliderRecommendations?.mount()},3000)
+      
+      
       return movieCtr
 }
 

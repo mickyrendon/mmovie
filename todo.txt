@@ -1,5 +1,8 @@
 TODO (detalles view)
-    1.agregar slider de peliculas relacionadas
+    1.solucionar bug del slider de peliculas relacionadas, childnode es 31 al montarse el glide
+    2.agregar sliders btns en el dom
+    3.arreglar el tama;o de la imagen y la estructura de la vista de detalles
+    4.hacer que las cards de recomendadas renderice la vista de detalles con el contenido correcto
 TODO (historial de navegacion)
     1.agregar a un array el path de cada vista para usarla en el historial de navegacion y que devuelva justo a la pg anterior y no directo al home
 TODO (searcher)

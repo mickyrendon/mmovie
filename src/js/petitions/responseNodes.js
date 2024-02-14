@@ -344,4 +344,109 @@ export const cardsGalleryDom = async (value) => {
         })
     }
 }
-// movie details, recomendations
+// movie details recommendation
+export const cardsRecomendedMoviesDom = (response, parentNode) => {
+    //ls content checker
+    const lsChecker = localStorage.getItem('recommended')
+    //parentnode
+    const ulMovies = parentNode
+    // creating arrays to compare twice
+    let arrayLS = []
+    let arrayResponse = []
+    // spread operator to save the response in an array to iterate titles and save in one of the arrays
+    const responseTitles =  [...response]
+        responseTitles?.map(item => arrayResponse.push(item.title))
+    const moviesObject = JSON.parse(lsChecker)
+        moviesObject?.map(item => arrayLS.push(item.title))
+
+    // comparing between arrays to know if have the exactly content
+    const arrayComparator = arrayLS.every((element1, index) => {
+        return element1 === arrayResponse[index]
+    })
+
+    if (lsChecker === null || arrayComparator !== true){
+        localStorage.setItem('recommended', JSON.stringify(response))  
+        const newMoviesObject = JSON.parse(localStorage.getItem('recommended')) 
+        // dom rendering
+        newMoviesObject?.map( movie => {
+            // FIXME, el slider no es loop
+            // const ulMovies = document.querySelector('.carousel_movies_list')
+            // const ulSeries = document.querySelector('.carousel_series_list')
+            const li = document.createElement('li')
+                li.classList.add('glide__slide')    
+            const img = document.createElement('img')
+                img.id = movie.id  
+                img.src = `${imgW300}${movie.poster_path}`
+                img.setAttribute('data-name', 'card')
+                // TODO, cambiar a 'recommended-card'
+                img.classList.add('movies-card')    
+
+            li.append(img)
+            ulMovies.append(li)
+        })
+                
+    // }else if(ulMovies.childElementCount > JSON.parse(lsChecker).length){
+    }else if(ulMovies.childElementCount === 0){
+        // gettin the array of LS to iterate & save the titles in the empty array
+            
+        return moviesObject?.map( movie => {
+        // FIXME, el slider no es loop
+        // const ulMovies = document.querySelector('.carousel_movies_list')
+        const li = document.createElement('li')
+                li.classList.add('glide__slide')    
+                const img = document.createElement('img')
+                img.id = movie.id  
+                img.src = `${imgW300}${movie.poster_path}`
+                img.setAttribute('data-name', 'card')
+                // TODO, cambiar a 'recommended-card'
+                img.classList.add('movies-card')    
+                
+                li.append(img)
+                ulMovies.append(li)
+        })
+    }
+}
+
+    // if(value !== null || value !== undefined){
+    //     console.log(value) 
+    //     let i = 0
+    //     let idx = 0
+    //     // creating the cards
+    //     ulMovies.childElementCount === 0?
+    //     (
+    //         console.log(value.length),
+    //         value?.map( item => {
+    //             if(item.poster_path !== null){
+
+    //                 const li = document.createElement('li')
+    //                       li.classList.add('glide__slide')    
+    //                 const img = document.createElement('img')
+    //                       img.id = item.id  
+    //                       img.src = `${imgW300}${item.poster_path}`
+    //                       img.setAttribute('data-name', 'card')
+    //                       img.classList.add('movies-card', 'h-64', 'object-cover', 'rounded', 'shadow-[0_1px_3px_1px]', 'shadow-black')    
+    
+    //                 li.append(img)
+    //                 ulMovies.append(li)
+    //             }
+    //         }),
+    //         console.log(ulMovies.childElementCount)
+    
+    //     ):(
+    //         // saving in array the cards
+    //         childrenArray = [...ulMovies.children],
+    //         console.log(childrenArray.length),
+    //         // changin url card
+    //         childrenArray?.forEach( item => {
+    //             // FIXME, validar que el valor de la clase no se agregue si ya existe
+                
+    //             const gettingClasses = item.className.split(' ').slice(0,1).toString()
+    //             item.classList.replace(gettingClasses, `${value}-card`)
+    //             item.setAttribute('id', `${responseArray[idx++].id}`)
+    //             item.style.backgroundImage = `url(${imgW300}${responseArray[i++].poster_path})`
+    //         })
+    //     )
+    // }else{
+    //     console.log('array vacio')
+    // }           
+// }
