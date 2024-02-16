@@ -32,7 +32,7 @@ const categories = async(item, node) => {
       const parent =  node
       const idArray = []
       const genresObject = JSON.parse(localStorage.getItem('genres')) 
-      let i = 0
+      // let i = 0
 
       // getting id of genres and pushing on array
       genresObject.some(element => {
@@ -90,9 +90,13 @@ export const newDom = (movie) => {
 
       const movieCtr = document.createElement('section')
             movieCtr.className = [
-                  'movie-details-section', 'pb-8 w-full', 'h-screen', 'flex', 'flex-col', 'justify-end', 'bg-top', 'bg-no-repeat', 'from-black', 'bg-contain'
+                  'movie-details-section', 'pb-8 w-full', 'h-auto', 'flex', 'flex-col', 'justify-end', 'items-center'
             ].join(' ')
-            movieCtr.style.backgroundImage = `url(${imgW500}${movie.poster_path})`
+      
+      // why 'div' instead of 'img' tag is because img have a border that can't remove it
+      const img = document.createElement('div')        
+            img.classList.add('h-[750px]', 'w-[500px]', 'bg-center', 'bg-no-repeat', 'bg-contain')
+            img.style.backgroundImage = `url(${imgW500}${movie.poster_path})`
       // description container
       const descriptionCtr = document.createElement('div')        
             descriptionCtr.classList.add('backdrop-blur-sm', 'p-4', 'grid', 'gap-4')
@@ -136,7 +140,7 @@ export const newDom = (movie) => {
 
       // recomended slider
       const recomendedCtr = document.createElement('section')
-            recomendedCtr.classList.add('p-4', 'flex', 'justify-center', 'flex-col', 'gap-4')
+            recomendedCtr.classList.add('p-4', 'flex', 'justify-center', 'flex-col', 'gap-4', 'w-full')
       const titleCtr = document.createElement('div')
             titleCtr.classList.add('section-details')
       const title = document.createElement('h3')
@@ -148,10 +152,25 @@ export const newDom = (movie) => {
       const slider = document.createElement('div')
             slider.classList.add('glide__track')
             slider.setAttribute('data-glide-el', 'track')
-      const ul = document.createElement('ul')
+            const ul = document.createElement('ul')
             ul.setAttribute('id', 'recommendedCtr')
             ul.classList.add('glide__slides', 'carousel_recommended_list', 'flex')
-      
+            // btns
+      const sliderBtnsCtr = document.createElement('div')
+            sliderBtnsCtr.classList.add('glide__arrows')
+            sliderBtnsCtr.setAttribute('data-glide-el', 'controls')
+      const btnLeft = document.createElement('button')
+            btnLeft.classList.add('glide__arrow', 'glide__arrow--left')
+            btnLeft.setAttribute('data-glide-dir', '<')
+      const btnRight = document.createElement('button')
+            btnRight.classList.add('glide__arrow', 'glide__arrow--right')
+            btnRight.setAttribute('data-glide-dir', '>')
+      /* []
+      <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+                </div>
+      */
       
 
       // time options
@@ -175,7 +194,7 @@ export const newDom = (movie) => {
 
 
       // movieCtr>descriptionCtr
-      movieCtr.append(descriptionCtr, recomendedCtr)
+      movieCtr.append(img, descriptionCtr, recomendedCtr)
       // descriptionCtr>h2+p+details+actionBtnsCtr
       descriptionCtr.append(calificationsCtr, p, details, categoryCtr)
       // califications + title
@@ -192,7 +211,9 @@ export const newDom = (movie) => {
       // titleCtr > title
       titleCtr.append(title)
       // sliderCtr > slider
-      sliderCtr.append(slider)
+      sliderCtr.append(slider, sliderBtnsCtr)
+      // slider btns > button*2
+      sliderBtnsCtr.append(btnLeft, btnRight)
       // slider > ul
       slider.append(ul)
       // li2.append(icon2, value2)
@@ -202,7 +223,8 @@ export const newDom = (movie) => {
       // calling api
       getRecommendedMovie(movie, ul)
 
-      setTimeout(() => {sliderRecommendations?.mount()},3000)
+      // FIXME, solucinar bug junto con el main slider
+      setTimeout(() => sliderRecommendations?.mount(), 3000)
       
       
       return movieCtr

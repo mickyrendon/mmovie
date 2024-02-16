@@ -346,6 +346,7 @@ export const cardsGalleryDom = async (value) => {
 }
 // movie details recommendation
 export const cardsRecomendedMoviesDom = (response, parentNode) => {
+    console.log(response)
     //ls content checker
     const lsChecker = localStorage.getItem('recommended')
     //parentnode
@@ -388,7 +389,7 @@ export const cardsRecomendedMoviesDom = (response, parentNode) => {
     // }else if(ulMovies.childElementCount > JSON.parse(lsChecker).length){
     }else if(ulMovies.childElementCount === 0){
         // gettin the array of LS to iterate & save the titles in the empty array
-            
+        
         return moviesObject?.map( movie => {
         // FIXME, el slider no es loop
         // const ulMovies = document.querySelector('.carousel_movies_list')

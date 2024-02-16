@@ -79,11 +79,12 @@ export const navigation = () => {
         })
 
         location.hash = 'home'
-
+        
         sliderTrending?.mount()
         sliderSeries?.mount()
         sliderGenres?.mount()
-        setTimeout( () => { slider?.mount() }, 3000 )
+        // FIXME,  solucionar el bug para que renderice bien y sin duplicar, tambien el slider de detalles, trabajar asincronicamente o con promesas o callback
+        setTimeout(() => slider?.mount(), 2000)
     }
         
 }

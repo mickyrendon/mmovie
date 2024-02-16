@@ -59,7 +59,6 @@ export const getMovieGenres_Home = async () => {
 }
 // recommended movies
 export const getRecommendedMovie = async (movie, parent) => {
-    
     // axios
     const { data } = await api(`movie/${movie.id}/recommendations`)
     const responseArray = data.results

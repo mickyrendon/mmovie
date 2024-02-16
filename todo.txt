@@ -1,5 +1,5 @@
 TODO (detalles view)
-    1.solucionar bug del slider de peliculas relacionadas, childnode es 31 al montarse el glide
+    1.solucionar bug del slider de peliculas relacionadas, childnode es 31 al montarse el glide / el carusel de estrenos tiene el mismo problema
     2.agregar sliders btns en el dom
     3.arreglar el tama;o de la imagen y la estructura de la vista de detalles
     4.hacer que las cards de recomendadas renderice la vista de detalles con el contenido correcto

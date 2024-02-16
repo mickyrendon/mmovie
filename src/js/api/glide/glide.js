@@ -11,7 +11,7 @@ const rulesHeader = {
 export const rulesTrendAndSeries = {
     type: 'carousel',
     startAt: 0,
-    perView: 3, 
+    perView: 1, 
     gap: 20,
     // FIXME, el slider debe renderizar la pagina siguiente
     // loop: 'infinite'
