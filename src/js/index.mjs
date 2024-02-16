@@ -131,8 +131,11 @@ globalThis.onload = () => {
                 const clase = element.className
                 const id = element.id
                 const result = cardData(clase, id)
-                console.log(clase, id, result, element)
                 // rendering gallery dom wich is gallery cards and passing as parameter the return of cardData() and changing location path into newDom()
+                // const movieDetailsSection = main.firstElementChild
+                // const mDetailsClasses  = movieDetailsSection.classList
+                // console.log(mDetailsClasses)
+                
                 main.append(newDom(result))
                 // main.append(movieDetailsDom)
                 document.documentElement.scrollTop = 0

@@ -78,21 +78,13 @@ const categories = async(item, node) => {
             console.log('categorias vacias')
       }
 }
-
-//i create html content & fill it with content form the object using the parameter
-export const newDom = (movie) => {
-
-      // evaluating if any of those is truth to getting
-      const movieTitle = movie.name ? [movie.name] : movie.title ? [movie.title] : null;
-      
-      //changin the location path
-      location.hash = `detalles/${movieTitle[0].trim().split(' ').join('-')}`
-
+// movie details view
+ const mDetailsDom = (movie) => {
       const movieCtr = document.createElement('section')
-            movieCtr.className = [
-                  'movie-details-section', 'pb-8 w-full', 'h-auto', 'flex', 'flex-col', 'justify-end', 'items-center'
-            ].join(' ')
-      
+      movieCtr.className = [
+            'movie-details-section', 'pb-8 w-full', 'h-auto', 'flex', 'flex-col', 'justify-end', 'items-center'
+      ].join(' ')
+
       // why 'div' instead of 'img' tag is because img have a border that can't remove it
       const img = document.createElement('div')        
             img.classList.add('h-[750px]', 'w-[500px]', 'bg-center', 'bg-no-repeat', 'bg-contain')
@@ -125,7 +117,7 @@ export const newDom = (movie) => {
       // description details list container
       const details = document.createElement('ul')
             details.classList.add('px-2', 'w-full', 'flex', 'gap-8', 'text-xs', 'list-none')
-      
+
       const li1 = document.createElement('li')
             li1.classList.add('flex', 'justify-between', 'items-center', 'gap-1')
       const icon1 = document.createElement('span')
@@ -146,7 +138,7 @@ export const newDom = (movie) => {
       const title = document.createElement('h3')
             title.classList.add('pl-2')
             title.innerHTML = 'Títulos Similares'
-      
+
       const sliderCtr = document.createElement('div')
             sliderCtr.classList.add('glide', 'glide_recommendations')
       const slider = document.createElement('div')
@@ -167,11 +159,11 @@ export const newDom = (movie) => {
             btnRight.setAttribute('data-glide-dir', '>')
       /* []
       <div class="glide__arrows" data-glide-el="controls">
-                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
-                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
-                </div>
+                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
+                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+            </div>
       */
-      
+
 
       // time options
       // const li2 = document.createElement('li')
@@ -186,7 +178,7 @@ export const newDom = (movie) => {
       // stars & cta btn list container
       // const actionBtnsCtr = document.createElement('div')
       //       actionBtnsCtr.classList.add('flex', 'justify-center')
-      
+
       // // cta btn
       // const cta  = document.createElement('button')
       //       cta.classList.add('py-2', 'px-4','rounded-lg', 'auburn', 'font-medium')
@@ -225,9 +217,31 @@ export const newDom = (movie) => {
 
       // FIXME, solucinar bug junto con el main slider
       setTimeout(() => sliderRecommendations?.mount(), 3000)
-      
-      
+
+
       return movieCtr
+ }
+
+//i create html content & fill it with content form the object using the parameter
+export const newDom = (movie) => {
+
+      // evaluating if any of those is truth to getting
+      const movieTitle = movie.name ? [movie.name] : movie.title ? [movie.title] : null;
+      
+      //changin the location path
+      location.hash = `detalles/${movieTitle[0].trim().split(' ').join('-')}`
+
+
+      if(!document.querySelector('.movie-details-section')){
+            console.log('no existe')
+            return mDetailsDom(movie)
+     
+      }else{
+            console.log('existe')
+            document.querySelector('.movie-details-section')?.remove()
+            return mDetailsDom(movie)
+      }
+
 }
 
 // export const movieDetailsDom = newDom()
