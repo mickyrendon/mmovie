@@ -346,7 +346,6 @@ export const cardsGalleryDom = async (value) => {
 }
 // movie details recommendation
 export const cardsRecomendedMoviesDom = (response, parentNode) => {
-    console.log(response)
     //ls content checker
     const lsChecker = localStorage.getItem('recommended')
     //parentnode
@@ -360,12 +359,16 @@ export const cardsRecomendedMoviesDom = (response, parentNode) => {
     const moviesObject = JSON.parse(lsChecker)
         moviesObject?.map(item => arrayLS.push(item.title))
 
+    // FIXME, la respuesta tiene un length de 20 y el array del ls esta vacio, aun asi arraycomparator retorna verdadero
     // comparing between arrays to know if have the exactly content
     const arrayComparator = arrayLS.every((element1, index) => {
         return element1 === arrayResponse[index]
     })
 
-    if (lsChecker === null || arrayComparator !== true){
+    console.log(lsChecker.length, arrayResponse, arrayLS.length, arrayComparator )
+
+
+    if (lsChecker === null || arrayComparator !== true || arrayLS.length === 0 ){
         localStorage.setItem('recommended', JSON.stringify(response))  
         const newMoviesObject = JSON.parse(localStorage.getItem('recommended')) 
         // dom rendering
@@ -379,8 +382,7 @@ export const cardsRecomendedMoviesDom = (response, parentNode) => {
                 img.id = movie.id  
                 img.src = `${imgW300}${movie.poster_path}`
                 img.setAttribute('data-name', 'card')
-                // TODO, cambiar a 'recommended-card'
-                img.classList.add('movies-card')    
+                img.classList.add('recommended-card')    
 
             li.append(img)
             ulMovies.append(li)
@@ -399,12 +401,13 @@ export const cardsRecomendedMoviesDom = (response, parentNode) => {
                 img.id = movie.id  
                 img.src = `${imgW300}${movie.poster_path}`
                 img.setAttribute('data-name', 'card')
-                // TODO, cambiar a 'recommended-card'
-                img.classList.add('movies-card')    
+                img.classList.add('recommended-card')    
                 
                 li.append(img)
                 ulMovies.append(li)
         })
+    }else{
+        console.log(lsChecker, arrayResponse, arrayLS )
     }
 }
 
