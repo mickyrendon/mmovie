@@ -54,7 +54,7 @@ export const estrenosHome = async () => {
                   img.id = movie.id  
                   img.src = `${imgW500}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
-                  img.classList.add('trending-card')    
+                  img.classList.add('trending-card', 'object-cover', 'w-full', 'sm:max-h-[46.87rem]', 'sm:object-contain')    
 
     
                   li.append(img)
@@ -293,6 +293,8 @@ export const cardsGalleryDom = async (value) => {
     const render = JSON.parse(objectLS)
     //cards ctr
     const galleryCtr = document.querySelector('.gallery-ctr')
+    const parentGalleryCtr = galleryCtr.parentElement
+    parentGalleryCtr.classList.add('mt-8')
     let childrenArray = []
 
     if(objectLS !== null){

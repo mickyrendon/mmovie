@@ -6,7 +6,7 @@ const newDom = () => {
     // gallery ctr
     const galleryCtr = document.createElement('div')
           galleryCtr.className = [
-            'gallery-ctr', 'w-full', 'h-auto', 'px-2', 'grid grid-cols-3', 'grid-rows-auto', 'sm:grid-cols-4', 'gap-2'
+            'gallery-ctr', 'w-full', 'h-auto', 'px-2', 'grid', 'grid-cols-2', 'grid-rows-auto', 'sm:grid-cols-3', 'md:grid-cols-4', 'min-[1020px]:grid-cols-5', 'min-[1190px]:grid-cols-6', 'gap-2'
           ].join(' ')
   
     //pagination ctr
@@ -65,12 +65,23 @@ export const navBarBtns = (element, hash) => {
       // comparing between element data name and location hash
       if( elementDataName === hash){
             console.log(parentTag)
-            if(parentTag !== 'MENU' && location.hash.startsWith('#query')){
-                  console.log('query');
+            if(parentTag !== 'MENU'){
                   // saving menu btns
-                 
+                  const menuBtns = [
+                        document.querySelector('.estrenos-link'),
+                        document.querySelector('.series-link'),
+                        document.querySelector('.movies-link')
+                  ]
+                  
+                  // // removing inactive class to next btn
+                  menuBtns?.map(item => {
+                        if(item.dataset.name !== hash){
+                              item.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+                        }else{
+                              item.classList.add('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+                        }
+                  })
             }else{
-                  console.log(hash, parent, parentTag)
 
                   const brothers = [...parent.children]
                   const newArray = []
