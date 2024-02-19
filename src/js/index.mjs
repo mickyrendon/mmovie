@@ -147,11 +147,7 @@ globalThis.onload = () => {
         }
         
         if(parent.classList.contains('category-btn-ctr')){   
-            /* 
-                1.importing this function to send id param 
-                2.obtener la respuesta 
-                3.renderizar la respuesta 
-            */
+
             const { getMovieCategory } = await import('./petitions/petitions.js')
             
             // const categoriesLS = JSON.parse(localStorage.getItem('genres'))

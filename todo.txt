@@ -1,9 +1,14 @@
 TODO (detalles view)
     1.solucionar bug del slider de peliculas relacionadas y slider de estrenos 'mount()', childnode es 31 al montarse el glide / el carusel de estrenos tiene el mismo problema
-    2.eliminar el nodo del detalle de la pelicula anterior al clickear una card de recommended
+    2.eliminar el nodo del detalle de la pelicula anterior al clickear una card de recommended, el footer
 TODO (historial de navegacion)
     1.agregar a un array el path de cada vista para usarla en el historial de navegacion y que devuelva justo a la pg anterior y no directo al home
 TODO (searcher)
     1.sincronizar el ls con la busqueda actual para mostrar la vista en detalle, pide que coincidan el id y la clase
     2.renderizar el array del ls actualizado segun el valor del input
     3.click al boton lupa o a la tecla enter para mostrar un resultado especifico en desktop
+TODO (UI)
+    1.height de las cards de gallery
+    2.mediaqueries
+    3.navbar y header desktop
+    4.icon link

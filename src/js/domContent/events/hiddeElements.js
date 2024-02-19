@@ -71,7 +71,7 @@ export const hiddeNavElements = () => {
             footerTag
       ]
       htmlElements.forEach((e) => {
-            e.classList.toggle('hidden')
+            e.classList.add('hidden')
       })        
 
       galleryCtr?.classList.add('hidden')

@@ -58,7 +58,9 @@ const categories = async(item, node) => {
             const div = document.createElement('div')
             // FIXME, reparar el error de algunas cards ya que dice que no permite espacios en classlist
                   // div.classList.add(`${item.name.toLowerCase()}`)
-                  div.classList.add('category-btn-ctr','gap-2', 'w-auto', 'pointer', `${item.name.toLowerCase()}`)
+                  div.className = [
+                        `${item.name.toLowerCase()}`, 'category-btn-ctr','gap-2', 'w-auto', 'pointer'
+                      ].join(' ')
                   div.setAttribute('id', `${item.id}`)
             const circle = document.createElement('span')
                   circle.className = `${item.color}`
