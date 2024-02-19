@@ -5,7 +5,7 @@ import { slider, sliderSeries, sliderTrending, sliderGenres, sliderRecommendatio
 // import { galleryDom } from "../domContent/gallery/galleryDom.js"
 
 // dom events
-import { hiddeElements, hiddeH1, hiddeNavElements, showElements, showNavElements } from '../domContent/events/hiddeElements.js'
+import { hiddeElements, hiddeH1, hiddeMenuStyles, hiddeNavElements, showElements, showNavElements } from '../domContent/events/hiddeElements.js'
 // menu btn / back btn
 import { ambiguousBackBtn, ambiguousMenuBtn } from '../domContent/events/ambiguousBtn.js'
 // import { title } from "../domContent/gallery/galleryDom.js"
@@ -51,6 +51,7 @@ export const navigation = () => {
     }
     if(location.hash.startsWith('#query')){
         cardsGalleryDom('query')
+        hiddeMenuStyles()
     }
         
     if(location.hash.startsWith('#home')){

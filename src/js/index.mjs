@@ -21,7 +21,6 @@ globalThis.onload = () => {
         const element = e.target
         const tagName = element.tagName
         const parent = element.parentElement
-
         // classes of especific btns of home
         const classes = [
             'estrenos-link',
@@ -36,15 +35,14 @@ globalThis.onload = () => {
         // filtering according the array
         const filteredClasses = classes.find((className) => {
             const elementClass = element.className.split(' ')
-            return className.includes(elementClass[0]) //? console.log(true) : console.log(false)
-            // const clase = className.includes(element.className)
-            // return clase
+            return className.includes(elementClass[0])
         })
-        console.log(filteredClasses)    
-        // searcher by btn lupa
-        // if(tagName.includes('INPUT')){
-            
-        // }
+
+        //btn logo
+        if(element.id === 'logo'){
+            location.hash = 'home'
+        }
+
         // searcher by input
         if(tagName.includes('INPUT')){
             const { getMovieBySearch } = await import('./petitions/petitions.js')

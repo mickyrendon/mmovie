@@ -110,3 +110,15 @@ export const removeSection = () => {
         ]
         return section?.forEach(node => node?node.remove():null)
 }
+// hidden menu btns styles to query
+export const hiddeMenuStyles = () => {
+      const menuBtns = [
+            document.querySelector('.estrenos-link'),
+            document.querySelector('.series-link'),
+            document.querySelector('.movies-link')
+      ]
+
+      menuBtns?.map(item => {
+            item.classList.remove('inactive', 'underline', 'underline-offset-4', 'decoration-orange-500')
+      })
+}
