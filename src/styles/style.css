@@ -125,7 +125,7 @@ form{
     font-weight: 600;
     color: var(--coral);
 }
-.carousel_movies_list, .carousel_series_list, .carousel_categories_list, .carousel_recommended_list{
+.carousel_movies_list, .carousel_series_list, .carousel_recommended_list{
     padding: 1rem;
     width: max-content !important;
     gap: 1rem;

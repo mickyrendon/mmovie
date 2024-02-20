@@ -33,7 +33,8 @@ export const estrenosHome = async () => {
         newTrendingObject?.map( movie => {
         
             const li = document.createElement('li')
-                  li.classList.add('glide__slide')
+                  li.classList.add('glide__slide', 'md:flex', 'md:justify-center')
+                  li.style.backgroundImage = `${imgW500}${movie.poster_path}`
             const img = document.createElement('img')
                   img.src = `${imgW500}${movie.poster_path}`
                   img.setAttribute('data-name', 'card')
@@ -49,7 +50,9 @@ export const estrenosHome = async () => {
         trendingObject?.map( movie => {
         
             const li = document.createElement('li')
-                  li.classList.add('glide__slide')
+                  li.classList.add('glide__slide', 'md:flex', 'md:justify-center')
+                  li.style.backgroundImage = 'url(`${imgW500}${movie.poster_path}`)'
+
             const img = document.createElement('img')
                   img.id = movie.id  
                   img.src = `${imgW500}${movie.poster_path}`

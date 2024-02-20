@@ -119,13 +119,13 @@
             <div class="glide__track" data-glide-el="track">
             <!-- filling with api info -->
               <ul class="glide__slides carousel_trending_all_list"></ul>
-                <button class="estrenos-link p-3 auburn text-sm font-semibold rounded-md absolute bottom-4 right-4" data-name="estrenos">
+                <button class="estrenos-link p-3 auburn text-sm font-semibold rounded-md absolute bottom-4 right-4 md:right-6 lg:right-24 md:text-base" data-name="estrenos">
                     Ver Estrenos
                 </button>
             </div>
             <div class="glide__arrows" data-glide-el="controls">
-                <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
-                <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
+                <button class="glide__arrow glide__arrow--left md:left-6 lg:left-12" data-glide-dir="<"></button>
+                <button class="glide__arrow glide__arrow--right md:right-6 lg:right-12" data-glide-dir=">"></button>
             </div>
         </div>
           
@@ -175,20 +175,14 @@
             <div class="glide glide_genres">
                 <div class="glide__track" data-glide-el="track">
                     <!-- filling with cars from api -->
-                  <!-- <ul class="glide__slides carousel_movies_list"></ul> -->
-                  <ul id="genresCtr" class="glide__slides carousel_categories_list flex"></ul> 
+                  <ul id="genresCtr" class="w-max p-4 carousel_categories_list grid grid-rows-2 grid-flow-col-dense gap-8"></ul> 
                 </div>
-                <!-- <div class="glide__arrows" data-glide-el="controls">
+                <div class="glide__arrows" data-glide-el="controls">
                     <button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button>
                     <button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button>
-                </div> -->
-            </div>  
-            <!-- <div class="glide categories-slider">
-                <div class="glide__track w-full" data-glide-el="track">
-                    <!-- genres container --
-                    <div class="glide__slides carousel_categories_list flex flex-row  w-auto max-h-44 overflow-x-auto md:grid-cols-4 gap-4 gap-x-12 gap-y-8"></div>  
                 </div>
-            </div> -->
+            </div>  
+ 
         </section>
     </main>
     <footer class="mt-12 w-full grid grid-flow-row auto-rows-auto text-xs items-bottom m-black-gray">
