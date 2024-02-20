@@ -133,7 +133,7 @@ globalThis.onload = () => {
                 // const movieDetailsSection = main.firstElementChild
                 // const mDetailsClasses  = movieDetailsSection.classList
                 // console.log(mDetailsClasses)
-                
+                main.classList.add('flex', 'justify-center')
                 main.append(newDom(result))
                 // main.append(movieDetailsDom)
                 document.documentElement.scrollTop = 0

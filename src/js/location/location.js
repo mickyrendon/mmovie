@@ -48,6 +48,11 @@ export const navigation = () => {
         // galleryDom('series')
         hiddeNavElements()
         hiddeH1()      
+        const main = document.querySelector('main')
+        main.classList.add('flex', 'justify-center')
+    }else{
+        const main = document.querySelector('main')
+        main.classList.remove('flex', 'justify-center')
     }
     if(location.hash.startsWith('#query')){
         cardsGalleryDom('query')

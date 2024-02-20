@@ -83,8 +83,9 @@ const categories = async(item, node) => {
 // movie details view
  const mDetailsDom = (movie) => {
       const movieCtr = document.createElement('section')
+      
       movieCtr.className = [
-            'movie-details-section', 'pb-8 w-full', 'h-auto', 'flex', 'flex-col', 'justify-end', 'items-center'
+            'movie-details-section', 'pb-8 w-full', 'h-auto', 'flex', 'flex-col', 'justify-end', 'items-center', 'max-w-screen-md'
       ].join(' ')
 
       // why 'div' instead of 'img' tag is because img have a border that can't remove it

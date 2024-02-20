@@ -9,6 +9,6 @@ export const api = axios.create({
     },
     params: {
       // 'api-key': '?api_key=38d8dd67d0503c7b3179fefed4f58607',
-      'language': '&language=es'
+      'language': '&language=es-AR'
     }
   })
