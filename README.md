@@ -40,29 +40,32 @@ SCREENSHOTS
 
 MOBILE
 
-    #home 
+#home 
 
-    <img src="./assets/gallery/1.png">
-    <img src="./assets/gallery/2.png">
-    menu #series 
+<img src="./assets/gallery/1.png">
+<img src="./assets/gallery/2.png">
 
-    <img src="./assets/gallery/3.png">
-    searcher #query
+menu #series 
 
-    <img src="./assets/gallery/4.png">
-    #details
+<img src="./assets/gallery/3.png">
 
-    <img src="./assets/gallery/5.png">
-    <img src="./assets/gallery/6.png">
-    searcher #category
+searcher #query
 
-    <img src="./assets/gallery/7.png">
-    <img src="./assets/gallery/8.png">
+<img src="./assets/gallery/4.png">
+
+#details
+
+<img src="./assets/gallery/5.png">
+<img src="./assets/gallery/6.png">
+
+searcher #category
+
+<img src="./assets/gallery/7.png">
+<img src="./assets/gallery/8.png">
     
 
 DESKTOP  
-  
-    #home
 
-    <img src="./assets/gallery/9.png">
-    <img src="./assets/gallery/10.png">
+#home
+<img src="./assets/gallery/9.png">
+<img src="./assets/gallery/10.png">
