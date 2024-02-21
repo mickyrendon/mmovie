@@ -1,4 +1,5 @@
-import Glide from "../../../../node_modules/@glidejs/glide/dist/glide.esm.js"
+// import Glide from "https://cdn.jsdelivr.net/npm/@glidejs/glide"
+// import Glide from "../../../../node_modules/@glidejs/glide/dist/glide.esm.js"
 
 
 const rulesHeader = {

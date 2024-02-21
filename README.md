@@ -17,7 +17,7 @@ PROYECTO DE CONSUMO DE API REST CON JS DE PLATZI (ejemplos con APIs reales)
 TEMAS A TENER EN CUENTA
 
     1.PAQUETES EXTERNOS: 
-        El objetivo de este repositorio es que tenga facil visualización, es por eso que decidi subir la carpeta de "node_modules" para que se ejecute correctamenet los scripts, de otra manera lo ideal seria que descargues los paquetes con el package manager que más te guste y lo corras en tu localhost, cosa que dejaré para el final del proyecto.
+        El objetivo de este repositorio es que tenga facil visualización, es por eso que decidi usar el CDN de los paquetes que uso en este proyecto (GLide.js).
     2.API KEY:
         Lo ideal en cualquier entorno profesional es que se maneje en el backend, pero para este caso meramente ilustrativo la comparto, asi no hay errores en el fetch.
     3.TODO.txt
